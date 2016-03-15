@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Biblioteka.Models
@@ -15,5 +16,15 @@ namespace Biblioteka.Models
         [Key]
         [ForeignKey("Jezik")]
         public long JezikID { get; set; }
+
+        public string naslov { get; set; }
+        public string isbn { get; set; }
+        public int broj_strana { get; set; }
+        public DateTime godina_izdavanja { get; set; }
+        public int ukupno_kopija { get; set; }
+        public int dostupno_kopija { get; set; }
+        public int izdanje { get; set; }
+        public string opis { get; set; }
+        public bool izbrisano { get; set; }
     }
 }
