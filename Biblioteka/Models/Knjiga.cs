@@ -5,7 +5,7 @@ namespace Biblioteka.Models
 {
     public class Knjiga
     {
-        public long KnjigaId { get; set; }
+        public long ID { get; set; }
         [Key]
         [ForeignKey("Izdavac")]
         public long IzdavacID { get; set; }
