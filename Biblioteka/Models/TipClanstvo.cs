@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class Clanstvo
+    public class TipClanstvo
     {
         public long ID { get; set; }
         [Key]
@@ -13,8 +13,6 @@ namespace Biblioteka.Models
         public long KorisnikID { get; set; }
         public DateTime datum_racuna { get; set; }
         public DateTime istek_racuna { get; set; }
-        public int clanski_broj { get; set; }
-
-        public virtual Clanstvo Clanstvo { get; set; }
+        public int clanski_broj{ get; set; }
     }
 }
