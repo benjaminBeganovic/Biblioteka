@@ -15,14 +15,11 @@ namespace Biblioteka.Models
         public DateTime datum_vracanja { get; set; }
         public DateTime rok { get; set; }
         public int cekanje { get; set; }
-        [Key]
-        [ForeignKey("Korisnik")]
+        [ForeignKey("Korisnik"), Column(Order = 0)]
         public long KorisnikID { get; set; }
-        [Key]
         [ForeignKey("Knjiga")]
         public long KnjigaID { get; set; }
-        [Key]
-        [ForeignKey("Zaposlenik")]
+        [ForeignKey("Zaposlenik"), Column(Order = 1)]
         public long ZaposlenikID{ get; set; }
         public virtual Korisnik Korisnik { get; set; }
         public virtual Knjiga Knjiga { get; set; }

@@ -13,10 +13,8 @@ namespace Biblioteka.Models
         public string status { get; set; }
         public DateTime datum_rezervacije { get; set; }
         public int cekanje { get; set; }
-        [Key]
         [ForeignKey("Korisnik")]
         public long KorisnikID { get; set; }
-        [Key]
         [ForeignKey("Knjiga")]
         public long KnjigaID { get; set; }
         public virtual Korisnik Korisnik { get; set; }

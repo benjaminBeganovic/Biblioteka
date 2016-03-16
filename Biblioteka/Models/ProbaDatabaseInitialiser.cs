@@ -6,8 +6,8 @@ using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class ProbaDatabaseInitialiser: DropCreateDatabaseIfModelChanges<ProbaContext>
-    {
+    public class ProbaDatabaseInitialiser : DropCreateDatabaseIfModelChanges<ProbaContext>
+    {/*
         protected override void Seed(ProbaContext context)
         {
             GetProbas().ForEach(p => context.Products.Add(p));
@@ -22,5 +22,6 @@ namespace Biblioteka.Models
             };
             return probas;
         }
+    }*/
     }
 }
