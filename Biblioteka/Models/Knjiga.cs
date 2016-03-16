@@ -26,5 +26,9 @@ namespace Biblioteka.Models
         public int izdanje { get; set; }
         public string opis { get; set; }
         public bool izbrisano { get; set; }
+
+        public virtual Izdavac Izdavac { get; set; }
+        public virtual TipKnjige TipKnjige { get; set; }
+        public virtual Jezik Jezik { get; set; }
     }
 }
