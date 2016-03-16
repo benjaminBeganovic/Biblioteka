@@ -22,7 +22,11 @@ namespace Biblioteka.Models
         [ForeignKey("Knjiga")]
         public long KnjigaID { get; set; }
         [Key]
-        [ForeignKey("Korisnik")]
+        [ForeignKey("Zaposlenik")]
         public long ZaposlenikID{ get; set; }
+        public virtual Korisnik Korisnik { get; set; }
+        public virtual Knjiga Knjiga { get; set; }
+        public virtual Korisnik Zaposlenik { get; set; }
+
     }
 }

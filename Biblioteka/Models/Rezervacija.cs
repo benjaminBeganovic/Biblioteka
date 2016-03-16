@@ -19,5 +19,7 @@ namespace Biblioteka.Models
         [Key]
         [ForeignKey("Knjiga")]
         public long KnjigaID { get; set; }
+        public virtual Korisnik Korisnik { get; set; }
+        public virtual Knjiga Knjiga { get; set; }
     }
 }
