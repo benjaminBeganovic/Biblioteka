@@ -7,8 +7,5 @@ namespace Biblioteka.Models
 {
     public class Autor
     {
-        public long ID { get; set; }
-       
-        public string naziv { get; set; }
     }
 }
