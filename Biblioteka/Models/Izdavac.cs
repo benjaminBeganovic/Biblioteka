@@ -7,5 +7,8 @@ namespace Biblioteka.Models
 {
     public class Izdavac
     {
+        public long ID { get; set; }
+        public string naziv { get; set; }
+        public string adresa { get; set; }
     }
 }
