@@ -11,10 +11,12 @@ namespace Biblioteka.Models
         [Key]
         [ForeignKey("Korisnik")]
         public long KorisnikID { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime datum_racuna { get; set; }
         public DateTime istek_racuna { get; set; }
         public int clanski_broj { get; set; }
 
-        public virtual Clanstvo Clanstvo { get; set; }
+        public virtual Korisnik Korisnik { get; set; }
     }
 }
