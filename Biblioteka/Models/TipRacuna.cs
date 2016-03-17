@@ -14,7 +14,7 @@ namespace Biblioteka.Models
         [StringLength(20)]
         public string referenca { get; set; }
         [Required(ErrorMessage = "Referenca je obavezna")]
-        [StringLength(20)]
+        [StringLength(200)]
         public string opis { get; set; }
        
     }

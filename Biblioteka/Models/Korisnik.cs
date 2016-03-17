@@ -24,7 +24,7 @@ namespace Biblioteka.Models
         [StringLength(20)]
         public string telefon { get; set; }
 
-        [StringLength(20)]
+        [StringLength(50)]
         public string adresa { get; set; }
 
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]

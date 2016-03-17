@@ -1,0 +1,111 @@
+{
+  "_type": "export",
+  "__export_format": 1,
+  "__export_date": "2016-03-17T18:22:44.822Z",
+  "__export_source": "insomnia.chrome.app:v2.6.10",
+  "items": [
+    {
+      "_type": "request_group",
+      "_id": "grp_1458238523341",
+      "name": "TipRacuna",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1458238523341",
+          "url": "http://localhost:57320/api/TipRacunas/1",
+          "method": "PUT",
+          "body": "{\n    \"referenca\": \"bibliotekar\",\n    \"opis\": \"Onaj sto uzima knjige\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Izmijeni tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238559157",
+          "url": "http://localhost:57320/api/TipRacunas/2",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238568628",
+          "url": "http://localhost:57320/api/TipRacunas/",
+          "method": "POST",
+          "body": "{\n    \"referenca\": \"korisnik\",\n    \"opis\": \"Onaj sto trazi knjige\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Napravi tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238577870",
+          "url": "http://localhost:57320/api/TipRacunas/1",
+          "method": "DELETE",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Izbrisi tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238946411",
+          "url": "http://localhost:57320/api/TipRacunas/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve tipove racuna"
+        }
+      ]
+    }
+  ]
+}
