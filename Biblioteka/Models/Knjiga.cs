@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -30,5 +31,6 @@ namespace Biblioteka.Models
         public virtual Izdavac Izdavac { get; set; }
         public virtual TipKnjige TipKnjige { get; set; }
         public virtual Jezik Jezik { get; set; }
+        public virtual ICollection<Autor> Autori { get; set; }
     }
 }

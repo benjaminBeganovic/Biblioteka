@@ -9,5 +9,6 @@ namespace Biblioteka.Models
     {
         public long ID { get; set; }
         public string naziv { get; set; }
+        public virtual ICollection<Knjiga> Knjige { get; set; }
     }
 }

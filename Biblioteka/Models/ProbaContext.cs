@@ -15,8 +15,8 @@ namespace Biblioteka.Models
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-/*
+  //          modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
             modelBuilder.Entity<Zaduzenja>()
                     .HasRequired(m => m.Korisnik)
                     .WithMany(t => t.Zaduzenja)
@@ -26,7 +26,7 @@ namespace Biblioteka.Models
                     .HasRequired(m => m.Zaposlenik)
                     .WithMany(t => t.ZaduzenjaZaposlenik)
                     .HasForeignKey(m => m.ZaposlenikID)
-                    .WillCascadeOnDelete(false);*/
+                    .WillCascadeOnDelete(false);
         }
         public DbSet<Autor> Autori { get; set; }
         public DbSet<Clanstvo> Clanstva { get; set; }
