@@ -11,9 +11,9 @@ namespace Biblioteka.Models
         [ScaffoldColumn(false)]
         public long ID { get; set; }
 
-        [StringLength(45)]
+         [Range(0, 45, ErrorMessage = "Naziv moze imati do 45 karaktera.")]
         public string naziv { get; set; }
-        [StringLength(45)]
+         [Range(0, 45, ErrorMessage = "Adresa moze imati do 45 karaktera.")]
         public string adresa { get; set; }
     }
 }
