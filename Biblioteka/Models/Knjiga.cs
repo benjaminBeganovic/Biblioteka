@@ -7,21 +7,31 @@ namespace Biblioteka.Models
 {
     public class Knjiga
     {
+        [ScaffoldColumn(false)]
         public long ID { get; set; }
-        
+
         [ForeignKey("Izdavac")]
         public long IzdavacID { get; set; }
-        
+
         [ForeignKey("TipKnjige")]
         public long TipKnjigeID { get; set; }
-        
+
         [ForeignKey("Jezik")]
         public long JezikID { get; set; }
 
+        [Range(0, 45, ErrorMessage = "Naslov moze imati do 45 karaktera.")]
         public string naslov { get; set; }
+
+        [Range(0, 45, ErrorMessage = "ISBN moze imati do 45 karaktera.")]
         public string isbn { get; set; }
+
+        [StringLength(45)]
         public int broj_strana { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime godina_izdavanja { get; set; }
+
         public int ukupno_kopija { get; set; }
         public int dostupno_kopija { get; set; }
         public int izdanje { get; set; }
