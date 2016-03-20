@@ -19,6 +19,7 @@ namespace Biblioteka.Models
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime datum_racuna { get; set; }
 
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime istek_racuna { get; set; }
 

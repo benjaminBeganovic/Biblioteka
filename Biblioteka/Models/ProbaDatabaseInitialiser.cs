@@ -1,27 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
 
 namespace Biblioteka.Models
 {
-    public class ProbaDatabaseInitialiser : DropCreateDatabaseIfModelChanges<ProbaContext>
-    {/*
+    public class ProbaDatabaseInitialiser : DropCreateDatabaseAlways<ProbaContext>
+    {
         protected override void Seed(ProbaContext context)
         {
-            GetProbas().ForEach(p => context.Products.Add(p));
+            
+            NapraviAutore().ForEach(c => context.Autors.Add(c));
+            //context.SaveChanges();
         }
-        public static List<Proba> GetProbas()
+
+        private static List<Autor> NapraviAutore()
         {
-            var probas = new List<Proba> {
-                new Proba
+            List<Autor> autori = new List<Autor> {
+                new Autor
                 {
-                    ProbaId = 1
+                    ID = 3,
+                    naziv = "Mesa Selimovic"
+                },
+                new Autor
+                {
+                    ID = 4,
+                    naziv = "Perl Bak"
                 }
             };
-            return probas;
+
+            return autori;
         }
-    }*/
+
+
     }
 }

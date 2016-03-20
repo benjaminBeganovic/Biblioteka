@@ -9,14 +9,25 @@ namespace Biblioteka.Models
 {
     public class Rezervacija
     {
+        [ScaffoldColumn(false)]
         public long ID { get; set; }
+
+        [StringLength(20)]
         public string status { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime datum_rezervacije { get; set; }
+
+        [Range(0, 100, ErrorMessage = "Cekanje treba biti manje od 100 dana!")]
         public int cekanje { get; set; }
+
         [ForeignKey("Korisnik")]
         public long KorisnikID { get; set; }
+
         [ForeignKey("Knjiga")]
         public long KnjigaID { get; set; }
+
         public virtual Korisnik Korisnik { get; set; }
         public virtual Knjiga Knjiga { get; set; }
     }
