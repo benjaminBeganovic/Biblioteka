@@ -206,22 +206,35 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AutorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IzdavacsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603152211071_Initial.cs" />
-    <Compile Include="Migrations\201603152211071_Initial.Designer.cs">
-      <DependentUpon>201603152211071_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603201834080_Initial.cs" />
+    <Compile Include="Migrations\201603201834080_Initial.Designer.cs">
+      <DependentUpon>201603201834080_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Autor.cs" />
+    <Compile Include="Models\Clanstvo.cs" />
+    <Compile Include="Models\ErrorMessageAttribute.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Izdavac.cs" />
+    <Compile Include="Models\Jezik.cs" />
+    <Compile Include="Models\Knjiga.cs" />
+    <Compile Include="Models\Korisnik.cs" />
     <Compile Include="Models\Proba.cs" />
     <Compile Include="Models\ProbaContext.cs" />
     <Compile Include="Models\ProbaDatabaseInitialiser.cs" />
+    <Compile Include="Models\Rezervacija.cs" />
+    <Compile Include="Models\TipKnjige.cs" />
+    <Compile Include="Models\TipRacuna.cs" />
+    <Compile Include="Models\Zaduzenja.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -294,8 +307,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603152211071_Initial.resx">
-      <DependentUpon>201603152211071_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603201834080_Initial.resx">
+      <DependentUpon>201603201834080_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
