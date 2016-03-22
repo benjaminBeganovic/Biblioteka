@@ -1,23 +1,28 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-03-22T21:50:39.047Z",
+  "__export_date": "2016-03-22T21:50:47.370Z",
   "__export_source": "insomnia.chrome.app:v2.6.10",
   "items": [
     {
       "_type": "request_group",
-      "_id": "grp_1458238523341",
-      "name": "TipRacuna",
+      "_id": "grp_1458236477071",
+      "name": "Korisnik",
       "environments": {},
       "requests": [
         {
           "_type": "request",
-          "_id": "req_1458238523341",
-          "url": "http://localhost:57320/api/TipRacunas/4",
-          "method": "PUT",
-          "body": "{\n    \"id\": \"4\",\n    \"referenca\": \"mujo\",\n    \"opis\": \"Onaj sto uzima knjige\"\n}",
+          "_id": "req_1458236477071",
+          "url": "http://localhost:57320/api/Korisniks",
+          "method": "POST",
+          "body": "{\n    \"ime\":\"Mirhat\",\n    \"prezime\":\"Babic\",\n    \"email\":\"babic.mirhat@gmail.com\",\n    \"username\":\"mirhat\",\n    \"password\":\"mirhat\",\n    \"tipracunaid\": 1\n}",
           "headers": [],
-          "params": [],
+          "params": [
+            {
+              "name": "ime",
+              "value": "mirhat"
+            }
+          ],
           "authentication": {
             "_type": "basic",
             "username": "",
@@ -27,12 +32,12 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Izmijeni tip racuna"
+          "name": "Napravi korisnika"
         },
         {
           "_type": "request",
-          "_id": "req_1458238559157",
-          "url": "http://localhost:57320/api/TipRacunas/2",
+          "_id": "req_1458238380830",
+          "url": "http://localhost:57320/api/Korisniks/2",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -46,14 +51,14 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Daj tip racuna"
+          "name": "Daj korisnika"
         },
         {
           "_type": "request",
-          "_id": "req_1458238568628",
-          "url": "http://localhost:57320/api/TipRacunas/",
-          "method": "POST",
-          "body": "{\n    \"referenca\": \"korisnik\",\n    \"opis\": \"Onaj sto trazi knjige\"\n}",
+          "_id": "req_1458681084449",
+          "url": "http://localhost:57320/api/Korisniks",
+          "method": "GET",
+          "body": "{}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -65,12 +70,12 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Napravi tip racuna"
+          "name": "Daj sve korisnike"
         },
         {
           "_type": "request",
-          "_id": "req_1458238577870",
-          "url": "http://localhost:57320/api/TipRacunas/1",
+          "_id": "req_1458681580687",
+          "url": "http://localhost:57320/api/Korisniks/2",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
@@ -84,16 +89,21 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Izbrisi tip racuna"
+          "name": "Obrisi korisnika"
         },
         {
           "_type": "request",
-          "_id": "req_1458238946411",
-          "url": "http://localhost:57320/api/TipRacunas/",
-          "method": "GET",
-          "body": "{}",
+          "_id": "req_1458682633831",
+          "url": "http://localhost:57320/api/Korisniks/3",
+          "method": "PUT",
+          "body": "{\n    \n    \"ime\":\"Mirhat\",\n    \"prezime\":\"Babic\",\n    \"email\":\"babic.mirhat@gmail.com\",\n    \"username\":\"mbabic1\",\n    \"password\":\"mirhat\",\n    \"tipracunaid\": 1\n}",
           "headers": [],
-          "params": [],
+          "params": [
+            {
+              "name": "ime",
+              "value": "mirhat"
+            }
+          ],
           "authentication": {
             "_type": "basic",
             "username": "",
@@ -103,7 +113,7 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Daj sve tipove racuna"
+          "name": "Izmijeni korisnika"
         }
       ]
     }
