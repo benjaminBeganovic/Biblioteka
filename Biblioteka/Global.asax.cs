@@ -16,6 +16,10 @@ namespace Biblioteka
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+            //Dodana linija za self referencing loop detected
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
