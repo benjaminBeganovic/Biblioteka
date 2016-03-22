@@ -17,9 +17,11 @@ namespace Biblioteka.Controllers
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Korisniks
-        public IQueryable<Korisnik> GetKorisnici()
+        [ResponseType(typeof(List<Korisnik>))]
+        public IHttpActionResult GetKorisnici()
         {
-            return db.Korisniks;
+            var korisnici = db.Korisniks.ToList();
+            return Ok(korisnici);
         }
 
         // GET: api/Korisniks/5

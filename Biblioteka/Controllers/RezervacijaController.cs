@@ -17,9 +17,11 @@ namespace Biblioteka.Controllers
         private ProbaContext db = new ProbaContext();
 
         // GET api/Rezervacija
-        public IQueryable<Rezervacija> GetRezervacije()
+        [ResponseType(typeof(List<Rezervacija>))]
+        public IHttpActionResult GetRezervacijas()
         {
-            return db.Rezervacijas;
+            var rezervacije = db.Rezervacijas.ToList();
+            return Ok(rezervacije);
         }
 
         // GET api/Rezervacija/5

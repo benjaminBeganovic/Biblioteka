@@ -17,9 +17,11 @@ namespace Biblioteka.Controllers
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Clanstvoes
-        public IQueryable<Clanstvo> GetClanstva()
+        [ResponseType(typeof(List<Clanstvo>))]
+        public IHttpActionResult GetClanstvoes()
         {
-            return db.Clanstvoes;
+            var clanstva = db.Clanstvoes.ToList();
+            return Ok(clanstva);
         }
 
         // GET: api/Clanstvoes/5
