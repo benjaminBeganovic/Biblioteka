@@ -1,59 +1,21 @@
 {
   "_type": "export",
   "__export_format": 1,
-  "__export_date": "2016-03-22T21:50:39.047Z",
+  "__export_date": "2016-03-22T21:50:21.755Z",
   "__export_source": "insomnia.chrome.app:v2.6.10",
   "items": [
     {
       "_type": "request_group",
-      "_id": "grp_1458238523341",
-      "name": "TipRacuna",
+      "_id": "grp_1458678701275",
+      "name": "Clanstvo",
       "environments": {},
       "requests": [
         {
           "_type": "request",
-          "_id": "req_1458238523341",
-          "url": "http://localhost:57320/api/TipRacunas/4",
-          "method": "PUT",
-          "body": "{\n    \"id\": \"4\",\n    \"referenca\": \"mujo\",\n    \"opis\": \"Onaj sto uzima knjige\"\n}",
-          "headers": [],
-          "params": [],
-          "authentication": {
-            "_type": "basic",
-            "username": "",
-            "password": ""
-          },
-          "__insomnia": {
-            "format": "json",
-            "panel_width": 0.5
-          },
-          "name": "Izmijeni tip racuna"
-        },
-        {
-          "_type": "request",
-          "_id": "req_1458238559157",
-          "url": "http://localhost:57320/api/TipRacunas/2",
-          "method": "GET",
-          "body": "{}",
-          "headers": [],
-          "params": [],
-          "authentication": {
-            "_type": "basic",
-            "username": "",
-            "password": ""
-          },
-          "__insomnia": {
-            "format": "json",
-            "panel_width": 0.5
-          },
-          "name": "Daj tip racuna"
-        },
-        {
-          "_type": "request",
-          "_id": "req_1458238568628",
-          "url": "http://localhost:57320/api/TipRacunas/",
+          "_id": "req_1458678701276",
+          "url": "http://localhost:57320/api/Clanstvoes/",
           "method": "POST",
-          "body": "{\n    \"referenca\": \"korisnik\",\n    \"opis\": \"Onaj sto trazi knjige\"\n}",
+          "body": "{\n    \"KorisnikID\": 3\n    \"clanski_broj\": 128,\n    \"datum_racuna\":\"2016-02-02T00:00:00\",\n    \"istek_racuna\":\"2016-03-02T00:00:00\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -65,33 +27,14 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Napravi tip racuna"
+          "name": "Napravi clanstvo"
         },
         {
           "_type": "request",
-          "_id": "req_1458238577870",
-          "url": "http://localhost:57320/api/TipRacunas/1",
-          "method": "DELETE",
-          "body": "{}",
-          "headers": [],
-          "params": [],
-          "authentication": {
-            "_type": "basic",
-            "username": "",
-            "password": ""
-          },
-          "__insomnia": {
-            "format": "json",
-            "panel_width": 0.5
-          },
-          "name": "Izbrisi tip racuna"
-        },
-        {
-          "_type": "request",
-          "_id": "req_1458238946411",
-          "url": "http://localhost:57320/api/TipRacunas/",
+          "_id": "req_1458683167120",
+          "url": "http://localhost:57320/api/Clanstvoes/",
           "method": "GET",
-          "body": "{}",
+          "body": "{\n    \"KorisnikId\": 3,\n    \"clanski_broj\": 128,\n    \"datum_racuna\":\"2016-02-02T00:00:00\",\n    \"istek_racuna\":\"2016-03-02T00:00:00\"\n}",
           "headers": [],
           "params": [],
           "authentication": {
@@ -103,7 +46,64 @@
             "format": "json",
             "panel_width": 0.5
           },
-          "name": "Daj sve tipove racuna"
+          "name": "Daj sva clanstva"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458683186953",
+          "url": "http://localhost:57320/api/Clanstvoes/3",
+          "method": "GET",
+          "body": "{\n    \"KorisnikId\": 3,\n    \"clanski_broj\": 128,\n    \"datum_racuna\":\"2016-02-02T00:00:00\",\n    \"istek_racuna\":\"2016-03-02T00:00:00\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj clanstvo"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458683212488",
+          "url": "http://localhost:57320/api/Clanstvoes/3",
+          "method": "PUT",
+          "body": "{\n    \"id\": 3,\n    \"KorisnikID\": 3,\n    \"clanski_broj\": 300,\n    \"datum_racuna\":\"2016-02-02T00:00:00\",\n    \"istek_racuna\":\"2016-03-02T00:00:00\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Izmijeni clanstvo"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458683358796",
+          "url": "http://localhost:57320/api/Clanstvoes/3",
+          "method": "DELETE",
+          "body": "{\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Obrisi clanstvo"
         }
       ]
     }
