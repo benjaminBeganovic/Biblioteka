@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/TipRacunas
         public IQueryable<TipRacuna> GetTipoviRacuna()
         {
-            return db.TipoviRacuna;
+            return db.TipRacunas;
         }
 
         // GET: api/TipRacunas/5
         [ResponseType(typeof(TipRacuna))]
         public IHttpActionResult GetTipRacuna(long id)
         {
-            TipRacuna tipRacuna = db.TipoviRacuna.Find(id);
+            TipRacuna tipRacuna = db.TipRacunas.Find(id);
             if (tipRacuna == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.TipoviRacuna.Add(tipRacuna);
+            db.TipRacunas.Add(tipRacuna);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tipRacuna.ID }, tipRacuna);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(TipRacuna))]
         public IHttpActionResult DeleteTipRacuna(long id)
         {
-            TipRacuna tipRacuna = db.TipoviRacuna.Find(id);
+            TipRacuna tipRacuna = db.TipRacunas.Find(id);
             if (tipRacuna == null)
             {
                 return NotFound();
             }
 
-            db.TipoviRacuna.Remove(tipRacuna);
+            db.TipRacunas.Remove(tipRacuna);
             db.SaveChanges();
 
             return Ok(tipRacuna);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool TipRacunaExists(long id)
         {
-            return db.TipoviRacuna.Count(e => e.ID == id) > 0;
+            return db.TipRacunas.Count(e => e.ID == id) > 0;
         }
     }
 }

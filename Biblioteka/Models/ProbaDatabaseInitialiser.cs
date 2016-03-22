@@ -4,12 +4,17 @@ using System.Data.Entity;
 
 namespace Biblioteka.Models
 {
-    public class ProbaDatabaseInitialiser : DropCreateDatabaseAlways<ProbaContext>
+    public class ProbaDatabaseInitialiser : DropCreateDatabaseIfModelChanges<ProbaContext>
     {
+        public override void InitializeDatabase(ProbaContext context)
+        {
+            base.InitializeDatabase(context);
+        }
         protected override void Seed(ProbaContext context)
         {
-            
-            NapraviAutore().ForEach(c => context.Autori.Add(c));
+            context.Autors.Add(new Autor { ID = 1, naziv = "zEKO" });
+            context.SaveChanges();
+            //NapraviAutore().ForEach(c => context.Autors.Add(c));
             //context.SaveChanges();
         }
 
@@ -19,12 +24,7 @@ namespace Biblioteka.Models
                 new Autor
                 {
                     ID = 1,
-                    naziv = "Mesa Selimovic"
-                },
-                new Autor
-                {
-                    ID = 2,
-                    naziv = "Perl Bak"
+                    naziv = "Zeko peko"
                 }
             };
 

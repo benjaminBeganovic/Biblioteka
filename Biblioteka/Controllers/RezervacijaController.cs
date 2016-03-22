@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET api/Rezervacija
         public IQueryable<Rezervacija> GetRezervacije()
         {
-            return db.Rezervacije;
+            return db.Rezervacijas;
         }
 
         // GET api/Rezervacija/5
         [ResponseType(typeof(Rezervacija))]
         public IHttpActionResult GetRezervacija(long id)
         {
-            Rezervacija rezervacija = db.Rezervacije.Find(id);
+            Rezervacija rezervacija = db.Rezervacijas.Find(id);
             if (rezervacija == null)
             {
                 return NotFound();
@@ -78,7 +78,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Rezervacije.Add(rezervacija);
+            db.Rezervacijas.Add(rezervacija);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = rezervacija.ID }, rezervacija);
@@ -88,13 +88,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Rezervacija))]
         public IHttpActionResult DeleteRezervacija(long id)
         {
-            Rezervacija rezervacija = db.Rezervacije.Find(id);
+            Rezervacija rezervacija = db.Rezervacijas.Find(id);
             if (rezervacija == null)
             {
                 return NotFound();
             }
 
-            db.Rezervacije.Remove(rezervacija);
+            db.Rezervacijas.Remove(rezervacija);
             db.SaveChanges();
 
             return Ok(rezervacija);
@@ -111,7 +111,7 @@ namespace Biblioteka.Controllers
 
         private bool RezervacijaExists(long id)
         {
-            return db.Rezervacije.Count(e => e.ID == id) > 0;
+            return db.Rezervacijas.Count(e => e.ID == id) > 0;
         }
     }
 }

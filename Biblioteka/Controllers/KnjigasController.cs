@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/Knjigas
         public IQueryable<Knjiga> GetKnjige()
         {
-            return db.Knjige;
+            return db.Knjigas;
         }
 
         // GET: api/Knjigas/5
         [ResponseType(typeof(Knjiga))]
         public IHttpActionResult GetKnjiga(long id)
         {
-            Knjiga knjiga = db.Knjige.Find(id);
+            Knjiga knjiga = db.Knjigas.Find(id);
             if (knjiga == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Knjige.Add(knjiga);
+            db.Knjigas.Add(knjiga);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = knjiga.ID }, knjiga);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Knjiga))]
         public IHttpActionResult DeleteKnjiga(long id)
         {
-            Knjiga knjiga = db.Knjige.Find(id);
+            Knjiga knjiga = db.Knjigas.Find(id);
             if (knjiga == null)
             {
                 return NotFound();
             }
 
-            db.Knjige.Remove(knjiga);
+            db.Knjigas.Remove(knjiga);
             db.SaveChanges();
 
             return Ok(knjiga);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool KnjigaExists(long id)
         {
-            return db.Knjige.Count(e => e.ID == id) > 0;
+            return db.Knjigas.Count(e => e.ID == id) > 0;
         }
     }
 }

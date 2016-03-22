@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/Clanstvoes
         public IQueryable<Clanstvo> GetClanstva()
         {
-            return db.Clanstva;
+            return db.Clanstvoes;
         }
 
         // GET: api/Clanstvoes/5
         [ResponseType(typeof(Clanstvo))]
         public IHttpActionResult GetClanstvo(long id)
         {
-            Clanstvo clanstvo = db.Clanstva.Find(id);
+            Clanstvo clanstvo = db.Clanstvoes.Find(id);
             if (clanstvo == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Clanstva.Add(clanstvo);
+            db.Clanstvoes.Add(clanstvo);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = clanstvo.ID }, clanstvo);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Clanstvo))]
         public IHttpActionResult DeleteClanstvo(long id)
         {
-            Clanstvo clanstvo = db.Clanstva.Find(id);
+            Clanstvo clanstvo = db.Clanstvoes.Find(id);
             if (clanstvo == null)
             {
                 return NotFound();
             }
 
-            db.Clanstva.Remove(clanstvo);
+            db.Clanstvoes.Remove(clanstvo);
             db.SaveChanges();
 
             return Ok(clanstvo);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool ClanstvoExists(long id)
         {
-            return db.Clanstva.Count(e => e.ID == id) > 0;
+            return db.Clanstvoes.Count(e => e.ID == id) > 0;
         }
     }
 }

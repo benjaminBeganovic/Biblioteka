@@ -28,16 +28,16 @@ namespace Biblioteka.Models
                     .HasForeignKey(m => m.ZaposlenikID)
                     .WillCascadeOnDelete(false);
         }
-        public DbSet<Autor> Autori { get; set; }
-        public DbSet<Clanstvo> Clanstva { get; set; }
-        public DbSet<Izdavac> Products { get; set; }
-        public DbSet<Jezik> Jezici { get; set; }
-        public DbSet<Knjiga> Knjige { get; set; }
-        public DbSet<Korisnik> Korisnici { get; set; }
-        public DbSet<Rezervacija> Rezervacije { get; set; }
-        public DbSet<TipKnjige> TipoviKnjiga { get; set; }
-        public DbSet<TipRacuna> TipoviRacuna { get; set; }
-        public DbSet<Zaduzenja> Zaduzenja { get; set; }
+        public DbSet<Autor> Autors { get; set; }
+        public DbSet<Clanstvo> Clanstvoes { get; set; }
+        public DbSet<Jezik> Jeziks { get; set; }
+        public DbSet<Knjiga> Knjigas { get; set; }
+        public DbSet<Izdavac> Izdavacs { get; set; }
+        public DbSet<Korisnik> Korisniks { get; set; }
+        public DbSet<Rezervacija> Rezervacijas { get; set; }
+        public DbSet<TipKnjige> TipKnjiges { get; set; }
+        public DbSet<TipRacuna> TipRacunas { get; set; }
+        public DbSet<Zaduzenja> Zaduzenjas { get; set; }
 
     }
 }

@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/Izdavacs
         public IQueryable<Izdavac> GetProducts()
         {
-            return db.Products;
+            return db.Izdavacs;
         }
 
         // GET: api/Izdavacs/5
         [ResponseType(typeof(Izdavac))]
         public IHttpActionResult GetIzdavac(long id)
         {
-            Izdavac izdavac = db.Products.Find(id);
+            Izdavac izdavac = db.Izdavacs.Find(id);
             if (izdavac == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Products.Add(izdavac);
+            db.Izdavacs.Add(izdavac);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = izdavac.ID }, izdavac);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Izdavac))]
         public IHttpActionResult DeleteIzdavac(long id)
         {
-            Izdavac izdavac = db.Products.Find(id);
+            Izdavac izdavac = db.Izdavacs.Find(id);
             if (izdavac == null)
             {
                 return NotFound();
             }
 
-            db.Products.Remove(izdavac);
+            db.Izdavacs.Remove(izdavac);
             db.SaveChanges();
 
             return Ok(izdavac);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool IzdavacExists(long id)
         {
-            return db.Products.Count(e => e.ID == id) > 0;
+            return db.Izdavacs.Count(e => e.ID == id) > 0;
         }
     }
 }

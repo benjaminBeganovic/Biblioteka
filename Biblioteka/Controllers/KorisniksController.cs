@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/Korisniks
         public IQueryable<Korisnik> GetKorisnici()
         {
-            return db.Korisnici;
+            return db.Korisniks;
         }
 
         // GET: api/Korisniks/5
         [ResponseType(typeof(Korisnik))]
         public IHttpActionResult GetKorisnik(long id)
         {
-            Korisnik korisnik = db.Korisnici.Find(id);
+            Korisnik korisnik = db.Korisniks.Find(id);
             if (korisnik == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Korisnici.Add(korisnik);
+            db.Korisniks.Add(korisnik);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = korisnik.ID }, korisnik);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Korisnik))]
         public IHttpActionResult DeleteKorisnik(long id)
         {
-            Korisnik korisnik = db.Korisnici.Find(id);
+            Korisnik korisnik = db.Korisniks.Find(id);
             if (korisnik == null)
             {
                 return NotFound();
             }
 
-            db.Korisnici.Remove(korisnik);
+            db.Korisniks.Remove(korisnik);
             db.SaveChanges();
 
             return Ok(korisnik);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool KorisnikExists(long id)
         {
-            return db.Korisnici.Count(e => e.ID == id) > 0;
+            return db.Korisniks.Count(e => e.ID == id) > 0;
         }
     }
 }

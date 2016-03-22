@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET api/Zaduzenja
         public IQueryable<Zaduzenja> GetZaduzenja()
         {
-            return db.Zaduzenja;
+            return db.Zaduzenjas;
         }
 
         // GET api/Zaduzenja/5
         [ResponseType(typeof(Zaduzenja))]
         public IHttpActionResult GetZaduzenja(long id)
         {
-            Zaduzenja zaduzenja = db.Zaduzenja.Find(id);
+            Zaduzenja zaduzenja = db.Zaduzenjas.Find(id);
             if (zaduzenja == null)
             {
                 return NotFound();
@@ -78,7 +78,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Zaduzenja.Add(zaduzenja);
+            db.Zaduzenjas.Add(zaduzenja);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = zaduzenja.ID }, zaduzenja);
@@ -88,13 +88,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Zaduzenja))]
         public IHttpActionResult DeleteZaduzenja(long id)
         {
-            Zaduzenja zaduzenja = db.Zaduzenja.Find(id);
+            Zaduzenja zaduzenja = db.Zaduzenjas.Find(id);
             if (zaduzenja == null)
             {
                 return NotFound();
             }
 
-            db.Zaduzenja.Remove(zaduzenja);
+            db.Zaduzenjas.Remove(zaduzenja);
             db.SaveChanges();
 
             return Ok(zaduzenja);
@@ -111,7 +111,7 @@ namespace Biblioteka.Controllers
 
         private bool ZaduzenjaExists(long id)
         {
-            return db.Zaduzenja.Count(e => e.ID == id) > 0;
+            return db.Zaduzenjas.Count(e => e.ID == id) > 0;
         }
     }
 }

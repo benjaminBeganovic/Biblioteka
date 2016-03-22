@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/Autors
         public IQueryable<Autor> GetAutori()
         {
-            return db.Autori;
+            return db.Autors;
         }
 
         // GET: api/Autors/5
         [ResponseType(typeof(Autor))]
         public IHttpActionResult GetAutor(long id)
         {
-            Autor autor = db.Autori.Find(id);
+            Autor autor = db.Autors.Find(id);
             if (autor == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Autori.Add(autor);
+            db.Autors.Add(autor);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = autor.ID }, autor);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Autor))]
         public IHttpActionResult DeleteAutor(long id)
         {
-            Autor autor = db.Autori.Find(id);
+            Autor autor = db.Autors.Find(id);
             if (autor == null)
             {
                 return NotFound();
             }
 
-            db.Autori.Remove(autor);
+            db.Autors.Remove(autor);
             db.SaveChanges();
 
             return Ok(autor);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool AutorExists(long id)
         {
-            return db.Autori.Count(e => e.ID == id) > 0;
+            return db.Autors.Count(e => e.ID == id) > 0;
         }
     }
 }

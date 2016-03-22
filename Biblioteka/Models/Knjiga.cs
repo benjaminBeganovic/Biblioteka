@@ -49,6 +49,5 @@ namespace Biblioteka.Models
         public virtual Izdavac Izdavac { get; set; }
         public virtual TipKnjige TipKnjige { get; set; }
         public virtual Jezik Jezik { get; set; }
-        public virtual ICollection<Autor> Autori { get; set; }
     }
 }

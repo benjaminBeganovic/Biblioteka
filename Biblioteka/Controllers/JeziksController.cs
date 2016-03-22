@@ -19,14 +19,14 @@ namespace Biblioteka.Controllers
         // GET: api/Jeziks
         public IQueryable<Jezik> GetJezici()
         {
-            return db.Jezici;
+            return db.Jeziks;
         }
 
         // GET: api/Jeziks/5
         [ResponseType(typeof(Jezik))]
         public IHttpActionResult GetJezik(long id)
         {
-            Jezik jezik = db.Jezici.Find(id);
+            Jezik jezik = db.Jeziks.Find(id);
             if (jezik == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Jezici.Add(jezik);
+            db.Jeziks.Add(jezik);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = jezik.ID }, jezik);
@@ -89,13 +89,13 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(Jezik))]
         public IHttpActionResult DeleteJezik(long id)
         {
-            Jezik jezik = db.Jezici.Find(id);
+            Jezik jezik = db.Jeziks.Find(id);
             if (jezik == null)
             {
                 return NotFound();
             }
 
-            db.Jezici.Remove(jezik);
+            db.Jeziks.Remove(jezik);
             db.SaveChanges();
 
             return Ok(jezik);
@@ -112,7 +112,7 @@ namespace Biblioteka.Controllers
 
         private bool JezikExists(long id)
         {
-            return db.Jezici.Count(e => e.ID == id) > 0;
+            return db.Jeziks.Count(e => e.ID == id) > 0;
         }
     }
 }
