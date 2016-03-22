@@ -10,11 +10,13 @@ namespace Biblioteka.Models
     {
         [ScaffoldColumn(false)]
         public long ID { get; set; }
+
         [Required(ErrorMessage = "Referenca je obavezna")]
-        [StringLength(20)]
+        [StringLength(20, ErrorMessage = "Referenca moze imati do 20 karaktera.")]
         public string referenca { get; set; }
-        [Required(ErrorMessage = "Referenca je obavezna")]
-        [StringLength(200)]
+
+        [Required(ErrorMessage = "Opis je obavezna")]
+        [StringLength(200, ErrorMessage = "Opis moze imati do 200 karaktera.")]
         public string opis { get; set; }
        
     }

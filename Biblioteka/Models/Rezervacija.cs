@@ -12,7 +12,7 @@ namespace Biblioteka.Models
         [ScaffoldColumn(false)]
         public long ID { get; set; }
 
-        [StringLength(20)]
+        [StringLength(20, ErrorMessage = "Status moze imati do 20 karaktera.")]
         public string status { get; set; }
 
         [DataType(DataType.Date)]

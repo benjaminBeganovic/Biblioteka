@@ -13,10 +13,10 @@ namespace Biblioteka.Models
         public long ID { get; set; }
 
         [Required(ErrorMessage = "Referenca je obavezna")]
-        [StringLength(45)]
+        [StringLength(45, ErrorMessage = "Referenca moze imati do 45 karaktera.")]
         public string referenca { get; set; }
 
-        [Range(0, 45, ErrorMessage = "Opis moze imati do 45 karaktera.")]
+        [StringLength(10000, ErrorMessage = "Naziv moze imati do 10000 karaktera.")]
         public string opis { get; set; }
     }
 }
