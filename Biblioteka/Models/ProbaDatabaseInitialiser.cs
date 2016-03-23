@@ -6,6 +6,7 @@ namespace Biblioteka.Models
 {
     public class ProbaDatabaseInitialiser : DropCreateDatabaseIfModelChanges<ProbaContext>
     {
+        /*
         public override void InitializeDatabase(ProbaContext context)
         {
             base.InitializeDatabase(context);
@@ -31,6 +32,7 @@ namespace Biblioteka.Models
             return autori;
         }
 
-
+        */
     }
+         
 }
