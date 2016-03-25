@@ -18,6 +18,8 @@ namespace Biblioteka.Models
         [Required(ErrorMessage = "Opis je obavezna")]
         [StringLength(200, ErrorMessage = "Opis moze imati do 200 karaktera.")]
         public string opis { get; set; }
+
+        public virtual ICollection<Korisnik> Korisnici { get; set; }
        
     }
 }

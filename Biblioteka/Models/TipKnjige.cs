@@ -18,5 +18,7 @@ namespace Biblioteka.Models
 
         [StringLength(45, ErrorMessage = "Opis moze imati do 45 karaktera.")]
         public string opis { get; set; }
+
+        public virtual ICollection<Knjiga> Knjige { get; set; }
     }
 }

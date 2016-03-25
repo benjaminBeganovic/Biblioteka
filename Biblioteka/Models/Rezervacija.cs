@@ -15,7 +15,7 @@ namespace Biblioteka.Models
         [StringLength(20, ErrorMessage = "Status moze imati do 20 karaktera.")]
         public string status { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime datum_rezervacije { get; set; }
 

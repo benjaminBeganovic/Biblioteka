@@ -14,7 +14,9 @@ namespace Biblioteka.Models
         [StringLength(45, ErrorMessage = "Naziv moze imati do 45 karaktera.")]
         public string naziv { get; set; }
 
-        [StringLength(45, ErrorMessage = "Naziv moze imati do 45 karaktera.")]
+        [StringLength(100, ErrorMessage = "Naziv moze imati do 100 karaktera.")]
         public string adresa { get; set; }
+
+        public virtual ICollection<Knjiga> Knjige { get; set; }
     }
 }

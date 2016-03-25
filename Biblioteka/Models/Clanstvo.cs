@@ -15,15 +15,15 @@ namespace Biblioteka.Models
         [ForeignKey("Korisnik")]
         public long KorisnikID { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime datum_racuna { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime istek_racuna { get; set; }
 
-        [Range(0, 1000000,ErrorMessage = "Clanski broj mora biti od 0 do 1000000")]
+        [Range(0, 10000000, ErrorMessage = "Clanski broj mora biti od 0 do 10000000")]
         public int clanski_broj { get; set; }
 
         public virtual Korisnik Korisnik { get; set; }

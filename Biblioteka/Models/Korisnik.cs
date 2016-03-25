@@ -41,8 +41,11 @@ namespace Biblioteka.Models
         public bool odobren { get; set; }
 
         public virtual TipRacuna TipRacuna { get; set; }
+
         public virtual ICollection<Zaduzenja> Zaduzenja {get; set;}
         public virtual ICollection<Zaduzenja> ZaduzenjaZaposlenik { get; set; }
+        public virtual ICollection<Clanstvo> Clanstva { get; set; }
+        public virtual ICollection<Rezervacija> Rezervacije { get; set; }
 
     }
 }

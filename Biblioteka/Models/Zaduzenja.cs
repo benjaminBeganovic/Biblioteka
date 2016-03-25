@@ -15,15 +15,15 @@ namespace Biblioteka.Models
         [StringLength(20)]
         public string status { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime datum_zaduzenja { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime datum_vracanja { get; set; }
+        public DateTime? datum_vracanja { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime rok { get; set; }
 

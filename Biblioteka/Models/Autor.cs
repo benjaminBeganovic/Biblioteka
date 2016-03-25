@@ -14,5 +14,7 @@ namespace Biblioteka.Models
         [Required(ErrorMessage = "Naziv autora je obavezan!")]
         [StringLength(45, ErrorMessage = "Naziv moze imati do 45 karaktera.")]
         public string naziv { get; set; }
+
+        public virtual ICollection<Knjiga> Knjige { get; set; }
     }
 }

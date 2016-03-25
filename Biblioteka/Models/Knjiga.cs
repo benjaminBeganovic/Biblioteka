@@ -28,9 +28,9 @@ namespace Biblioteka.Models
         [Range(0, 10000, ErrorMessage = "Knjiga ne moze imati vise od 10000 strana!")]
         public int broj_strana { get; set; }
 
-        [DataType(DataType.Date)]
+        [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime godina_izdavanja { get; set; }
+        public DateTime? godina_izdavanja { get; set; }
 
         [Range(0, 1000000, ErrorMessage = "Broj kopija ne moze biti negativan ili veci od 1000000!")]
         public int ukupno_kopija { get; set; }
@@ -49,5 +49,9 @@ namespace Biblioteka.Models
         public virtual Izdavac Izdavac { get; set; }
         public virtual TipKnjige TipKnjige { get; set; }
         public virtual Jezik Jezik { get; set; }
+
+        public virtual ICollection<Zaduzenja> Zaduzenja { get; set; }
+        public virtual ICollection<Rezervacija> Rezervacije { get; set; }
+        public virtual ICollection<Autor> Autori { get; set; }
     }
 }
