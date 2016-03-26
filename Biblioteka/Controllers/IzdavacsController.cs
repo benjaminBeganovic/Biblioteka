@@ -19,9 +19,10 @@ namespace Biblioteka.Controllers
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Izdavacs
-        public IQueryable<Izdavac> GetProducts()
+        [ResponseType(typeof(List<Izdavac>))]
+        public IHttpActionResult GetIzdavacs()
         {
-            return db.Izdavacs;
+            return Ok(db.Izdavacs.ToList());
         }
 
         // GET: api/Izdavacs/5

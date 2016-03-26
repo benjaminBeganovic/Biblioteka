@@ -19,9 +19,10 @@ namespace Biblioteka.Controllers
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Jeziks
-        public IQueryable<Jezik> GetJezici()
+        [ResponseType(typeof(List<Jezik>))]
+        public IHttpActionResult GetJezici()
         {
-            return db.Jeziks;
+            return Ok(db.Jeziks.ToList());
         }
 
         // GET: api/Jeziks/5

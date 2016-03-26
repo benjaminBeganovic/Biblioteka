@@ -1,4 +1,5 @@
 ﻿using Biblioteka.Models;
+using Biblioteka.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web.Http.Description;
 
 namespace Biblioteka.Controllers
 {
+    [CustomAuthorize(Roles = "a,b,c")]
     public class PretragaJednostavnaController : ApiController
     {
         private ProbaContext db = new ProbaContext();

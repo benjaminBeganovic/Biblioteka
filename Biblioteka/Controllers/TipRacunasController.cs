@@ -19,9 +19,10 @@ namespace Biblioteka.Controllers
         private ProbaContext db = new ProbaContext();
 
         // GET: api/TipRacunas
-        public IQueryable<TipRacuna> GetTipoviRacuna()
+        [ResponseType(typeof(List<TipRacuna>))]
+        public IHttpActionResult GetTipoviRacuna()
         {
-            return db.TipRacunas;
+            return Ok(db.TipRacunas.ToList());
         }
 
         // GET: api/TipRacunas/5
