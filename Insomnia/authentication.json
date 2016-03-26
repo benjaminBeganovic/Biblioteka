@@ -1,0 +1,54 @@
+{
+  "_type": "export",
+  "__export_format": 1,
+  "__export_date": "2016-03-26T18:04:38.285Z",
+  "__export_source": "insomnia.chrome.app:v2.6.10",
+  "items": [
+    {
+      "_type": "request_group",
+      "_id": "grp_1459014096948",
+      "name": "Authentication",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1459014096948",
+          "url": "http://localhost:57320/api/Auth/Logout?username=bib1&password=bib1pass",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Logout"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1459014139902",
+          "url": "http://localhost:57320/api/Auth/Login/?username=bib1&password=bib1pass",
+          "method": "POST",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Login"
+        }
+      ]
+    }
+  ]
+}
