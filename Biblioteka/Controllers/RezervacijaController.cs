@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -11,14 +11,14 @@ using System.Web.Http.Description;
 using Biblioteka.Models;
 using System.Data.Entity.Core.Objects;
 using System.Net.Mail;
-//using System.Net.Mail;
+using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
     public class RezervacijaController : ApiController
     {
         private ProbaContext db = new ProbaContext();
-
+        /*
         // GET api/Rezervacija
         [ResponseType(typeof(List<Rezervacija>))]
         public IHttpActionResult GetRezervacijas()
@@ -74,7 +74,7 @@ namespace Biblioteka.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-        
+        */
         /*defaultna
         // POST api/Rezervacija
         [ResponseType(typeof(Rezervacija))]
@@ -93,6 +93,7 @@ namespace Biblioteka.Controllers
         */
 
         // POST api/Rezervacija
+        [CustomAuthorize(Roles = "c")]
         [ResponseType(typeof(Rezervacija))]
         public IHttpActionResult PostRezervacija(Rezervacija rezervacija)
         {
@@ -222,6 +223,37 @@ namespace Biblioteka.Controllers
             return 0;
         }
 
+        // GET api/Rezervacija
+        [CustomAuthorize(Roles = "b")]
+        [ResponseType(typeof(String))]
+        public string GetRezervacijas()
+        {
+            String response = "";
+
+            List<Knjiga> kriticne = db.Knjigas.Where(k => (db.Zaduzenjas.Where(z => z.status == "nv" && z.KnjigaID == k.ID).Count() + 
+                db.Rezervacijas.Where(r => r.status == "co" && r.KnjigaID == k.ID).Count()) - k.ukupno_kopija == 0).ToList();
+
+            foreach (Knjiga k in kriticne)
+            {
+                response += "Knjiga: " + k.naslov + ", ukupno kopija: " + k.ukupno_kopija + "\n";
+                List<Autor> autori = k.Autori.ToList();
+                string autori_s = "";
+                foreach(Autor a in autori)
+                    autori_s += a.naziv + ", ";
+
+                autori_s = autori_s.Substring(0, autori_s.Length - 2);
+
+                response += autori_s + ".\n\n";
+            }
+
+            if (kriticne.Count() < 1)
+            {
+                return "Nema kriticnih knjiga!";
+            }
+
+            return response;
+        }
+        /*
         // DELETE api/Rezervacija/5
         [ResponseType(typeof(Rezervacija))]
         public IHttpActionResult DeleteRezervacija(long id)
@@ -237,7 +269,7 @@ namespace Biblioteka.Controllers
 
             return Ok(rezervacija);
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
