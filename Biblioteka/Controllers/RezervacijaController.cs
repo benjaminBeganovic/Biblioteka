@@ -13,9 +13,6 @@ using System.Data.Entity.Core.Objects;
 using System.Net.Mail;
 using Biblioteka.Security;
 
-using System.Web;
-using System.Web.Security;
-
 namespace Biblioteka.Controllers
 {
     public class RezervacijaController : ApiController
