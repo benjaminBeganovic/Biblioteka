@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Biblioteka.Models;
 using System.Net.Mail;
+using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
@@ -17,6 +18,7 @@ namespace Biblioteka.Controllers
     {
         private ProbaContext db = new ProbaContext();
 
+        /*
         // GET api/Zaduzenja
         [ResponseType(typeof(List<Zaduzenja>))]
         public IHttpActionResult GetZaduzenjas()
@@ -37,7 +39,61 @@ namespace Biblioteka.Controllers
 
             return Ok(zaduzenja);
         }
+        
         // PUT api/Zaduzenja/5
+        public IHttpActionResult PutZaduzenja(long id, Zaduzenja zaduzenja)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != zaduzenja.ID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(zaduzenja).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ZaduzenjaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST api/Zaduzenja
+        [ResponseType(typeof(Zaduzenja))]
+        public IHttpActionResult PostZaduzenja(Zaduzenja zaduzenja)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Zaduzenjas.Add(zaduzenja);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = zaduzenja.ID }, zaduzenja);
+        }
+        */
+
+
+        //servis za Razduzenje
+        // PUT api/Zaduzenja/5
+        [CustomAuthorize(Roles = "b")]
         public IHttpActionResult PutZaduzenja(long id, Zaduzenja zaduzenja)
         {
             if (!ModelState.IsValid)
@@ -59,7 +115,7 @@ namespace Biblioteka.Controllers
             zaduzenja.status = "vr";
             zaduzenja.datum_vracanja = System.DateTime.Now;
 
-            //sada saljemo mail onome koji je najvise, i modifikujemo mu rezervaciju na "co"
+            //sada saljemo mail onome koji je najvise cekao, i modifikujemo mu rezervaciju na "co"
             List<string> emails2 = new List<string>();
             List<Rezervacija> cekaju = db.Rezervacijas.Where(r => r.KnjigaID == zaduzenja.KnjigaID && r.status == "wa").ToList();
             cekaju.Sort(delegate(Rezervacija a, Rezervacija b)
@@ -67,56 +123,22 @@ namespace Biblioteka.Controllers
                 return a.datum_rezervacije.CompareTo(b.datum_rezervacije);
             });
 
-            emails2.Add(cekaju[0].Korisnik.email);
-            cekaju[0].status = "co";
-            cekaju[0].cekanje = 3;//sada dajemo 3 dana posto su cekali
-            cekaju[0].datum_rezervacije = System.DateTime.Now;
-
-            db.Entry(cekaju[0]).State = EntityState.Modified;
-
-            try
+            if(cekaju.Count > 0)
             {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException) { }
+                emails2.Add(cekaju[0].Korisnik.email);
+                cekaju[0].status = "co";
+                cekaju[0].cekanje = 3;//sada dajemo 3 dana posto su cekali
+                cekaju[0].datum_rezervacije = System.DateTime.Now;
 
-
-            Knjiga k = db.Knjigas.Find(zaduzenja.KnjigaID);
-            sendEmailTimeIsUp(emails2, k.naslov, "co");
-
-            db.Entry(zaduzenja).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ZaduzenjaExists(id))
+                db.Entry(cekaju[0]).State = EntityState.Modified;
+                try
                 {
-                    return NotFound();
+                    db.SaveChanges();
                 }
-                else
-                {
-                    throw;
-                }
-            }
+                catch (DbUpdateConcurrencyException) { }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-        /*
-        // defaultni
-        // PUT api/Zaduzenja/5
-        public IHttpActionResult PutZaduzenja(long id, Zaduzenja zaduzenja)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != zaduzenja.ID)
-            {
-                return BadRequest();
+                Knjiga k = db.Knjigas.Find(zaduzenja.KnjigaID);
+                sendEmailTimeIsUp(emails2, k.naslov, "co");
             }
 
             db.Entry(zaduzenja).State = EntityState.Modified;
@@ -139,25 +161,10 @@ namespace Biblioteka.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-         * /
-        /*
-        // defaultni
+        
+        // servis za Zaduzenje
         // POST api/Zaduzenja
-        [ResponseType(typeof(Zaduzenja))]
-        public IHttpActionResult PostZaduzenja(Zaduzenja zaduzenja)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Zaduzenjas.Add(zaduzenja);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = zaduzenja.ID }, zaduzenja);
-        }
-        */
-        // POST api/Zaduzenja
+        [CustomAuthorize(Roles = "b")]
         [ResponseType(typeof(Zaduzenja))]
         public IHttpActionResult PostZaduzenja(Zaduzenja zaduzenja)
         {
@@ -201,6 +208,36 @@ namespace Biblioteka.Controllers
             return CreatedAtRoute("DefaultApi", new { id = zaduzenja.ID }, zaduzenja);
         }
 
+        // Knjige kojma je istekao rok za vracanje
+        // GET api/Zaduzenja/
+        [CustomAuthorize(Roles = "b")]
+        [ResponseType(typeof(String))]
+        public string GetZaduzenja()
+        {
+            String response = "";
+
+            DateTime d = System.DateTime.Now;
+            List<Zaduzenja> nisu_vratili = db.Zaduzenjas.Where(z => z.status == "nv" && (d > z.rok)).ToList();
+
+            foreach (Zaduzenja z in nisu_vratili)
+            {
+                Knjiga k = db.Knjigas.Find(z.KnjigaID);
+                Korisnik ko = db.Korisniks.Find(z.KorisnikID);
+                response += ko.ime + " " + ko.prezime + ", " + ko.telefon + ", " + ko.email + "\n";
+                response += "Knjiga:" + " " + k.naslov + "\n";
+                response += "Zaduzena:" + " " + z.datum_zaduzenja.ToString("d") + " " + "Rok: " + z.rok.ToString("d") + " Kašnjenje: " + Convert.ToInt32((System.DateTime.Now - z.rok).TotalDays) + " dana.\n\n";
+                sendEmailTimeIsUp(new List<string>() { z.Korisnik.email }, k.naslov, "vr");
+            }
+
+            if (nisu_vratili.Count() < 1)
+            {
+                return "Sve knjige su vračene u roku!";
+            }
+
+            return response;
+        }
+
+        /*
         // DELETE api/Zaduzenja/5
         [ResponseType(typeof(Zaduzenja))]
         public IHttpActionResult DeleteZaduzenja(long id)
@@ -216,6 +253,7 @@ namespace Biblioteka.Controllers
 
             return Ok(zaduzenja);
         }
+        */
 
         protected override void Dispose(bool disposing)
         {
