@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Newtonsoft.Json;
 
 namespace Biblioteka.Models
 {
@@ -19,6 +20,7 @@ namespace Biblioteka.Models
         [StringLength(10000, ErrorMessage = "Naziv moze imati do 10000 karaktera.")]
         public string opis { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Knjiga> Knjige { get; set; }
     }
 }

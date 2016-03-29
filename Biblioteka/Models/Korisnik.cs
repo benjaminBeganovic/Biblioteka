@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -35,16 +36,22 @@ namespace Biblioteka.Models
         [StringLength(20, ErrorMessage = "Username moze imati do 20 karaktera.")]
         public string username { get; set; }
 
+        [JsonIgnore]
         [StringLength(20, ErrorMessage = "Password moze imati do 20 karaktera.")]
         public string password { get; set; }
 
         public bool odobren { get; set; }
 
+
         public virtual TipRacuna TipRacuna { get; set; }
 
-        public virtual ICollection<Zaduzenja> Zaduzenja {get; set;}
+        [JsonIgnore]
+        public virtual ICollection<Zaduzenja> Zaduzenja { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Zaduzenja> ZaduzenjaZaposlenik { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Clanstvo> Clanstva { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Rezervacija> Rezervacije { get; set; }
 
     }

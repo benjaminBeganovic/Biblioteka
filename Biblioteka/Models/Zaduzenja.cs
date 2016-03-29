@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,7 @@ namespace Biblioteka.Models
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime datum_zaduzenja { get; set; }
 
+        [JsonIgnore]
         [Column(TypeName = "DateTime2")]
         [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? datum_vracanja { get; set; }
@@ -34,10 +36,13 @@ namespace Biblioteka.Models
         public long KnjigaID { get; set; }
 
         [ForeignKey("Zaposlenik"), Column(Order = 1)]
-        public long ZaposlenikID{ get; set; }
+        public long ZaposlenikID { get; set; }
 
+        [JsonIgnore]
         public virtual Korisnik Korisnik { get; set; }
+        [JsonIgnore]
         public virtual Knjiga Knjiga { get; set; }
+        [JsonIgnore]
         public virtual Korisnik Zaposlenik { get; set; }
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace Biblioteka.Models
         [StringLength(100, ErrorMessage = "Naziv moze imati do 100 karaktera.")]
         public string adresa { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Knjiga> Knjige { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,12 +11,15 @@ namespace Biblioteka.Models
         [ScaffoldColumn(false)]
         public long ID { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("Izdavac")]
         public long IzdavacID { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("TipKnjige")]
         public long TipKnjigeID { get; set; }
 
+        [JsonIgnore]
         [ForeignKey("Jezik")]
         public long JezikID { get; set; }
 
@@ -49,11 +53,14 @@ namespace Biblioteka.Models
 
         public bool izbrisano { get; set; }
 
+
         public virtual Izdavac Izdavac { get; set; }
         public virtual TipKnjige TipKnjige { get; set; }
         public virtual Jezik Jezik { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Zaduzenja> Zaduzenja { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Rezervacija> Rezervacije { get; set; }
         public virtual ICollection<Autor> Autori { get; set; }
     }

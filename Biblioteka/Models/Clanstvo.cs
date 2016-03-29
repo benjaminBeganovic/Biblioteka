@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -26,6 +27,7 @@ namespace Biblioteka.Models
         [Range(0, 10000000, ErrorMessage = "Clanski broj mora biti od 0 do 10000000")]
         public int clanski_broj { get; set; }
 
+        [JsonIgnore]
         public virtual Korisnik Korisnik { get; set; }
     }
 }

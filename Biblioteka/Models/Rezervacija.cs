@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -28,7 +29,9 @@ namespace Biblioteka.Models
         [ForeignKey("Knjiga")]
         public long KnjigaID { get; set; }
 
+        [JsonIgnore]
         public virtual Korisnik Korisnik { get; set; }
+        [JsonIgnore]
         public virtual Knjiga Knjiga { get; set; }
     }
 }
