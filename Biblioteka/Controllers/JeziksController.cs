@@ -9,17 +9,20 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Biblioteka.Models;
+using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
+    [CustomAuthorize(Roles = "a,b")]
     public class JeziksController : ApiController
     {
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Jeziks
-        public IQueryable<Jezik> GetJezici()
+        [ResponseType(typeof(List<Jezik>))]
+        public IHttpActionResult GetJezici()
         {
-            return db.Jeziks;
+            return Ok(db.Jeziks.ToList());
         }
 
         // GET: api/Jeziks/5

@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Biblioteka.Models;
+using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
+    [CustomAuthorize(Roles = "a,b")]
     public class KnjigasController : ApiController
     {
         private ProbaContext db = new ProbaContext();

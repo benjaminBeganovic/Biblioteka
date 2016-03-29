@@ -1,0 +1,73 @@
+{
+  "_type": "export",
+  "__export_format": 1,
+  "__export_date": "2016-03-27T12:43:47.082Z",
+  "__export_source": "insomnia.chrome.app:v2.6.10",
+  "items": [
+    {
+      "_type": "request_group",
+      "_id": "grp_1458686295455",
+      "name": "Pretraga",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1458686295455",
+          "url": "http://localhost:57320/api/Pretraga/Napredna?naziv=hiljadu&tip=lit&jezik=bos&autor=Nepoznat&izdavac=connectum&godina=1704&kljucne=",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Napredna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458687093671",
+          "url": "http://localhost:57320/api/Pretraga/Jednostavna?tipknjige=lit&jezik=bos&naziv=&autor=mesa",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "jednostavna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1459073985198",
+          "url": "http://localhost:57320/api/Pretraga/Kod?kod=1002",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Autori"
+        }
+      ]
+    }
+  ]
+}

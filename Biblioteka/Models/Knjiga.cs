@@ -25,6 +25,9 @@ namespace Biblioteka.Models
         [StringLength(45, ErrorMessage = "ISBN moze imati do 45 karaktera.")]
         public string isbn { get; set; }
 
+        [StringLength(45, ErrorMessage = "Idbroj moze imati do 45 karaktera.")]
+        public string idbroj { get; set; }
+
         [Range(0, 10000, ErrorMessage = "Knjiga ne moze imati vise od 10000 strana!")]
         public int broj_strana { get; set; }
 

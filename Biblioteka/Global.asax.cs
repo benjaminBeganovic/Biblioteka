@@ -8,6 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
 using Biblioteka.Models;
+using System.Web.SessionState;
 
 namespace Biblioteka
 {
@@ -26,6 +27,18 @@ namespace Biblioteka
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer(new ProbaDatabaseInitialiser());
+        }
+        protected void Application_PostAuthorizeRequest()
+        {
+            if (IsWebApiRequest())
+            {
+                HttpContext.Current.SetSessionStateBehavior(SessionStateBehavior.Required);
+            }
+        }
+
+        private bool IsWebApiRequest()
+        {
+            return HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith(WebApiConfig.UrlPrefixRelative);
         }
     }
 }

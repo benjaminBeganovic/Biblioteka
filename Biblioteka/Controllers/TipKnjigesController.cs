@@ -9,17 +9,20 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Biblioteka.Models;
+using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
+    [CustomAuthorize(Roles = "a,b")]
     public class TipKnjigesController : ApiController
     {
         private ProbaContext db = new ProbaContext();
 
         // GET: api/TipKnjiges
-        public IQueryable<TipKnjige> GetTipoviKnjiga()
+        [ResponseType(typeof(List<TipKnjige>))]
+        public IHttpActionResult GetTipoviKnjiga()
         {
-            return db.TipKnjiges;
+            return Ok(db.TipKnjiges.ToList());
         }
 
         // GET: api/TipKnjiges/5
