@@ -13,6 +13,9 @@ using System.Data.Entity.Core.Objects;
 using System.Net.Mail;
 using Biblioteka.Security;
 
+using System.Web;
+using System.Web.Security;
+
 namespace Biblioteka.Controllers
 {
     public class RezervacijaController : ApiController
@@ -100,6 +103,21 @@ namespace Biblioteka.Controllers
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }
+
+            //Onemogucavanje da korisnik napravi rezervaciju drugom korisnuku
+            CustomPrincipal cp = new CustomPrincipal(SessionPersister.username);
+            Korisnik current_user = db.Korisniks.Where(c => c.username == cp.Identity.Name).First();
+            if(rezervacija.KorisnikID != current_user.ID)
+            {
+                return BadRequest("Pokusavate rezervisati knjigu na drugog korisnika!");
+            }
+            //Provjera da li je isteklo clanstvo
+            DateTime d = System.DateTime.Now;
+            List<Clanstvo> clanstvaa = db.Clanstvoes.Where(c => c.KorisnikID == current_user.ID && c.istek_racuna > d).ToList();
+            if(clanstvaa.Count() < 1)
+            {
+                return BadRequest("Trebate produziti clanstvo!");
             }
 
             rezervacija.cekanje = 2;
