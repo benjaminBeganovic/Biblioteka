@@ -108,7 +108,7 @@ namespace Biblioteka.Controllers
             //provjeravamo da li je vec rezervisano
             List<Rezervacija> rezzz = db.Rezervacijas.Where(r => r.KnjigaID == rezervacija.KnjigaID && r.KorisnikID == rezervacija.KorisnikID && (r.status == "co" || r.status == "wa")).ToList();
             List<Zaduzenja> zaddd = db.Zaduzenjas.Where(z => z.KnjigaID == rezervacija.KnjigaID && z.KorisnikID == rezervacija.KorisnikID && z.status == "nv").ToList();
-            if(rezzz.Count() > 0 || zaddd.Count > 0)
+            if (rezzz.Count() > 0 || zaddd.Count > 0)
             {
                 return BadRequest("Vec ste rezervisali ovu knjigu!");
             }
@@ -179,7 +179,7 @@ namespace Biblioteka.Controllers
             foreach (Zaduzenja z in nisu_vratili)
                 emails_nv.Add(z.Korisnik.email);
             sendEmailTimeIsUp(emails_nv, k.naslov, "vr");
-            
+
             //sada ponovo racunamo koliko je dostupno knjiga
             int dostupno_knjiga = db.Knjigas.Find(id_knjige).ukupno_kopija;
 
@@ -230,7 +230,7 @@ namespace Biblioteka.Controllers
         {
             String response = "";
 
-            List<Knjiga> kriticne = db.Knjigas.Where(k => (db.Zaduzenjas.Where(z => z.status == "nv" && z.KnjigaID == k.ID).Count() + 
+            List<Knjiga> kriticne = db.Knjigas.Where(k => (db.Zaduzenjas.Where(z => z.status == "nv" && z.KnjigaID == k.ID).Count() +
                 db.Rezervacijas.Where(r => r.status == "co" && r.KnjigaID == k.ID).Count()) - k.ukupno_kopija == 0).ToList();
 
             foreach (Knjiga k in kriticne)
@@ -238,7 +238,7 @@ namespace Biblioteka.Controllers
                 response += "Knjiga: " + k.naslov + ", ukupno kopija: " + k.ukupno_kopija + "\n";
                 List<Autor> autori = k.Autori.ToList();
                 string autori_s = "";
-                foreach(Autor a in autori)
+                foreach (Autor a in autori)
                     autori_s += a.naziv + ", ";
 
                 autori_s = autori_s.Substring(0, autori_s.Length - 2);
@@ -293,36 +293,38 @@ namespace Biblioteka.Controllers
             MailMessage email = new MailMessage();
             email.From = new MailAddress(from);
 
-            foreach(String m in mailsTo)
+            foreach (String m in mailsTo)
                 email.To.Add(m);
 
             email.Subject = "Obavještenje";
             email.IsBodyHtml = true;
 
-            if(tip_maila == "no")
+            if (tip_maila == "no")
             {
                 email.Body = "<table border='1' cellpadding='0' cellspacing='0' width='100%'><tr><td style='padding: 10px 10px 10px 10px;'>" +
                 "Poštovanje, <br><br>Obavještavamo Vas da je Vaša rezervacija knjige \"" + naziv_knjige + "\" istekla. Ukoliko želite zadužiti ovu knjigu molimo Vas da je ponovo rezervišete!" +
                 "<p>Lijep pozdrav.</p></td></tr><tr><td style='padding: 10px 10px 10px 10px;'>Vaša NWT Biblioteka!</td></tr></table>";
 
-            }else if(tip_maila == "vr")
+            }
+            else if (tip_maila == "vr")
             {
                 email.Body = "<table border='1' cellpadding='0' cellspacing='0' width='100%'><tr><td style='padding: 10px 10px 10px 10px;'>" +
                 "Poštovanje, <br><br>Obavještavamo Vas da je istekao rok za vračanje knjige \"" + naziv_knjige + "\" koju ste zadužili, pa Vas molimo da, što je prije moguće vratite istu, kako bi i drugi čitaoci mogli doći do knjige." +
                 "<p>Lijep pozdrav.</p></td></tr><tr><td style='padding: 10px 10px 10px 10px;'>Vaša NWT Biblioteka!</td></tr></table>";
 
-            }else if (tip_maila == "co")
+            }
+            else if (tip_maila == "co")
             {
                 email.Body = "<table border='1' cellpadding='0' cellspacing='0' width='100%'><tr><td style='padding: 10px 10px 10px 10px;'>" +
                 "Poštovanje, <br><br>Obavještavamo Vas da je dostupna knjiga \"" + naziv_knjige + "\" na čiju rezervaciju ste čekali. Mi smo automatski napravili rezervaciju za Vas. Po knjigu mozete doći u sljedeća tri dana, kako bi istu zadužili." +
                 "<p>Lijep pozdrav.</p></td></tr><tr><td style='padding: 10px 10px 10px 10px;'>Vaša NWT Biblioteka!</td></tr></table>";
             }
-            
+
 
             SmtpClient SMTPServer = new SmtpClient("smtp.gmail.com", 587);
             SMTPServer.Credentials = new System.Net.NetworkCredential(from, pass);
             SMTPServer.EnableSsl = true;
-            
+
             try
             {
                 SMTPServer.Send(email);
@@ -331,8 +333,8 @@ namespace Biblioteka.Controllers
             {
                 String error = ex.Message;
             }
-            
+
         }
-        
+
     }
 }

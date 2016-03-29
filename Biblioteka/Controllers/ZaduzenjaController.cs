@@ -123,7 +123,7 @@ namespace Biblioteka.Controllers
                 return a.datum_rezervacije.CompareTo(b.datum_rezervacije);
             });
 
-            if(cekaju.Count > 0)
+            if (cekaju.Count > 0)
             {
                 emails2.Add(cekaju[0].Korisnik.email);
                 cekaju[0].status = "co";
@@ -161,7 +161,7 @@ namespace Biblioteka.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-        
+
         // servis za Zaduzenje
         // POST api/Zaduzenja
         [CustomAuthorize(Roles = "b")]
