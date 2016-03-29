@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Biblioteka.Models;
 using Biblioteka.Security;
+using PagedList;
 
 namespace Biblioteka.Controllers
 {
@@ -25,7 +26,17 @@ namespace Biblioteka.Controllers
             var knjige = db.Knjigas.ToList();
             return Ok(knjige);
         }
-
+        // GET: api/Knjigas/parametar
+        [ResponseType(typeof(List<Knjiga>))]
+        public IHttpActionResult GetKnjige()
+        {
+            int page = 1;
+            List<Knjiga> knjiga = db.Knjigas.ToList();
+           
+            
+                return Ok(knjiga.ToPagedList(page,30));
+               
+        }
         // GET: api/Knjigas/5
         [ResponseType(typeof(Knjiga))]
         public IHttpActionResult GetKnjiga(long id)
