@@ -1,0 +1,40 @@
+//tipovi knjiga
+referenca = "lit", opis = "Književnost"
+referenca = "pro", opis = "Stručna literatura"
+referenca = "phi", opis = "Filozofija"
+referenca = "sci", opis = "Nauka"
+referenca = "law", opis = "Zakon"
+referenca = "rel", opis = "Religija"
+referenca = "let", opis = "Pismo"
+referenca = "ess", opis = "Esej"
+referenca = "dia", opis = "Dnevnici i Časopisi"
+referenca = "mem", opis = "Autobiografija"
+referenca = "bio", opis = "Biografija"
+
+//jezici, oznake po: ISO 639-2
+referenca = "ara", opis = "Arapski"
+referenca = "bos", opis = "Bosanski"
+referenca = "ger", opis = "Njemacki"
+referenca = "gre", opis = "Grčki"
+referenca = "eng", opis = "Engleski"
+referenca = "fre", opis = "Francuski"
+referenca = "hrv", opis = "Hrvatski"
+referenca = "ita", opis = "Italijanski"
+referenca = "mac", opis = "Makedonski"
+referenca = "rus", opis = "Ruski"
+referenca = "tur", opis = "Turski"
+
+//tipovi racuna
+referenca = "c", opis = "Član"
+referenca = "b", opis = "Bibliotekar"
+referenca = "a", opis = "Administrator"
+
+//rezervacije
+// ceka se da dodje po knjigu ------ co (coming)
+// nije dosao po knjigu ------------ no (not)
+// ceka da se oslobodi neka knjiga - wa (waiting)
+// zaduzio knjigu ------------------ re (reserved)
+
+//zaduzenja
+// vraceno ------ vr
+// nije vraceno - nv
