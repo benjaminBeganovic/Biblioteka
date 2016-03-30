@@ -27,14 +27,12 @@ namespace Biblioteka.Controllers
             return Ok(knjige);
         }
         // GET: api/Knjigas/parametar
+        [ActionName("Paging")]
         [ResponseType(typeof(List<Knjiga>))]
-        public IHttpActionResult GetKnjige()
+        public IHttpActionResult GetKnjige(int page, int step)
         {
-            int page = 1;
             List<Knjiga> knjiga = db.Knjigas.ToList();
-           
-            
-                return Ok(knjiga.ToPagedList(page,30));
+                return Ok(knjiga.ToPagedList(page,step));
                
         }
         // GET: api/Knjigas/5

@@ -38,6 +38,6 @@ namespace Biblioteka.Models
         public DbSet<TipKnjige> TipKnjiges { get; set; }
         public DbSet<TipRacuna> TipRacunas { get; set; }
         public DbSet<Zaduzenja> Zaduzenjas { get; set; }
-
+        public DbSet<Informacije> Informacijes { get; set; }
     }
 }
