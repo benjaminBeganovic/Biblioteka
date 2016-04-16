@@ -13,7 +13,7 @@
         {
           "_type": "request",
           "_id": "req_1458686295455",
-          "url": "http://localhost:57320/api/Pretraga/Napredna?naziv=hiljadu&tip=lit&jezik=bos&autor=Nepoznat&izdavac=connectum&godina=1704&kljucne=",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Pretraga/Napredna?naziv=hiljadu&tip=lit&jezik=bos&autor=Nepoznat&izdavac=connectum&godina=1704&kljucne=",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -32,7 +32,7 @@
         {
           "_type": "request",
           "_id": "req_1458687093671",
-          "url": "http://localhost:57320/api/Pretraga/Jednostavna?tipknjige=lit&jezik=bos&naziv=&autor=mesa",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Pretraga/Jednostavna?tipknjige=lit&jezik=bos&naziv=&autor=mesa",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -51,7 +51,7 @@
         {
           "_type": "request",
           "_id": "req_1459073985198",
-          "url": "http://localhost:57320/api/Pretraga/Kod?kod=1002",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Pretraga/Kod?kod=1002",
           "method": "GET",
           "body": "{}",
           "headers": [],

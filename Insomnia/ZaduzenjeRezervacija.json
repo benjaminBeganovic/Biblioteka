@@ -13,7 +13,7 @@
         {
           "_type": "request",
           "_id": "req_1458684287561",
-          "url": "localhost:57320/api/Zaduzenja/",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Zaduzenja/",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -32,7 +32,7 @@
         {
           "_type": "request",
           "_id": "req_1458684298758",
-          "url": "localhost:57320/api/Zaduzenja/",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Zaduzenja/",
           "method": "POST",
           "body": "{\n    \"status\": \"zaduzeno\",\n    \"datum_zaduzenja\": \"2016-03-03T12:00:00\",\n    \"datum_vracanja\": \"2016-04-03T12:00:00\",\n    \"rok\": \"2016-04-03T12:00:00\",\n    \"KorisnikID\": 2,\n    \"KnjigaID\": 1,\n    \"ZaposlenikID\": 3\n}",
           "headers": [],
@@ -51,7 +51,7 @@
         {
           "_type": "request",
           "_id": "req_1458684305989",
-          "url": "localhost:57320/api/Zaduzenja/6",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Zaduzenja/6",
           "method": "DELETE",
           "body": "{\n}",
           "headers": [],
@@ -70,7 +70,7 @@
         {
           "_type": "request",
           "_id": "req_1458684312664",
-          "url": "localhost:57320/api/Zaduzenja/7",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Zaduzenja/7",
           "method": "PUT",
           "body": "{\n    \"ID\": 7,\n    \"status\": \"zaduzenoo\",\n    \"datum_zaduzenja\": \"2016-03-03T12:00:00\",\n    \"datum_vracanja\": \"2016-04-03T12:00:00\",\n    \"rok\": \"2016-04-03T12:00:00\",\n    \"KorisnikID\": 1,\n    \"KnjigaID\": 1,\n    \"ZaposlenikID\": 1\n}",
           "headers": [],
@@ -89,7 +89,7 @@
         {
           "_type": "request",
           "_id": "req_1458686752503",
-          "url": "localhost:57320/api/Zaduzenja/1",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Zaduzenja/1",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -116,7 +116,7 @@
         {
           "_type": "request",
           "_id": "req_1458683227058",
-          "url": "localhost:57320/api/Rezervacija/",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Rezervacija/",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -135,7 +135,7 @@
         {
           "_type": "request",
           "_id": "req_1458683271040",
-          "url": "localhost:57320/api/Rezervacija/",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Rezervacija/",
           "method": "POST",
           "body": "{\n    \"status\": \"rezervisano\",\n    \"datum_rezervacije\": \"2016-03-03T12:00:00\",\n    \"cekanje\": 2,\n    \"KorisnikID\": 1,\n    \"KnjigaID\": 1\n}",
           "headers": [],
@@ -154,7 +154,7 @@
         {
           "_type": "request",
           "_id": "req_1458683370616",
-          "url": "localhost:57320/api/Rezervacija/2",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Rezervacija/2",
           "method": "DELETE",
           "body": "{\n}",
           "headers": [],
@@ -173,7 +173,7 @@
         {
           "_type": "request",
           "_id": "req_1458683532135",
-          "url": "localhost:57320/api/Rezervacija/2",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Rezervacija/2",
           "method": "PUT",
           "body": "{\n    \"ID\": 2,\n    \"status\": \"nije rezervisano\",\n    \"datum_rezervacije\": \"2016-03-03T12:00:00\",\n    \"cekanje\": 2,\n    \"KorisnikID\": 1,\n    \"KnjigaID\": 1\n}",
           "headers": [],
@@ -192,7 +192,7 @@
         {
           "_type": "request",
           "_id": "req_1458686807313",
-          "url": "localhost:57320/api/Rezervacija/1",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Rezervacija/1",
           "method": "GET",
           "body": "{}",
           "headers": [],

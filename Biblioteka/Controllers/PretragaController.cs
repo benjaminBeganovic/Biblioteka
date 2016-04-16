@@ -25,7 +25,6 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetPretragaKod(string kod)
         {
-            return BadRequest();
             prepareValue(ref kod);
             if (kod != null)
             {

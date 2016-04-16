@@ -13,7 +13,7 @@
         {
           "_type": "request",
           "_id": "req_1458238523341",
-          "url": "http://localhost:57320/api/TipRacunas/4",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/4",
           "method": "PUT",
           "body": "{\n    \"id\": \"4\",\n    \"referenca\": \"mujo\",\n    \"opis\": \"Onaj sto uzima knjige\"\n}",
           "headers": [],
@@ -32,7 +32,7 @@
         {
           "_type": "request",
           "_id": "req_1458238559157",
-          "url": "http://localhost:57320/api/TipRacunas/2",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/2",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -51,7 +51,7 @@
         {
           "_type": "request",
           "_id": "req_1458238568628",
-          "url": "http://localhost:57320/api/TipRacunas/",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/",
           "method": "POST",
           "body": "{\n    \"referenca\": \"korisnik\",\n    \"opis\": \"Onaj sto trazi knjige\"\n}",
           "headers": [],
@@ -70,7 +70,7 @@
         {
           "_type": "request",
           "_id": "req_1458238577870",
-          "url": "http://localhost:57320/api/TipRacunas/1",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/1",
           "method": "DELETE",
           "body": "{}",
           "headers": [],
@@ -89,7 +89,7 @@
         {
           "_type": "request",
           "_id": "req_1458238946411",
-          "url": "http://localhost:57320/api/TipRacunas/",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/",
           "method": "GET",
           "body": "{}",
           "headers": [],
