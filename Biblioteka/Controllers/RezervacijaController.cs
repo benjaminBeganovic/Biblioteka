@@ -303,7 +303,7 @@ namespace Biblioteka.Controllers
         private void sendEmailTimeIsUp(List<string> mailsTo, string naziv_knjige, string tip_maila)
         {
             string from = "bibliotekanwt@gmail.com";
-            string pass = "";
+            string pass = "bibliotekanwtpass1";
 
             MailMessage email = new MailMessage();
             email.From = new MailAddress(from);
