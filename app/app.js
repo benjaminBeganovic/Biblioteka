@@ -3,10 +3,13 @@
         function($routeProvider) {
             $routeProvider
             .when('/Login', {
-                templateUrl: 'views/LoginForm.html'
+                templateUrl: 'views/LoginForm.html',
             })
-            .when('/Register', {
+			.when('/Register', {
                 templateUrl: 'views/RegisterForm.html'
+            })
+            .otherwise({
+                templateUrl: 'views/Home.html'
             });
 		}
 		]);

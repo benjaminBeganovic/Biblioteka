@@ -2,8 +2,6 @@ app.factory("BibliotekaService", ['$http', function($http) {
     
     var serviceBase = 'http://nwtbiblioteka.azurewebsites.net/';
 
-    var filteredBooks = [];
-
     return {
         login: function(loginModel)
                     {
