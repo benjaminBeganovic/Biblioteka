@@ -1,4 +1,4 @@
- var app = angular.module('BibliotekaApp', ['ngRoute'])
+var app = angular.module('BibliotekaApp', ['ngRoute'])
     .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider

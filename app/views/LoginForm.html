@@ -2,5 +2,6 @@
  <h1>login</h1>
      <label for="username">Username:</label><input type="text" id="username" {ng-model="loginModel.username"}><br>
      <label for="password">Password:</label><input type="password" id="password" {ng-model="loginModel.password"}>
-    <button 
+    <button ng-click="login()">Login</button>
+     <p ng-bind-html="error"></p>
  </div>

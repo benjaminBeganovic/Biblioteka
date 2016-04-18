@@ -6,7 +6,7 @@ app.controller("LoginCtrl", ['$scope', 'BibliotekaService',
       username : "",
       password : ""
     };
-    
+    $scope.error = "dsad";
     $scope.loginMe = function(){
         
         if($scope.loginModel == null || $scope.loginModel.password == "" || $scope.loginModel.username == "")
