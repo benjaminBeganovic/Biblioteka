@@ -13,7 +13,7 @@
         {
           "_type": "request",
           "_id": "req_1459014096948",
-          "url": "http://localhost:57320/api/Auth/Logout?username=bib1&password=bib1pass",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Auth/Logout?username=bib1&password=bib1pass",
           "method": "GET",
           "body": "{}",
           "headers": [],
@@ -32,7 +32,7 @@
         {
           "_type": "request",
           "_id": "req_1459014139902",
-          "url": "http://localhost:57320/api/Auth/Login/?username=bib1&password=bib1pass",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/Auth/Login/?username=bib1&password=bib1pass",
           "method": "POST",
           "body": "{}",
           "headers": [],
