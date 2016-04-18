@@ -67,14 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app.js" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\js\angular-cookies.js" />
+    <Content Include="assets\js\angular-route.js" />
+    <Content Include="assets\js\angular.min.js" />
+    <Content Include="assets\js\jquery-2.2.3.js" />
     <Content Include="controllers\LoginCtrl.js" />
     <Content Include="controllers\MainCtrl.js" />
-    <Content Include="css\style.css" />
     <Content Include="index.html" />
-    <Content Include="js\angular-cookies.js" />
-    <Content Include="js\angular-route.js" />
-    <Content Include="js\angular.min.js" />
-    <Content Include="js\jquery-2.2.3.js" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -94,8 +94,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="assets\img\" />
     <Folder Include="directives\" />
-    <Folder Include="img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

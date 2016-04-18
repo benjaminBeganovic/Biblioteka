@@ -3,13 +3,13 @@ app.controller("LoginCtrl", ['$scope', 'BibliotekaService',
     function($scope, BibliotekaService){
     
     $scope.loginModel = {
-      loginUsername : "",
-      loginPsw : ""
+      username : "",
+      password : ""
     };
     
     $scope.loginMe = function(){
         
-        if($scope.loginModel == null || $scope.loginModel.loginPsw == "" || $scope.loginModel.loginUsername == "")
+        if($scope.loginModel == null || $scope.loginModel.password == "" || $scope.loginModel.username == "")
             alert("Morate unijeti sve podatke !");
         else
         {
