@@ -36,9 +36,10 @@ namespace Biblioteka.Models
         [StringLength(20, ErrorMessage = "Username moze imati do 20 karaktera.")]
         public string username { get; set; }
 
-        [JsonIgnore]
         [StringLength(20, ErrorMessage = "Password moze imati do 20 karaktera.")]
         public string password { get; set; }
+
+        public string verifikacija { get; set; }
 
         public bool odobren { get; set; }
 
