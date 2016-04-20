@@ -11,15 +11,16 @@ using System.Web.Http.Description;
 using Biblioteka.Models;
 using Biblioteka.Security;
 using System.Web.SessionState;
+using System.Net.Mail;
 
 namespace Biblioteka.Controllers
 {
-    [CustomAuthorize(Roles = "a")]
     public class KorisniksController : ApiController
     {
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Korisniks
+        [CustomAuthorize(Roles = "a")]
         [ResponseType(typeof(List<Korisnik>))]
         public IHttpActionResult GetKorisnici()
         {
@@ -28,6 +29,7 @@ namespace Biblioteka.Controllers
         }
 
         // GET: api/Korisniks/5
+        [CustomAuthorize(Roles = "a")]
         [ResponseType(typeof(Korisnik))]
         public IHttpActionResult GetKorisnik(long id)
         {
@@ -41,6 +43,7 @@ namespace Biblioteka.Controllers
         }
 
         // PUT: api/Korisniks/5
+        [CustomAuthorize(Roles = "c")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutKorisnik(long id, Korisnik korisnik)
         {
@@ -54,8 +57,19 @@ namespace Biblioteka.Controllers
                 return BadRequest();
             }
 
-            db.Entry(korisnik).State = EntityState.Modified;
+            Korisnik k = db.Korisniks.Find(korisnik.ID);
+            if(k == null)
+            {
+                return BadRequest("Nepostojeci Id");
+            }
 
+            if(korisnik.verifikacija != k.verifikacija)
+            {
+                return BadRequest("Pogresan kod!");
+            }
+
+            k.odobren = true;
+            db.Entry(k).State = EntityState.Modified;
             try
             {
                 db.SaveChanges();
@@ -84,6 +98,23 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
+            List<Korisnik> k = db.Korisniks.Where(c => c.username == korisnik.username).ToList();
+
+            if(k.Count > 0)
+            {
+                return BadRequest("Izaberite drugi username!");
+            }
+
+            korisnik.TipRacunaID = 1;
+            korisnik.izbrisan = false;
+            korisnik.odobren = false;
+            String kod = RandomString(6);
+            korisnik.verifikacija = kod;
+
+            List<string> listaKorisnika = new List<string>();
+            listaKorisnika.Add(korisnik.email);
+            sendEmailTimeIsUp(listaKorisnika, kod, "");
+
             db.Korisniks.Add(korisnik);
             db.SaveChanges();
 
@@ -91,6 +122,7 @@ namespace Biblioteka.Controllers
         }
 
         // DELETE: api/Korisniks/5
+        [CustomAuthorize(Roles = "a")]
         [ResponseType(typeof(Korisnik))]
         public IHttpActionResult DeleteKorisnik(long id)
         {
@@ -118,6 +150,48 @@ namespace Biblioteka.Controllers
         private bool KorisnikExists(long id)
         {
             return db.Korisniks.Count(e => e.ID == id) > 0;
+        }
+
+        [HttpPost]
+        private void sendEmailTimeIsUp(List<string> mailsTo, string kod, string tip_maila)
+        {
+            string from = "bibliotekanwt@gmail.com";
+            string pass = "bibliotekanwtpass1";
+
+            MailMessage email = new MailMessage();
+            email.From = new MailAddress(from);
+
+            foreach (String m in mailsTo)
+                email.To.Add(m);
+
+            email.Subject = "Verifikacija";
+            email.IsBodyHtml = true;
+
+            email.Body = "<table border='1' cellpadding='0' cellspacing='0' width='100%'><tr><td style='padding: 10px 10px 10px 10px;'>" +
+                "Poštovanje, <br><br>Kod za verifikaciju je: \"" + kod + "\" Molimo unesite ovaj kod kako bi završili proces registracije!" +
+                "<p>Lijep pozdrav.</p></td></tr><tr><td style='padding: 10px 10px 10px 10px;'>Vaša NWT Biblioteka!</td></tr></table>";
+
+
+            SmtpClient SMTPServer = new SmtpClient("smtp.gmail.com", 587);
+            SMTPServer.Credentials = new System.Net.NetworkCredential(from, pass);
+            SMTPServer.EnableSsl = true;
+
+            try
+            {
+                SMTPServer.Send(email);
+            }
+            catch (Exception ex)
+            {
+                String error = ex.Message;
+            }
+
+        }
+        private static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }
