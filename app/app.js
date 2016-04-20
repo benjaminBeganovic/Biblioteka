@@ -3,7 +3,7 @@ var app = angular.module('BibliotekaApp', ['ngRoute'])
         function($routeProvider) {
             $routeProvider
             .when('/Login', {
-                templateUrl: 'views/LoginForm.html',
+                templateUrl: 'views/LoginForm.html'
             })
 			.when('/Register', {
                 templateUrl: 'views/RegisterForm.html'
@@ -12,4 +12,4 @@ var app = angular.module('BibliotekaApp', ['ngRoute'])
                 templateUrl: 'views/Home.html'
             });
 		}
-		]);
+    ])

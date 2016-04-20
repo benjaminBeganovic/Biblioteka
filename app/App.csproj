@@ -70,7 +70,9 @@
     <Content Include="assets\css\style.css" />
     <Content Include="assets\js\angular-cookies.js" />
     <Content Include="assets\js\angular-route.js" />
+    <Content Include="assets\js\angular-sanitize.js" />
     <Content Include="assets\js\angular-sanitize.min.js" />
+    <Content Include="assets\js\angular.js" />
     <Content Include="assets\js\angular.min.js" />
     <Content Include="assets\js\jquery-2.2.3.js" />
     <Content Include="controllers\LoginCtrl.js" />

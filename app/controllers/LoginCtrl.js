@@ -1,24 +1,31 @@
 
-app.controller("LoginCtrl", ['$scope', 'BibliotekaService',
-    function($scope, BibliotekaService){
+angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaService", '$sce',
+    function($scope, BibliotekaService, $sce){
     
     $scope.loginModel = {
       username : "",
       password : ""
     };
-    $scope.error = "dsad";
-    $scope.loginMe = function(){
-        
+    $scope.loginMe = function () {
         if($scope.loginModel == null || $scope.loginModel.password == "" || $scope.loginModel.username == "")
-            alert("Morate unijeti sve podatke !");
+            $scope.error = $sce.trustAsHtml("Morate unijeti sve podatke !");
         else
         {
             BibliotekaService.login($scope.loginModel)
-                    .then(function (data)
-            {
-                
+                    .success(function (data)
+                    {
+                      
+                        if (data.status === 200) {
+                            $scope.error =$sce.trustAsHtml("Succes");
+
+                           
+                        }
+                        else {
+                            $scope.error = $sce.trustAsHtml(data.data);
+                        }
             });
         }
+        
     };
         
 }]);
