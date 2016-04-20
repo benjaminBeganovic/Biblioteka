@@ -1,7 +1,6 @@
 
 angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaService", '$sce',
     function($scope, BibliotekaService, $sce){
-    
     $scope.loginModel = {
       username : "",
       password : ""
