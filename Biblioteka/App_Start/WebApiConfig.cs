@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.Cors;
 
 namespace Biblioteka
 {
@@ -15,7 +16,8 @@ namespace Biblioteka
 
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
 
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
@@ -44,6 +46,9 @@ namespace Biblioteka
                 defaults: new { id = RouteParameter.Optional}
             );
 
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/json"));
+            
         }
     }
 }

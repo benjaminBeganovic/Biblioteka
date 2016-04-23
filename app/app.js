@@ -1,4 +1,4 @@
-var app = angular.module('BibliotekaApp', ['ngRoute'])
+var app = angular.module('BibliotekaApp', ['ngRoute','vcRecaptcha'])
     .config(['$routeProvider',
         function($routeProvider) {
             $routeProvider

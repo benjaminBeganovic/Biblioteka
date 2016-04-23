@@ -1,7 +1,9 @@
  <div data-ng-controller="LoginCtrl">
  <h1>login</h1>
-     <label for="username">Username:</label><input type="text" id="username" ng-model="loginModel.username"><br>
-     <label for="password">Password:</label><input type="password" id="password" ng-model="loginModel.password">
-     <input type="button" ng-click="loginMe()" value="Login" />
-     <p ng-bind-html="error"></p>
+     <form>
+         <label for="username">Username:</label><input type="text" id="username" ng-model="loginModel.username"><br>
+         <label for="password">Password:</label><input type="password" id="password" ng-model="loginModel.password">
+         <input type="button" ng-click="loginMe()" value="Login" />
+         <p ng-bind-html="error"></p>
+     </form>
  </div>

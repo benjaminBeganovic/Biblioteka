@@ -69,6 +69,7 @@
     <Content Include="app.js" />
     <Content Include="assets\css\style.css" />
     <Content Include="assets\js\angular-cookies.js" />
+    <Content Include="assets\js\angular-recaptcha.min.js" />
     <Content Include="assets\js\angular-route.js" />
     <Content Include="assets\js\angular-sanitize.js" />
     <Content Include="assets\js\angular-sanitize.min.js" />

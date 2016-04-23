@@ -12,13 +12,12 @@ using System.Web.Http.Cors;
 
 namespace Biblioteka.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AuthController : ApiController
     {
         private ProbaContext db = new ProbaContext();
 
         [ActionName("Login")]
-        [System.Web.Mvc.HttpPost]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult Login([FromBody] Login login)
         {
             string username = login.username;
@@ -37,7 +36,7 @@ namespace Biblioteka.Controllers
                 return NotFound();
             }
             SessionPersister.username = k.username;
-            return Ok();
+            return Ok("dafads");
         }
 
         [ActionName("Logout")]
@@ -58,7 +57,7 @@ namespace Biblioteka.Controllers
                 return NotFound();
             }
             SessionPersister.username = null;
-            return Ok();
+            return Ok("dafad");
         }
     }
 }
