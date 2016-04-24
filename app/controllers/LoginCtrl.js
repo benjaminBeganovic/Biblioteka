@@ -12,10 +12,20 @@ angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaSer
         else
         {
             BibliotekaService.login($scope.loginModel)
-            .success(function (data, status, headers, config) {
+            .success(function (data, status) {
                 $scope.error = $sce.trustAsHtml("Uspjesno ste prijavljeni");
+                $(".gost").hide();
+                $(".clan").show();
+                console.log(data);
+                switch (data) {                 
+                    case 'a':
+                        $(".admin").show();
+                        break;
+                    case 'b':
+                        $(".bibl").show();
+                }
             })
-            .error(function (data) {
+            .error(function (data, status) {
                 $scope.error = $sce.trustAsHtml("Greska u autentifikaciji");
             });
         }

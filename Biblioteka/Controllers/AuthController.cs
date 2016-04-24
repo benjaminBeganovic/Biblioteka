@@ -38,9 +38,9 @@ namespace Biblioteka.Controllers
                 return NotFound();
             }
             SessionPersister.username = k.username;
-            return Ok("dafads");
+            return Ok(k.TipRacuna.referenca);
         }
-
+        
         [ActionName("Logout")]
         [System.Web.Http.HttpPost]
         public IHttpActionResult Logout()

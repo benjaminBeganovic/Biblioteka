@@ -42,6 +42,30 @@ namespace Biblioteka.Controllers
             return Ok(korisnik);
         }
 
+        [ActionName("Verifikuj")]
+        [System.Web.Http.HttpGet]
+        public IHttpActionResult Verifikuj(string kod, string username)
+        {
+            Korisnik korisnik = db.Korisniks.Where(a => a.username == username).First();
+            if (korisnik == null)
+            {
+                return NotFound();
+            }
+            if (korisnik.verifikacija == kod)
+            {
+                korisnik.odobren = true;
+            }
+            db.Entry(korisnik).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
+            return Ok();
+        }
+
         // PUT: api/Korisniks/5
         [CustomAuthorize(Roles = "c")]
         [ResponseType(typeof(void))]
@@ -113,6 +137,7 @@ namespace Biblioteka.Controllers
 
             List<string> listaKorisnika = new List<string>();
             listaKorisnika.Add(korisnik.email);
+            kod = "http://nwtbiblioteka.azurewebsites.net/api/Korisniks/Verifikuj?kod=" + kod + "&username=" + korisnik.username;
             sendEmailTimeIsUp(listaKorisnika, kod, "");
 
             db.Korisniks.Add(korisnik);
@@ -168,7 +193,7 @@ namespace Biblioteka.Controllers
             email.IsBodyHtml = true;
 
             email.Body = "<table border='1' cellpadding='0' cellspacing='0' width='100%'><tr><td style='padding: 10px 10px 10px 10px;'>" +
-                "Poštovanje, <br><br>Kod za verifikaciju je: \"" + kod + "\" Molimo unesite ovaj kod kako bi završili proces registracije!" +
+                "Poštovanje, <br><br>kliknite na sljedeći link da potvrdite registraciju: \"" + kod +
                 "<p>Lijep pozdrav.</p></td></tr><tr><td style='padding: 10px 10px 10px 10px;'>Vaša NWT Biblioteka!</td></tr></table>";
 
 
