@@ -268,6 +268,20 @@ namespace Biblioteka.Controllers
 
             return response;
         }
+
+        // GET api/Rezervacija/username
+        [CustomAuthorize(Roles = "b")]
+        [ResponseType(typeof(String))]
+        public IHttpActionResult GetRezervacijas(string username)
+        {
+            List<Korisnik> korisnik = db.Korisniks.Where(k => k.username == username).ToList();
+
+            if(korisnik.Count < 1)
+                return BadRequest("Username je pogresan!");
+
+            List<Rezervacija> rezervacije = db.Rezervacijas.Where(r => r.KorisnikID == korisnik[0].ID && r.status == "co").ToList();
+            return Ok(rezervacije);
+        }
         /*
         // DELETE api/Rezervacija/5
         [ResponseType(typeof(Rezervacija))]

@@ -1,0 +1,8 @@
+<div ng-controller="ZaduzenjeCtrl">
+    <h1>Zaduzenje</h1>
+    <label for="username">Username:</label><input type="text" id="username" ng-model="zaduzenjeModel.username"><br>
+    
+  
+    <button ng-click="getRezervacije()">Rezervacije korisnika</button>
+    <p ng-bind-html="polje"></p>
+</div>

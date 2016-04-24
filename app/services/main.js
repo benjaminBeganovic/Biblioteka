@@ -60,7 +60,6 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
         },
         jednostavnapretraga: function (pretragaModel) {
             return $http({
-                //url: serviceBase + 'api/Pretraga/Jednostavna',
                 url: serviceBase + "api/Pretraga/Jednostavna",
                 method: "GET",
                 params: pretragaModel,
@@ -125,6 +124,13 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 url: serviceBase + 'api/Clanstvoes',
                 method: "POST",
                 data: JSON.stringify(clanstvoModel),
+                withCredentials: true
+            });
+        },
+        dajsverezervacijekorisnika: function (username) {
+            return $http({
+                url: serviceBase + 'api/Rezervacija/' + username,
+                method: "GET",
                 withCredentials: true
             });
         },
