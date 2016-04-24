@@ -102,7 +102,7 @@ namespace Biblioteka.Controllers
 
             if(k.Count > 0)
             {
-                return BadRequest("Izaberite drugi username!");
+                return Ok("Izaberite drugi username!");
             }
 
             korisnik.TipRacunaID = 1;
