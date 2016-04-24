@@ -11,7 +11,7 @@ angular.module('BibliotekaApp').controller("PretragaCtrl", ["$scope", "Bibliotek
             console.log($scope.jednostavnaModel);
             BibliotekaService.jednostavnapretraga($scope.jednostavnaModel)
             .success(function (data, status) {
-
+                $scope.rezultat = data;
             })
             .error(function (data, status) {
 
