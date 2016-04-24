@@ -9,10 +9,13 @@
     <div id="forma">
         <form>
             <label for="tip">Tip knjige:</label>
-            <select id="tip">
+            <select id="tip" ng-model="jednostavnaModel.tipknjige">
                 <option data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
-            </select>
-            <label for="jezik">Jezik:</label><input type="text" id="jezik" ng-model="jednostavnaModel.jezik"><br>
+            </select> <br />
+            <label for="jezik">Jezici:</label>
+            <select id="jezik" ng-model="jednostavnaModel.jezik">
+                <option data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
+            </select><br />
             <label for="naziv">Naziv:</label><input type="text" id="naziv" ng-model="jednostavnaModel.naziv"><br>
             <label for="autor">Autor:</label><input type="text" id="autor" ng-model="jednostavnaModel.autor"><br>
             <input type="button" ng-click="jednostavna()" value="Pretrazi" />

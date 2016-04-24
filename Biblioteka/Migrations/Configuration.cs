@@ -19,41 +19,43 @@
         {
 
             //tipovi knjiga
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "lit", opis = "Knji�evnost" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "pro", opis = "Stru�na literatura" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "phi", opis = "Filozofija" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "sci", opis = "Nauka" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "law", opis = "Zakon" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "rel", opis = "Religija" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "let", opis = "Pismo" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "ess", opis = "Esej" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "dia", opis = "Dnevnici i �asopisi" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "mem", opis = "Autobiografija" });
-            context.TipKnjiges.AddOrUpdate(new TipKnjige { referenca = "bio", opis = "Biografija" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 1, referenca = "lit", opis = "Književnost" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 2, referenca = "pro", opis = "Stručna literatura" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 3, referenca = "phi", opis = "Filozofija" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 4, referenca = "sci", opis = "Nauka" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 5, referenca = "law", opis = "Zakon" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 6, referenca = "rel", opis = "Religija" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 7, referenca = "let", opis = "Pismo" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 8, referenca = "ess", opis = "Esej" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 9, referenca = "dia", opis = "Dnevnici i Časopisi" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 10, referenca = "mem", opis = "Autobiografija" });
+            context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 11, referenca = "bio", opis = "Biografija" });
             context.SaveChanges();
 
             //jezici, oznake po: ISO 639-2
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "ara", opis = "Arapski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "bos", opis = "Bosanski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "ger", opis = "Njemacki" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "gre", opis = "Gr�ki" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "eng", opis = "Engleski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "fre", opis = "Francuski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "hrv", opis = "Hrvatski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "ita", opis = "Italijanski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "mac", opis = "Makedonski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "rus", opis = "Ruski" });
-            context.Jeziks.AddOrUpdate(new Jezik { referenca = "tur", opis = "Turski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 1, referenca = "ara", opis = "Arapski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 2, referenca = "bos", opis = "Bosanski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 3, referenca = "ger", opis = "Njemacki" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 4, referenca = "gre", opis = "Grčki" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 5, referenca = "eng", opis = "Engleski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 6, referenca = "fre", opis = "Francuski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 7, referenca = "hrv", opis = "Hrvatski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 8, referenca = "ita", opis = "Italijanski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 9, referenca = "mac", opis = "Makedonski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 10, referenca = "rus", opis = "Ruski" });
+            context.Jeziks.AddOrUpdate(new Jezik { ID = 11, referenca = "tur", opis = "Turski" });
             context.SaveChanges();
 
             //izdavaci
-            context.Izdavacs.AddOrUpdate(new Izdavac { naziv = "Connectum", adresa = "8. mart br. 56, 71000 Sarajevo, Bosna i Hercegovina" });
-            context.Izdavacs.AddOrUpdate(new Izdavac { naziv = "Pearson", adresa = "Nije poznata" });
+            context.Izdavacs.AddOrUpdate(new Izdavac { ID = 1, naziv = "Connectum", adresa = "8. mart br. 56, 71000 Sarajevo, Bosna i Hercegovina" });
+            context.Izdavacs.AddOrUpdate(new Izdavac { ID = 2, naziv = "Pearson", adresa = "Nije poznata" });
             context.SaveChanges();
 
             //knjige
+
             Knjiga k1 = new Knjiga
             {
+                ID = 1,
                 IzdavacID = 1,
                 TipKnjigeID = 1,
                 JezikID = 2,
@@ -64,31 +66,33 @@
                 ukupno_kopija = 1,
                 dostupno_kopija = 1,
                 izdanje = 1,
-                opis = "Zlo�in i kazna je roman ruskog pisca Fjodora Mihajlovi�a Dostojevskog izdan 1866." +
-                "godine u �asopisu Ruski vjesnik. Smatra se jednim od najve�ih djela ruske knji�evnosti.",
+                opis = "Zločin i kazna je roman ruskog pisca Fjodora Mihajloviča Dostojevskog izdan 1866." +
+                "godine u časopisu Ruski vjesnik. Smatra se jednim od najvećih djela ruske književnosti.",
                 izbrisano = false
             };
 
             Knjiga k2 = new Knjiga
             {
+                ID = 2,
                 IzdavacID = 1,
                 TipKnjigeID = 1,
                 JezikID = 2,
-                naslov = "Hiljadu i jedna no�",
+                naslov = "Hiljadu i jedna noć",
                 isbn = "3-932068-56-4",
                 broj_strana = 887,
                 godina_izdavanja = new DateTime(1704, 7, 7),
                 ukupno_kopija = 1,
                 dostupno_kopija = 1,
                 izdanje = 1,
-                opis = "Hiljadu i jedna no� je zbirka du�ih i kra�ih pri�a koje su nastale u periodu od" +
-                "9. do 14. vijeka. Pri�e imaju korijene iz starih civilizacija Arabije, Perzije, Indije, Egipta i Mezopotamije." +
-                "Osnova cijele ove zbirke je pri�a o �eherzadi.",
+                opis = "Hiljadu i jedna noć je zbirka dužih i kraćih priča koje su nastale u periodu od" +
+                "9. do 14. vijeka. Priče imaju korijene iz starih civilizacija Arabije, Perzije, Indije, Egipta i Mezopotamije." +
+                "Osnova cijele ove zbirke je priča o Šeherzadi.",
                 izbrisano = false
             };
 
             Knjiga k3 = new Knjiga
             {
+                ID = 3,
                 IzdavacID = 1,
                 TipKnjigeID = 1,
                 JezikID = 2,
@@ -100,54 +104,57 @@
                 dostupno_kopija = 1,
                 izdanje = 1,
                 opis = "Hamlet je tragedija Williama Shakespearea, jedna od njegovih najpoznatijih i " +
-                "najizvo�enijih tragedija na pozornicama �irom svijeta. Napisana je u periodu izme�u 1600. i ljeta 1602. " +
-                "godine, u drugom razdoblju Shakespearova stvarala�tva. Legenda o Hamletu spominje se ve� u 9. stolje�u i " +
-                "potje�e iz drevnih skandinavskih saga, a zapisao ju danski pjesnik i povjesni�ar Saxo Gramaticus u 13. stolje�u.",
+                "najizvođenijih tragedija na pozornicama širom svijeta. Napisana je u periodu između 1600. i ljeta 1602. " +
+                "godine, u drugom razdoblju Shakespearova stvaralaštva. Legenda o Hamletu spominje se već u 9. stoljeću i " +
+                "potječe iz drevnih skandinavskih saga, a zapisao ju danski pjesnik i povjesničar Saxo Gramaticus u 13. stoljeću.",
                 izbrisano = false
             };
 
             Knjiga k4 = new Knjiga
             {
+                ID = 4,
                 IzdavacID = 1,
                 TipKnjigeID = 1,
                 JezikID = 2,
-                naslov = "Dervi� i smrt",
+                naslov = "Derviš i smrt",
                 isbn = "8-675721-54-4",
                 broj_strana = 473,
                 godina_izdavanja = new DateTime(1966, 1, 1),
                 ukupno_kopija = 1,
                 dostupno_kopija = 1,
                 izdanje = 1,
-                opis = "Dervi� i smrt je najuspje�niji roman bosanskohercegova�kog pisca Me�e Selimovi�a." +
-                "Roman je pisan u razdoblju od �etiri godine (1962-1966) u pi��evom poodmaklom dobu. Objavljen je 1966. godine " +
-                "od strane izdava�ke ku�e Svjetlost iz Sarajeva i do�ivio nevjerovatan uspjeh u okvirima �itala�ke javnosti " +
-                "�irom tada�nje Jugoslavije. Roman je do�ivio brojna reizdanja. Dervi� i smrt donio je Selimovi�u mnogobrojne " +
-                "najvi�e jugoslavenske nagrade, izme�u ostalih Njego�evu, Goranovu i NIN-ovu nagradu.",
+                opis = "Derviš i smrt je najuspješniji roman bosanskohercegovačkog pisca Meše Selimovića." +
+                "Roman je pisan u razdoblju od četiri godine (1962-1966) u piščevom poodmaklom dobu. Objavljen je 1966. godine " +
+                "od strane izdavačke kuće Svjetlost iz Sarajeva i doživio nevjerovatan uspjeh u okvirima čitalačke javnosti " +
+                "širom tadašnje Jugoslavije. Roman je doživio brojna reizdanja. Derviš i smrt donio je Selimoviću mnogobrojne " +
+                "najviše jugoslavenske nagrade, između ostalih Njegoševu, Goranovu i NIN-ovu nagradu.",
                 izbrisano = false
             };
 
             Knjiga k5 = new Knjiga
             {
+                ID = 5,
                 IzdavacID = 1,
                 TipKnjigeID = 1,
                 JezikID = 2,
-                naslov = "Tvr�ava",
+                naslov = "Tvrđava",
                 isbn = "8-661070-19-8",
                 broj_strana = 383,
                 godina_izdavanja = new DateTime(1970, 1, 1),
                 ukupno_kopija = 1,
                 dostupno_kopija = 1,
                 izdanje = 1,
-                opis = "Tvr�ava je jedan od poznatijih romana bosanskohercegova�kog pisca Me�e Selimovi�a. " +
-                "Ovaj roman koji je prvi put objavljen 1970. godine, predstavlja svojevrsnog blizanca Selimovi�evog prethodnog " +
-                "romana Dervi� i smrt (1966.) U ovom romanu pisac nastavlja uzvi�enu metaforu iz romana Dervi� i smrt " +
-                "o �ovjeku kome prijete smrt i vlast. Unutra�nji prostor ovog romana jasnije je odre�en duhom nego �to " +
-                "je spolja odre�en realnim historijskim vremenom.",
+                opis = "Tvrđava je jedan od poznatijih romana bosanskohercegovačkog pisca Meše Selimovića. " +
+                "Ovaj roman koji je prvi put objavljen 1970. godine, predstavlja svojevrsnog blizanca Selimovićevog prethodnog " +
+                "romana Derviš i smrt (1966.) U ovom romanu pisac nastavlja uzvišenu metaforu iz romana Derviš i smrt " +
+                "o čovjeku kome prijete smrt i vlast. Unutrašnji prostor ovog romana jasnije je određen duhom nego što " +
+                "je spolja određen realnim historijskim vremenom.",
                 izbrisano = false
             };
 
             Knjiga k6 = new Knjiga
             {
+                ID = 6,
                 IzdavacID = 2,
                 TipKnjigeID = 2,
                 JezikID = 5,
@@ -163,28 +170,28 @@
             };
 
             //autori
-            Autor a1 = new Autor { naziv = "Autor nepoznat" };
+            Autor a1 = new Autor { ID = 1, naziv = "Autor nepoznat" };
             a1.Knjige = new List<Knjiga>();
             a1.Knjige.Add(k2);
 
-            Autor a2 = new Autor { naziv = "Mesa Selimovic" };
+            Autor a2 = new Autor { ID = 2, naziv = "Mesa Selimovic" };
             a2.Knjige = new List<Knjiga>();
             a2.Knjige.Add(k4);
             a2.Knjige.Add(k5);
 
-            Autor a3 = new Autor { naziv = "William Shakespeare" };
+            Autor a3 = new Autor { ID = 3, naziv = "William Shakespeare" };
             a3.Knjige = new List<Knjiga>();
             a3.Knjige.Add(k3);
 
-            Autor a4 = new Autor { naziv = "Fjodor Dostojevski" };
+            Autor a4 = new Autor { ID = 4, naziv = "Fjodor Dostojevski" };
             a4.Knjige = new List<Knjiga>();
             a4.Knjige.Add(k1);
 
-            Autor a5 = new Autor { naziv = "James F. Kurose" };
+            Autor a5 = new Autor { ID = 5, naziv = "James F. Kurose" };
             a5.Knjige = new List<Knjiga>();
             a5.Knjige.Add(k6);
 
-            Autor a6 = new Autor { naziv = "Keith W. Ross" };
+            Autor a6 = new Autor { ID = 6, naziv = "Keith W. Ross" };
             a6.Knjige = new List<Knjiga>();
             a6.Knjige.Add(k6);
 
@@ -198,14 +205,15 @@
 
 
             //tipovi racuna
-            context.TipRacunas.AddOrUpdate(new TipRacuna { referenca = "c", opis = "�lan" });
-            context.TipRacunas.AddOrUpdate(new TipRacuna { referenca = "b", opis = "Bibliotekar" });
-            context.TipRacunas.AddOrUpdate(new TipRacuna { referenca = "a", opis = "Administrator" });
+            context.TipRacunas.AddOrUpdate(new TipRacuna { ID = 1, referenca = "c", opis = "Član" });
+            context.TipRacunas.AddOrUpdate(new TipRacuna { ID = 2, referenca = "b", opis = "Bibliotekar" });
+            context.TipRacunas.AddOrUpdate(new TipRacuna { ID = 3, referenca = "a", opis = "Administrator" });
             context.SaveChanges();
 
             //korisnici
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 1,
                 TipRacunaID = 3,
                 ime = "Administrator1",
                 prezime = "Prezime",
@@ -220,6 +228,7 @@
 
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 2,
                 TipRacunaID = 3,
                 ime = "Administrator2",
                 prezime = "Prezime",
@@ -234,6 +243,7 @@
 
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 3,
                 TipRacunaID = 2,
                 ime = "Bibliotekar1",
                 prezime = "Prezime",
@@ -248,6 +258,7 @@
 
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 4,
                 TipRacunaID = 2,
                 ime = "Bibliotekar2",
                 prezime = "Prezime",
@@ -262,6 +273,7 @@
 
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 5,
                 TipRacunaID = 1,
                 ime = "Clan1",
                 prezime = "Prezime",
@@ -276,6 +288,7 @@
 
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 6,
                 TipRacunaID = 1,
                 ime = "Clan2",
                 prezime = "Prezime",
@@ -290,6 +303,7 @@
 
             context.Korisniks.AddOrUpdate(new Korisnik
             {
+                ID = 7,
                 TipRacunaID = 1,
                 ime = "Clan3",
                 prezime = "Prezime",
@@ -306,6 +320,7 @@
             //clanstva
             context.Clanstvoes.AddOrUpdate(new Clanstvo
             {
+                ID = 1,
                 KorisnikID = 5,
                 datum_racuna = new DateTime(2016, 1, 1),
                 istek_racuna = new DateTime(2017, 1, 1),
@@ -314,6 +329,7 @@
 
             context.Clanstvoes.AddOrUpdate(new Clanstvo
             {
+                ID = 2,
                 KorisnikID = 6,
                 datum_racuna = new DateTime(2016, 1, 2),
                 istek_racuna = new DateTime(2017, 1, 2),
@@ -328,6 +344,7 @@
             // zaduzio knjigu - re (reserved)
             context.Rezervacijas.AddOrUpdate(new Rezervacija
             {
+                ID = 1,
                 status = "co",
                 datum_rezervacije = new DateTime(2016, 3, 25),
                 cekanje = 2,
@@ -336,6 +353,7 @@
             });
             context.Rezervacijas.AddOrUpdate(new Rezervacija
             {
+                ID = 2,
                 status = "re",
                 datum_rezervacije = new DateTime(2016, 2, 20),
                 cekanje = 2,
@@ -347,8 +365,12 @@
             //zaduzenja
             // vraceno - vr
             // nije vraceno - nv
+
+            context.SaveChanges();
+
             context.Zaduzenjas.AddOrUpdate(new Zaduzenja
             {
+                ID = 1,
                 status = "nv",
                 datum_zaduzenja = new DateTime(2016, 3, 21),
                 datum_vracanja = null,
@@ -369,9 +391,9 @@
             //
             //    context.People.AddOrUpdate(
             //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
+            //      new Person {ID = 1,FullName = "Andrew Peters" },
+            //      new Person {ID = 1,FullName = "Brice Lambson" },
+            //      new Person {ID = 1,FullName = "Rowan Miller" }
             //    );
             //
         }
