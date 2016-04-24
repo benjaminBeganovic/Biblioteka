@@ -13,7 +13,6 @@ using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
-    [CustomAuthorize(Roles = "a,b")]
     public class TipKnjigesController : ApiController
     {
         private ProbaContext db = new ProbaContext();
@@ -26,6 +25,7 @@ namespace Biblioteka.Controllers
         }
 
         // GET: api/TipKnjiges/5
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(TipKnjige))]
         public IHttpActionResult GetTipKnjige(long id)
         {
@@ -39,6 +39,7 @@ namespace Biblioteka.Controllers
         }
 
         // PUT: api/TipKnjiges/5
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTipKnjige(long id, TipKnjige tipKnjige)
         {
@@ -74,6 +75,7 @@ namespace Biblioteka.Controllers
         }
 
         // POST: api/TipKnjiges
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(TipKnjige))]
         public IHttpActionResult PostTipKnjige(TipKnjige tipKnjige)
         {
@@ -89,6 +91,7 @@ namespace Biblioteka.Controllers
         }
 
         // DELETE: api/TipKnjiges/5
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(TipKnjige))]
         public IHttpActionResult DeleteTipKnjige(long id)
         {

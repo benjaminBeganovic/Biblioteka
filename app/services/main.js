@@ -1,6 +1,6 @@
 angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function($http) {
     
-    var serviceBase = 'http://nwtbiblioteka.azurewebsites.net/';
+    var serviceBase = 'http://nwtbiblioteka1.azurewebsites.net/';
 
     return {
         login: function(loginModel)

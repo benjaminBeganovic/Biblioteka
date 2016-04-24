@@ -8,7 +8,10 @@
     <h3>Jednostavna pretraga</h3>
     <div id="forma">
         <form>
-            <label for="tip">Tip knjige:</label><input type="text" id="tip" ng-model="jednostavnaModel.tipknjige"><br>
+            <label for="tip">Tip knjige:</label>
+            <select id="tip">
+                <option data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
+            </select>
             <label for="jezik">Jezik:</label><input type="text" id="jezik" ng-model="jednostavnaModel.jezik"><br>
             <label for="naziv">Naziv:</label><input type="text" id="naziv" ng-model="jednostavnaModel.naziv"><br>
             <label for="autor">Autor:</label><input type="text" id="autor" ng-model="jednostavnaModel.autor"><br>

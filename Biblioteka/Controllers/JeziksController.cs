@@ -13,7 +13,6 @@ using Biblioteka.Security;
 
 namespace Biblioteka.Controllers
 {
-    [CustomAuthorize(Roles = "a,b")]
     public class JeziksController : ApiController
     {
         private ProbaContext db = new ProbaContext();
@@ -26,6 +25,7 @@ namespace Biblioteka.Controllers
         }
 
         // GET: api/Jeziks/5
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(Jezik))]
         public IHttpActionResult GetJezik(long id)
         {
@@ -39,6 +39,7 @@ namespace Biblioteka.Controllers
         }
 
         // PUT: api/Jeziks/5
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutJezik(long id, Jezik jezik)
         {
@@ -74,6 +75,7 @@ namespace Biblioteka.Controllers
         }
 
         // POST: api/Jeziks
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(Jezik))]
         public IHttpActionResult PostJezik(Jezik jezik)
         {
@@ -89,6 +91,7 @@ namespace Biblioteka.Controllers
         }
 
         // DELETE: api/Jeziks/5
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(Jezik))]
         public IHttpActionResult DeleteJezik(long id)
         {
