@@ -25,16 +25,17 @@
                 <li><a href="./index.html#/Knjige">Knjige</a></li>
                 <li><a href="./index.html#/Informacije">Informacije</a></li>
                 <li><a href="./index.html#/Kontakt">Kontakt</a></li>
-
-                <li><a href="./index.html#/Login" >Login</a></li>
-                <li><a href="./index.html#/Register">Register</a></li>
-                <input type="button" ng-click="logoutMe()" value="Logout" />
+                <li class="admin"><a href="./index.html#/Admin">Admin</a></li>
+                <li class="bibl"><a href="./index.html#/Zaduzenja">Zaduzenja</a></li>
+                <li class="gost"><a href="./index.html#/Login">Login</a></li>
+                <li class="gost"><a href="./index.html#/Register">Register</a></li>
+                <li class="clan"><a href="./index.html#/Home" ng-click="logoutMe()">Logout</a></li>
             </ul>
         </div>
         <h1>Biblioteka</h1>
         <div data-ng-view=""></div>
         
-    </div><!-- page -->
+    </div>
 </div>
 </body>
 </html>
