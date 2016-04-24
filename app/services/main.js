@@ -6,12 +6,31 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
     return {
         login: function(loginModel)
         {
-            return $http.post(serviceBase + '/api/Auth/Login',
-            JSON.stringify(loginModel));
+            return $http({
+                url: serviceBase + '/api/Auth/Login',
+                method: "POST",
+                data: JSON.stringify(loginModel),
+                withCredentials: true
+            });
+        },
+        logout: function () {
+            return $http({
+                url: serviceBase + '/api/Auth/Logout',
+                method: "POST",
+                withCredentials: true
+            });
         },
         register: function(registerModel)
                     {
             return $http.post(serviceBase + 'api/Auth/Register', registerModel);
-		}
+        },
+        clanstva: function()
+        {
+            return $http({
+                url: serviceBase + '/api/Clanstvoes/',
+                method: "GET",
+                withCredentials: true
+            });
+        },
 	};
 }]);

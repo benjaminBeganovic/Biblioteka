@@ -16,8 +16,6 @@ namespace Biblioteka
 
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
 
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
@@ -48,7 +46,6 @@ namespace Biblioteka
 
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("application/json"));
-            
         }
     }
 }

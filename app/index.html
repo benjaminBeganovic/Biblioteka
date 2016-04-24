@@ -8,22 +8,26 @@
     <script src="assets/js/angular.js"></script>
     <script src="assets/js/angular-route.js"></script>
     <script src="assets/js/angular-sanitize.js"></script>
+    <script src="assets/js/angular-cookies.js"></script>
 
 	<script src="app.js"></script>
 	<script src="services/main.js"></script>
     <script src="controllers/LoginCtrl.js"></script>
+    <script src="controllers/MenuCtrl.js"></script>
 </head>
 <body>
 <div>
     <div>
-        <div>
+        <div ng-controller="MenuCtrl">
             <ul>
                 <li><a href="./index.html#/Pocetna">Početna</a></li>
                 <li><a href="./index.html#/Knjige">Knjige</a></li>
                 <li><a href="./index.html#/Informacije">Informacije</a></li>
                 <li><a href="./index.html#/Kontakt">Kontakt</a></li>
-                <li><a href="./index.html#/Login">Login</a></li>
+
+                <li><a href="./index.html#/Login" >Login</a></li>
                 <li><a href="./index.html#/Register">Register</a></li>
+                <input type="button" ng-click="logoutMe()" value="Logout" />
             </ul>
         </div>
         <h1>Biblioteka</h1>

@@ -1,6 +1,6 @@
 
-angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce,$http) {
+angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaService", '$sce', '$http', '$cookies',
+    function ($scope, BibliotekaService, $sce,$http, $cookies) {
     $scope.loginModel = {
       username : "",
       password : ""
@@ -12,9 +12,11 @@ angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaSer
         else
         {
             BibliotekaService.login($scope.loginModel)
-            .then(function (data)
-            {
-                $scope.error = $sce.trustAsHtml(data.status);
+            .success(function (data, status, headers, config) {
+                $scope.error = $sce.trustAsHtml("Uspjesno ste prijavljeni");
+            })
+            .error(function (data) {
+                $scope.error = $sce.trustAsHtml("Greska u autentifikaciji");
             });
         }
         

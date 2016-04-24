@@ -18,6 +18,8 @@ namespace Biblioteka.Controllers
 
         [ActionName("Login")]
         [System.Web.Http.HttpPost]
+        //[EnableCors(origins: "http://localhost:53781", headers: "*",
+        //methods: "*", SupportsCredentials = true)]
         public IHttpActionResult Login([FromBody] Login login)
         {
             string username = login.username;
@@ -40,10 +42,10 @@ namespace Biblioteka.Controllers
         }
 
         [ActionName("Logout")]
-        [System.Web.Mvc.HttpPost]
-        public IHttpActionResult Logout([FromBody] Login login)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult Logout()
         {
-            if (string.IsNullOrEmpty(login.username) || string.IsNullOrEmpty(login.password))
+            /*if (string.IsNullOrEmpty(login.username) || string.IsNullOrEmpty(login.password))
             {
                 return BadRequest(ModelState);
             }
@@ -55,7 +57,7 @@ namespace Biblioteka.Controllers
             else
             {
                 return NotFound();
-            }
+            }*/
             SessionPersister.username = null;
             return Ok("dafad");
         }
