@@ -53,9 +53,10 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
         },
         jednostavnapretraga: function (pretragaModel) {
             return $http({
-                url: serviceBase + 'api/Pretraga/Jednostavna',
+                //url: serviceBase + 'api/Pretraga/Jednostavna',
+                url: "https://nwtbiblioteka.azurewebsites.net/api/Pretraga/Jednostavna",
                 method: "GET",
-                data: JSON.stringify(pretragaModel),
+                params: pretragaModel,
                 withCredentials: true
             });
         },

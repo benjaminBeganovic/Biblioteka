@@ -1,6 +1,6 @@
 
-angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaService", '$sce', '$http', '$cookies',
-    function ($scope, BibliotekaService, $sce,$http, $cookies) {
+angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaService", '$sce', '$http', '$cookies', '$window',
+    function ($scope, BibliotekaService, $sce,$http, $cookies, $window) {
     $scope.loginModel = {
       username : "",
       password : ""
@@ -24,6 +24,7 @@ angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope","BibliotekaSer
                     case 'b':
                         $(".bibl").show();
                 }
+                $window.location.href = '/index.html#/Pocetna';
             })
             .error(function (data, status) {
                 $scope.error = $sce.trustAsHtml("Greska u autentifikaciji");

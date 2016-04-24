@@ -18,8 +18,6 @@ namespace Biblioteka.Controllers
 
         [ActionName("Login")]
         [System.Web.Http.HttpPost]
-        //[EnableCors(origins: "http://localhost:53781", headers: "*",
-        //methods: "*", SupportsCredentials = true)]
         public IHttpActionResult Login([FromBody] Login login)
         {
             string username = login.username;
@@ -29,7 +27,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
             Korisnik k;
-            if (db.Korisniks.Any(a => a.username == username && a.password == password))
+            if (db.Korisniks.Any(a => a.username == username && a.password == password && a.odobren == true))
             {
                 k = db.Korisniks.Where(a => a.username == username && a.password == password).First();
             }

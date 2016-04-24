@@ -22,6 +22,7 @@ namespace Biblioteka.Controllers
         }
 
         [ActionName("Kod")]
+        [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetPretragaKod(string kod)
         {
@@ -42,6 +43,7 @@ namespace Biblioteka.Controllers
         }
 
         [ActionName("Napredna")]
+        [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetPretragaNapredna(string naziv, string tip, string jezik, string autor, string izdavac, int godina, List<string> kljucne)
         {
@@ -114,9 +116,9 @@ namespace Biblioteka.Controllers
                 return Ok(knjiga.ToList());
             }
         }
-
-        [AllowAnonymous]
+        
         [ActionName("Jednostavna")]
+        [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetPretragaJednostavna(string tipknjige, string jezik, string naziv, string autor)
         {
