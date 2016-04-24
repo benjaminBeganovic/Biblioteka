@@ -43,6 +43,13 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 withCredentials: true
             });
         },
+        svijezici: function () {
+            return $http({
+                url: serviceBase + 'api/Jeziks',
+                method: "GET",
+                withCredentials: true
+            });
+        },
         naprednapretraga: function (pretragaModel) {
             return $http({
                 url: serviceBase + 'api/Pretraga/Napredna',
@@ -54,7 +61,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
         jednostavnapretraga: function (pretragaModel) {
             return $http({
                 //url: serviceBase + 'api/Pretraga/Jednostavna',
-                url: "https://nwtbiblioteka.azurewebsites.net/api/Pretraga/Jednostavna",
+                url: serviceBase + "api/Pretraga/Jednostavna",
                 method: "GET",
                 params: pretragaModel,
                 withCredentials: true
