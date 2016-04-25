@@ -357,6 +357,15 @@
             context.Rezervacijas.AddOrUpdate(new Rezervacija
             {
                 ID = 2,
+                status = "co",
+                datum_rezervacije = new DateTime(2016, 4, 25),
+                cekanje = 2,
+                KorisnikID = 5,
+                KnjigaID = 5
+            });
+            context.Rezervacijas.AddOrUpdate(new Rezervacija
+            {
+                ID = 3,
                 status = "re",
                 datum_rezervacije = new DateTime(2016, 2, 20),
                 cekanje = 2,
