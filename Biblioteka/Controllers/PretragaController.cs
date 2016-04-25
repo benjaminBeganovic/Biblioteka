@@ -42,19 +42,29 @@ namespace Biblioteka.Controllers
             }
         }
 
+        private bool puna(string v)
+        {
+            if (v == "" || v == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         [ActionName("Napredna")]
         [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
-        public IHttpActionResult GetPretragaNapredna(string naziv, string tip, string jezik, string autor, string izdavac, int godina, List<string> kljucne)
+        public IHttpActionResult GetPretragaNapredna(string kljucne="", string naziv = "", string tip = "", string jezik ="", string autor = "", string izdavac = "", int? godina = 0)
         {
             prepareValue(ref naziv);
             prepareValue(ref autor);
             prepareValue(ref izdavac);
             prepareValue(ref tip);
             prepareValue(ref jezik);
+            prepareValue(ref kljucne);
             List<Knjiga> knjige = null;
             IQueryable<Knjiga> knjiga = null;
-            if (autor != null && naziv != null)
+            if (puna(autor) && puna(naziv))
             {
                 knjiga = db.Knjigas.Where(a => a.naslov.ToLower().Contains(naziv))
                 .Where(t => t.TipKnjige.referenca == tip)
@@ -69,13 +79,13 @@ namespace Biblioteka.Controllers
                 }
                 knjiga = rez.AsQueryable();
             }
-            else if (naziv != null)
+            else if (puna(naziv))
             {
                 knjiga = db.Knjigas.Where(a => a.naslov.ToLower().Contains(naziv))
                 .Where(t => t.TipKnjige.referenca == tip)
                 .Where(j => j.Jezik.referenca.ToLower() == jezik.ToLower());
             }
-            else if (autor != null)
+            else if (puna(autor))
             {
                 knjiga = db.Knjigas.Where(t => t.TipKnjige.referenca == tip)
                 .Where(j => j.Jezik.referenca.ToLower() == jezik.ToLower());
@@ -89,7 +99,7 @@ namespace Biblioteka.Controllers
                 }
                 knjiga = rez.AsQueryable();
             }
-            if (izdavac != null)
+            if (puna(izdavac))
             {
                 knjiga = knjiga.Where(a => a.Izdavac.naziv.ToLower().Contains(izdavac));
             }
@@ -97,15 +107,12 @@ namespace Biblioteka.Controllers
             {
                 knjiga = knjiga.Where(a => a.godina_izdavanja.Value.Year == godina);
             }
-            if (kljucne != null)
+            if (puna(kljucne))
             {
-                foreach (var k in kljucne)
-                {
-                    if (knjiga.Any(a => a.opis.ToLower().Contains(k)))
-                    {
-                        knjiga = knjiga.Where(a => a.opis.ToLower().Contains(k));
-                    }
-                }
+                String[] klj = kljucne.Split(',');
+                knjiga = knjiga.Where(a => klj.Any(x => a.opis.ToLower().Contains(x.ToLower()) 
+                || a.naslov.ToLower().Contains(x.ToLower())));
+                
             }
             if (knjiga.ToList().Count() == 0)
             {

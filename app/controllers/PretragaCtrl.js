@@ -1,7 +1,9 @@
 ﻿
 angular.module('BibliotekaApp').controller("PretragaCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
     function ($scope, BibliotekaService, $sce, $http) {
-        $('#kopija').hide();
+        var defaultTipKnjige = 0;
+        var defaultJezik = 2;
+        
         BibliotekaService.svijezici()
         .success(function (data, status) {
             $scope.jezici = data;
@@ -13,22 +15,34 @@ angular.module('BibliotekaApp').controller("PretragaCtrl", ["$scope", "Bibliotek
         })
 
         $scope.napredna = function () {
-            
+            BibliotekaService.naprednapretraga($scope.naprednaModel)
+            .success(function (data, status) {
+                $scope.rezultat = data;
+            })
+            .error(function (data, status) {
+                $scope.rezultat = null;
+            })
+
         };
 
         $scope.jednostavna = function () {
-            console.log($scope.jednostavnaModel);
             BibliotekaService.jednostavnapretraga($scope.jednostavnaModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
             })
             .error(function (data, status) {
-
+                $scope.rezultat = null;
             })
         };
 
         $scope.pokodu = function () {
-
+            BibliotekaService.pretragakod($scope.pokoduModel)
+            .success(function (data, status) {
+                $scope.rezultat = data;
+            })
+            .error(function (data, status) {
+                $scope.rezultat = null;
+            })
         };
 
     }]);

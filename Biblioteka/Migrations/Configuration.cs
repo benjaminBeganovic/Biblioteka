@@ -61,6 +61,7 @@
                 JezikID = 2,
                 naslov = "Zlocin i kazna",
                 isbn = "86-7674-029-1",
+                idbroj = "1000",
                 broj_strana = 524,
                 godina_izdavanja = new DateTime(1866, 1, 1),
                 ukupno_kopija = 1,
@@ -77,6 +78,7 @@
                 IzdavacID = 1,
                 TipKnjigeID = 1,
                 JezikID = 2,
+                idbroj = "1001",
                 naslov = "Hiljadu i jedna noć",
                 isbn = "3-932068-56-4",
                 broj_strana = 887,
@@ -121,6 +123,7 @@
                 broj_strana = 473,
                 godina_izdavanja = new DateTime(1966, 1, 1),
                 ukupno_kopija = 1,
+                idbroj = "1002",
                 dostupno_kopija = 1,
                 izdanje = 1,
                 opis = "Derviš i smrt je najuspješniji roman bosanskohercegovačkog pisca Meše Selimovića." +

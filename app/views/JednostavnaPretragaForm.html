@@ -7,17 +7,19 @@
     </ul>
     <h3>Jednostavna pretraga</h3>
     <div id="forma">
-        <form>
+        <form name="myForm">
             <label for="tip">Tip knjige:</label>
             <select id="tip" ng-model="jednostavnaModel.tipknjige">
-                <option data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
+                <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
             </select> <br />
             <label for="jezik">Jezici:</label>
             <select id="jezik" ng-model="jednostavnaModel.jezik">
-                <option data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
+                <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
             </select><br />
-            <label for="naziv">Naziv:</label><input type="text" id="naziv" ng-model="jednostavnaModel.naziv"><br>
-            <label for="autor">Autor:</label><input type="text" id="autor" ng-model="jednostavnaModel.autor"><br>
+            <label for="naziv">Naziv:</label><input name="naziv" type="text" id="naziv" ng-model="jednostavnaModel.naziv" required>
+            <span ng-show="myForm.naziv.$invalid">Naziv je obavezan</span><br />
+            <label for="autor">Autor:</label><input name="autor" type="text" id="autor" ng-model="jednostavnaModel.autor" required>
+            <span ng-show="myForm.autor.$invalid">Autor je obavezan</span><br />
             <input type="button" ng-click="jednostavna()" value="Pretrazi" />
         </form>
     </div>

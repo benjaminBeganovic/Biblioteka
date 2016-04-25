@@ -6,5 +6,22 @@
         <li><a href="./index.html#/PoKodu">Po kodu</a></li>
     </ul>
     <h3>Pretraga po kodu</h3>
-
+    <div id="forma">
+        <form name="myForm">
+            <label for="kod">Kod:</label><input name="kod" type="text" id="kod" ng-model="pokoduModel.kod" required>
+            <span ng-show="myForm.kod.$invalid">Kod je obavezan</span><br />
+            <input type="button" ng-click="pokodu()" value="Pretrazi" />
+        </form>
+    </div>
+    <div id="knjige" ng-repeat="x in rezultat">
+        <div>
+            <p class="naslov">{{x.naslov}}</p>
+            <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
+            <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
+            <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
+            <p class="opis">Opis: {{x.opis}}</p>
+            <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
+            <input type="button" ng-click="rezervisi(x.id)" value="Rezervisi" />
+        </div>
+    </div>
 </div>

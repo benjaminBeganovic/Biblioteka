@@ -54,7 +54,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
             return $http({
                 url: serviceBase + 'api/Pretraga/Napredna',
                 method: "GET",
-                data: JSON.stringify(pretragaModel),
+                params: pretragaModel,
                 withCredentials: true
             });
         },
@@ -70,7 +70,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
             return $http({
                 url: serviceBase + 'api/Pretraga/Kod',
                 method: "GET",
-                data: JSON.stringify(kod),
+                params: kod,
                 withCredentials: true
             });
         },
