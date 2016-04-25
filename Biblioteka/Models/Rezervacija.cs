@@ -31,7 +31,7 @@ namespace Biblioteka.Models
 
         [JsonIgnore]
         public virtual Korisnik Korisnik { get; set; }
-        [JsonIgnore]
+
         public virtual Knjiga Knjiga { get; set; }
     }
 }

@@ -105,14 +105,14 @@ namespace Biblioteka.Controllers
             //Onemogucavanje da korisnik napravi rezervaciju drugom korisnuku
             CustomPrincipal cp = new CustomPrincipal(SessionPersister.username);
             Korisnik current_user = db.Korisniks.Where(c => c.username == cp.Identity.Name).First();
-            if(rezervacija.KorisnikID != current_user.ID)
+            if (rezervacija.KorisnikID != current_user.ID)
             {
                 return BadRequest("Pokusavate rezervisati knjigu na drugog korisnika!");
             }
             //Provjera da li je isteklo clanstvo
             DateTime d = System.DateTime.Now;
             List<Clanstvo> clanstvaa = db.Clanstvoes.Where(c => c.KorisnikID == current_user.ID && c.istek_racuna > d).ToList();
-            if(clanstvaa.Count() < 1)
+            if (clanstvaa.Count() < 1)
             {
                 return BadRequest("Trebate produziti clanstvo!");
             }
@@ -271,15 +271,17 @@ namespace Biblioteka.Controllers
 
         // GET api/Rezervacija/username
         [CustomAuthorize(Roles = "b")]
-        [ResponseType(typeof(String))]
+        [ResponseType(typeof(List<Rezervacija>))]
         public IHttpActionResult GetRezervacijas(string username)
         {
             List<Korisnik> korisnik = db.Korisniks.Where(k => k.username == username).ToList();
 
-            if(korisnik.Count < 1)
+            if (korisnik.Count < 1)
                 return BadRequest("Username je pogresan!");
 
-            List<Rezervacija> rezervacije = db.Rezervacijas.Where(r => r.KorisnikID == korisnik[0].ID && r.status == "co").ToList();
+            long idKorisnika = korisnik[0].ID;
+            List<Rezervacija> rezervacije = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "co").ToList();
+
             return Ok(rezervacije);
         }
         /*
