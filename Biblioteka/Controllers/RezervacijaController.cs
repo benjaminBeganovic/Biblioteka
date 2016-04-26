@@ -94,9 +94,12 @@ namespace Biblioteka.Controllers
 
         // POST api/Rezervacija
         [CustomAuthorize(Roles = "c")]
+        [System.Web.Http.HttpPost]
         [ResponseType(typeof(Rezervacija))]
-        public IHttpActionResult PostRezervacija(Rezervacija rezervacija)
+        public IHttpActionResult PostRezervacija(long idKnjige)
         {
+            Rezervacija rezervacija = new Rezervacija();
+            rezervacija.KnjigaID = idKnjige;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -105,10 +108,8 @@ namespace Biblioteka.Controllers
             //Onemogucavanje da korisnik napravi rezervaciju drugom korisnuku
             CustomPrincipal cp = new CustomPrincipal(SessionPersister.username);
             Korisnik current_user = db.Korisniks.Where(c => c.username == cp.Identity.Name).First();
-            if (rezervacija.KorisnikID != current_user.ID)
-            {
-                return BadRequest("Pokusavate rezervisati knjigu na drugog korisnika!");
-            }
+            rezervacija.KorisnikID = current_user.ID;
+
             //Provjera da li je isteklo clanstvo
             DateTime d = System.DateTime.Now;
             List<Clanstvo> clanstvaa = db.Clanstvoes.Where(c => c.KorisnikID == current_user.ID && c.istek_racuna > d).ToList();
@@ -271,6 +272,7 @@ namespace Biblioteka.Controllers
 
         // GET api/Rezervacija/username
         [CustomAuthorize(Roles = "b")]
+        [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Rezervacija>))]
         public IHttpActionResult GetRezervacijas(string username)
         {

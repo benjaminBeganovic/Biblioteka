@@ -129,8 +129,9 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
         },
         dajsverezervacijekorisnika: function (username) {
             return $http({
-                url: serviceBase + 'api/Rezervacija/' + username,
+                url: serviceBase + 'api/Rezervacija',
                 method: "GET",
+                params: { username: username },
                 withCredentials: true
             });
         },
@@ -138,7 +139,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
             return $http({
                 url: serviceBase + 'api/Rezervacija',
                 method: "POST",
-                data: JSON.stringify(rezervacijaModel),
+                //data: JSON.stringify(rezervacijaModel),
                 withCredentials: true
             });
         }

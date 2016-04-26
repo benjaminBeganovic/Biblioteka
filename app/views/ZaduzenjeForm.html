@@ -1,8 +1,18 @@
 <div ng-controller="ZaduzenjeCtrl">
     <h1>Zaduzenje</h1>
-    <label for="username">Username:</label><input type="text" id="username" ng-model="zaduzenjeModel.username"><br>
-    
-  
+    <label for="usernamee">Username:</label><input type="text" id="usernamee" ng-model="zaduzenjeModel.username"><br>
     <button ng-click="getRezervacije()">Rezervacije korisnika</button>
+
+    <div id="rezervacije" ng-repeat="r in lista_rezervacija">
+        <div>
+            <p class="naslov">{{r.Knjiga.naslov}}</p>
+            <p class="autor" ng-repeat="a in r.Knjiga.Autori">Autori: {{a.naziv}} </p>
+            <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
+            <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
+            <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
+            <input type="button" ng-click="zaduzi(r)" value="Zaduzi" />
+        </div>
+    </div>
+
     <p ng-bind-html="polje"></p>
 </div>

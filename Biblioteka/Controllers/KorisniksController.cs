@@ -12,6 +12,7 @@ using Biblioteka.Models;
 using Biblioteka.Security;
 using System.Web.SessionState;
 using System.Net.Mail;
+using System.Net.Http.Headers;
 
 namespace Biblioteka.Controllers
 {
@@ -44,12 +45,15 @@ namespace Biblioteka.Controllers
 
         [ActionName("Verifikuj")]
         [System.Web.Http.HttpGet]
-        public IHttpActionResult Verifikuj(string kod, string username)
+        public HttpResponseMessage Verifikuj(string kod, string username)
         {
+            var response = new HttpResponseMessage();
             Korisnik korisnik = db.Korisniks.Where(a => a.username == username).First();
             if (korisnik == null)
             {
-                return NotFound();
+                response.Content = new StringContent("<html><body><h2>Greška</h2></body></html>");
+                response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+                return response;
             }
             if (korisnik.verifikacija == kod)
             {
@@ -63,7 +67,10 @@ namespace Biblioteka.Controllers
             catch (DbUpdateConcurrencyException)
             {
             }
-            return Ok();
+
+            response.Content = new StringContent("<html><body><h2>Uspjesno ste verifikovani!</h2></body></html>");
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html");
+            return response;
         }
 
         // PUT: api/Korisniks/5
@@ -137,7 +144,7 @@ namespace Biblioteka.Controllers
 
             List<string> listaKorisnika = new List<string>();
             listaKorisnika.Add(korisnik.email);
-            kod = "http://nwtbiblioteka.azurewebsites.net/api/Korisniks/Verifikuj?kod=" + kod + "&username=" + korisnik.username;
+            kod = "http://nwtbiblioteka1.azurewebsites.net/api/Korisniks/Verifikuj?kod=" + kod + "&username=" + korisnik.username;
             sendEmailTimeIsUp(listaKorisnika, kod, "");
 
             db.Korisniks.Add(korisnik);

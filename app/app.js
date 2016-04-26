@@ -20,6 +20,9 @@ var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies'])
             .when('/PoKodu', {
                 templateUrl: 'views/PoKoduPretragaForm.html'
             })
+            .when('/Zaduzenja', {
+                templateUrl: 'views/ZaduzenjeForm.html'
+            })
             .otherwise({
                 templateUrl: 'views/Home.html'
             });
