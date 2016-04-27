@@ -5,8 +5,9 @@ label {
     padding-top:10px;
 } 
 
-#retype {
-    width: 160px;
+#logo {
+    width: 300px;
+    padding: 30px;
 }
 
 input, select {
