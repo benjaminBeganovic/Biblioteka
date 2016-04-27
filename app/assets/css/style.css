@@ -5,6 +5,15 @@ label {
     padding-top:10px;
 } 
 
+.container {
+    background-color: white;
+    min-height: 800px;
+}
+
+.wide {
+    background-image: url("../img/pattern.png");
+}
+
 #logo {
     width: 300px;
     padding: 30px;
