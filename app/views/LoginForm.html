@@ -1,9 +1,15 @@
- <div data-ng-controller="LoginCtrl">
- <h1>login</h1>
-     <form>
-         <label for="username">Username:</label><input type="text" id="username" ng-model="loginModel.username"><br>
-         <label for="password">Password:</label><input type="password" id="password" ng-model="loginModel.password">
-         <input type="button" ng-click="loginMe()" value="Login" />
-         <p ng-bind-html="error"></p>
-     </form>
- </div>
+<div data-ng-controller="LoginCtrl">
+    <h1>Login</h1>
+    <form name="myForm">
+        <fieldset class="form-group form-inline">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" ng-model="loginModel.username"><br>
+            </fieldset>
+        <fieldset class="form-group form-inline">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" ng-model="loginModel.password">
+        </fieldset>
+            <input type="button" class="form-control button" ng-click="loginMe()" value="Login" />
+            <p class="warning" ng-bind-html="error"></p>
+    </form>
+</div>

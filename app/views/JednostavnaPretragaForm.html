@@ -1,37 +1,56 @@
 ﻿<div data-ng-controller="PretragaCtrl">
-    <h2>Pretraga knjiga</h2>
-    <ul>
-        <li><a href="./index.html#/Napredna">Napredna</a></li>
+
+    <ul class="nav nav-tabs">
         <li><a href="./index.html#/Jednostavna">Jednostavna</a></li>
+        <li><a href="./index.html#/Napredna">Napredna</a></li>
         <li><a href="./index.html#/PoKodu">Po kodu</a></li>
     </ul>
     <h3>Jednostavna pretraga</h3>
-    <div id="forma">
+    <div id="forma" class="row">
         <form name="myForm">
-            <label for="tip">Tip knjige:</label>
-            <select id="tip" ng-model="jednostavnaModel.tipknjige">
-                <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
-            </select> <br />
-            <label for="jezik">Jezici:</label>
-            <select id="jezik" ng-model="jednostavnaModel.jezik">
-                <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
-            </select><br />
-            <label for="naziv">Naziv:</label><input name="naziv" type="text" id="naziv" ng-model="jednostavnaModel.naziv" required>
-            <span ng-show="myForm.naziv.$invalid">Naziv je obavezan</span><br />
-            <label for="autor">Autor:</label><input name="autor" type="text" id="autor" ng-model="jednostavnaModel.autor" required>
-            <span ng-show="myForm.autor.$invalid">Autor je obavezan</span><br />
-            <input type="button" ng-click="jednostavna()" value="Pretrazi" />
+            <div class="col-md-6">
+                <fieldset class="form-group form-inline">
+                    <label for="tip">Tip knjige:</label>
+                    <select id="tip" class="form-control" ng-model="jednostavnaModel.tipknjige">
+                        <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
+                    </select> <br />
+                </fieldset>
+
+                <fieldset class="form-group form-inline">
+                    <label for="jezik">Jezici:</label>
+                    <select id="jezik" class="form-control" ng-model="jednostavnaModel.jezik">
+                        <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
+                    </select><br />
+                </fieldset>
+            </div>
+            <div class="col-md-6">
+                <fieldset class="form-group form-inline">
+                    <label for="naziv">Naziv:</label>
+                    <input name="naziv" class="form-control" type="text" id="naziv" ng-model="jednostavnaModel.naziv" required>
+                    <span ng-show="myForm.naziv.$invalid" class="warning">Naziv je obavezan</span><br />
+                </fieldset>
+
+                <fieldset class="form-group form-inline">
+                    <label for="autor">Autor:</label>
+                    <input name="autor" type="text" class="form-control" id="autor" ng-model="jednostavnaModel.autor" required>
+                    <span ng-show="myForm.autor.$invalid" class="warning">Autor je obavezan</span><br />
+                </fieldset>
+
+                <input type="button" class="button form-control" ng-click="jednostavna()" value="Pretrazi" />
+            </div>
         </form>
     </div>
-    <div id="knjige" ng-repeat="x in rezultat">
-        <div>
-            <p class="naslov">{{x.naslov}}</p>
-            <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="opis">Opis: {{x.opis}}</p>
-            <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
-            <input type="button" ng-click="rezervisi(x.ID)" value="Rezervisi" />
+    <div class="row">
+        <div ng-repeat="x in rezultat">
+            <div class="col-md-6 knjige">
+                <h4 class="naslov">{{x.naslov}}</h4>
+                <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
+                <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
+                <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
+                <p class="opis">Opis: {{x.opis}}</p>
+                <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
+                <input type="button" ng-click="rezervisi(x.ID)" value="Rezervisi" />
+            </div>
         </div>
     </div>
 </div>

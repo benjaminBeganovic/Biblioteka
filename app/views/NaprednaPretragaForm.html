@@ -1,39 +1,71 @@
 ﻿<div data-ng-controller="PretragaCtrl">
-    <h2>Pretraga knjiga</h2>
-    <ul>
-        <li><a href="./index.html#/Napredna">Napredna</a></li>
+
+    <ul class="nav nav-tabs">
         <li><a href="./index.html#/Jednostavna">Jednostavna</a></li>
+        <li><a href="./index.html#/Napredna">Napredna</a></li>
         <li><a href="./index.html#/PoKodu">Po kodu</a></li>
     </ul>
     <h3>Napredna pretraga</h3>
-    <div id="forma">
+    <div id="forma" class="row">
         <form name="myForm">
-            <label for="tip">Tip knjige:</label>
-            <select id="tip" ng-model="naprednaModel.tip">
-                <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
-            </select> <br />
-            <label for="jezik">Jezici:</label>
-            <select id="jezik" ng-model="naprednaModel.jezik">
-                <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
-            </select><br />
-            <label for="naziv">Naziv:</label><input name="naziv" type="text" id="naziv" ng-model="naprednaModel.naziv" required><br />
-            <label for="autor">Autor:</label><input name="autor" type="text" id="autor" ng-model="naprednaModel.autor" required>
-            <span ng-show="myForm.naziv.$invalid && myForm.autor.$invalid">Naziv ili autor su obavezni</span><br />
-            <label for="izdavac">Izdavac:</label><input name="izdavac" type="text" id="izdavac" ng-model="naprednaModel.izdavac"><br />
-            <label for="godina">Godina:</label><input name="godina" type="number" id="godina" ng-model="naprednaModel.godina"><br />
-            <label for="kljucne">Ključne riječi:</label><input name="kljucne" type="text" id="kljucne" ng-model="naprednaModel.kljucne"><br />
-            <input type="button" ng-click="napredna()" value="Pretrazi" />
+            <div class="col-md-6">
+                <fieldset class="form-group form-inline">
+                    <label for="tip">Tip knjige:</label>
+                    <select id="tip" class="form-control" ng-model="naprednaModel.tip">
+                        <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="form-group form-inline">
+                    <label for="jezik">Jezici:</label>
+                    <select id="jezik" class="form-control" ng-model="naprednaModel.jezik">
+                        <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
+                    </select>
+                </fieldset>
+
+                <fieldset class="form-group form-inline">
+                    <label for="naziv">Naziv:</label>
+                    <input name="naziv" class="form-control" type="text" id="naziv" ng-model="naprednaModel.naziv" required>
+                </fieldset>
+
+                <fieldset class="form-group form-inline">
+                    <label for="autor">Autor:</label>
+                    <input name="autor" class="form-control" type="text" id="autor" ng-model="naprednaModel.autor" required>
+                    <span class="warning" ng-show="myForm.naziv.$invalid && myForm.autor.$invalid">Naziv ili autor su obavezni</span>
+                </fieldset>
+
+            </div>
+            <div class="col-md-6">
+                <fieldset class="form-group form-inline">
+                    <label for="izdavac">Izdavac:</label>
+                    <input name="izdavac" class="form-control" type="text" id="izdavac" ng-model="naprednaModel.izdavac">
+                </fieldset>
+
+
+                <fieldset class="form-group form-inline">
+                    <label for="godina">Godina:</label>
+                    <input name="godina" class="form-control" type="number" id="godina" ng-model="naprednaModel.godina">
+                </fieldset>
+
+                <fieldset class="form-group form-inline">
+                    <label for="kljucne">Ključne riječi:</label>
+                    <input name="kljucne" type="text" id="kljucne" class="form-control" ng-model="naprednaModel.kljucne">
+                </fieldset>
+                <input type="button" class="form-control button" ng-click="napredna()" value="Pretrazi" />
+            </div>
         </form>
     </div>
-    <div id="knjige" ng-repeat="x in rezultat">
-        <div>
-            <p class="naslov">{{x.naslov}}</p>
-            <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="opis">Opis: {{x.opis}}</p>
-            <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
-            <input type="button" ng-click="rezervisi(x.ID)" value="Rezervisi" />
+    <div class="row">
+        <div ng-repeat="x in rezultat">
+            <div class="col-md-6 knjige">
+                <h4 class="naslov">{{x.naslov}}</h4>
+                <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
+                <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
+                <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
+                <p class="opis">Opis: {{x.opis}}</p>
+                <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
+                <input type="button" ng-click="rezervisi(x.ID)" value="Rezervisi" />
+            </div>
         </div>
     </div>
 </div>

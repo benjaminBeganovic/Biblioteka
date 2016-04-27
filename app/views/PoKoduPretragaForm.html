@@ -1,21 +1,25 @@
 ﻿<div data-ng-controller="PretragaCtrl">
-    <h2>Pretraga knjiga</h2>
-    <ul>
-        <li><a href="./index.html#/Napredna">Napredna</a></li>
+
+    <ul class="nav nav-tabs">
         <li><a href="./index.html#/Jednostavna">Jednostavna</a></li>
+        <li><a href="./index.html#/Napredna">Napredna</a></li>
         <li><a href="./index.html#/PoKodu">Po kodu</a></li>
     </ul>
     <h3>Pretraga po kodu</h3>
     <div id="forma">
         <form name="myForm">
-            <label for="kod">Kod:</label><input name="kod" type="text" id="kod" ng-model="pokoduModel.kod" required>
-            <span ng-show="myForm.kod.$invalid">Kod je obavezan</span><br />
-            <input type="button" ng-click="pokodu()" value="Pretrazi" />
+                <fieldset class="form-group form-inline">
+                    <label for="kod">Kod:</label>
+                    <input name="kod" class="form-control" type="text" id="kod" ng-model="pokoduModel.kod" required>
+                    <span ng-show="myForm.kod.$invalid" class="warning">Kod je obavezan</span><br />
+                    </fieldset>
+                    <input type="button" class="form-control button" ng-click="pokodu()" value="Pretrazi" />
         </form>
     </div>
-    <div id="knjige" ng-repeat="x in rezultat">
-        <div>
-            <p class="naslov">{{x.naslov}}</p>
+    <div class="row">
+    <div ng-repeat="x in rezultat">
+        <div class="col-md-6 knjige">
+            <h4 class="naslov">{{x.naslov}}</h4>
             <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
             <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
             <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
@@ -24,4 +28,5 @@
             <input type="button" ng-click="rezervisi(x.ID)" value="Rezervisi" />
         </div>
     </div>
+        </div>
 </div>

@@ -1,14 +1,48 @@
-<div ng-controller="RegisterCtrl">
+<div ng-controller="RegisterCtrl" class="row">
     <h1>Register</h1>
-    <label for="ime">Ime:</label><input type="text" id="ime" ng-model="korisnikModel.ime"><br>
-    <label for="prezime">Prezime:</label><input type="text" id="prezime" ng-model="korisnikModel.prezime"><br>
-    <label for="telefon">Telefon:</label><input type="text" id="telefon" ng-model="korisnikModel.telefon"><br>
-    <label for="adresa">Adresa:</label><input type="text" id="adresa" ng-model="korisnikModel.adresa"><br>
-    <label for="email">Email:</label><input type="text" id="email" ng-model="korisnikModel.email"><br>
-    <label for="username">Username:</label><input type="text" id="username" ng-model="korisnikModel.username"><br>
-    <label for="password">Password:</label><input type="password" id="password" ng-model="korisnikModel.password"><br>
-    <label for="password">Retype password:</label><input type="password" id="password2" ng-model="retypeModel.password"><br>
+    <div class="col-md-6">
+        <fieldset class="form-group form-inline">
+            <label for="ime">Ime:</label>
+            <input type="text" class="form-control" id="ime" ng-model="korisnikModel.ime"><br>
+        </fieldset>
 
-    <button ng-click="regMe()">Registruj me</button>
-    <p ng-bind-html="error"></p>
+        <fieldset class="form-group form-inline">
+            <label for="prezime">Prezime:</label>
+            <input type="text" id="prezime" class="form-control" ng-model="korisnikModel.prezime"><br>
+        </fieldset>
+
+        <fieldset class="form-group form-inline">
+            <label for="telefon">Telefon:</label>
+            <input type="text" id="telefon" class="form-control" ng-model="korisnikModel.telefon"><br>
+        </fieldset>
+
+        <fieldset class="form-group form-inline">
+            <label for="adresa">Adresa:</label>
+            <input type="text" id="adresa" class="form-control" ng-model="korisnikModel.adresa"><br>
+        </fieldset>
+
+    </div>
+    <div class="col-md-6">
+        <fieldset class="form-group form-inline">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" ng-model="korisnikModel.email"><br>
+        </fieldset>
+
+        <fieldset class="form-group form-inline">
+            <label for="username">Username:</label>
+            <input type="text" class="form-control" id="username" ng-model="korisnikModel.username"><br>
+        </fieldset>
+
+        <fieldset class="form-group form-inline">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" ng-model="korisnikModel.password"><br>
+        </fieldset>
+
+        <fieldset class="form-group form-inline">
+            <label for="password">Retype passwd:</label>
+            <input type="password" class="form-control" id="password2" ng-model="retypeModel.password"><br>
+        </fieldset>
+        <button ng-click="regMe()" class="form-control button">Registruj me</button>
+        <p ng-bind-html="error"></p>
+    </div>
 </div>
