@@ -18,98 +18,100 @@ namespace Biblioteka.Controllers
     {
         private ProbaContext db = new ProbaContext();
 
-        /*
-        // GET api/Zaduzenja
-        [ResponseType(typeof(List<Zaduzenja>))]
-        public IHttpActionResult GetZaduzenjas()
-        {
-            var zaduzenja = db.Zaduzenjas.ToList();
-            return Ok(zaduzenja);
-        }
-
-        // GET api/Zaduzenja/5
+        // Zaduzenje
+        // POST api/Zaduzenja
+        [CustomAuthorize(Roles = "b")]
+        [System.Web.Http.HttpPost]
         [ResponseType(typeof(Zaduzenja))]
-        public IHttpActionResult GetZaduzenja(long id)
+        public IHttpActionResult PostZaduzenja(Zaduzenja zaduzenja)
         {
-            Zaduzenja zaduzenja = db.Zaduzenjas.Find(id);
-            if (zaduzenja == null)
-            {
-                return NotFound();
-            }
+            zaduzenja.datum_vracanja = null;
+            zaduzenja.datum_zaduzenja = System.DateTime.Now;
 
-            return Ok(zaduzenja);
-        }
-        
-        // PUT api/Zaduzenja/5
-        public IHttpActionResult PutZaduzenja(long id, Zaduzenja zaduzenja)
-        {
+            CustomPrincipal cp = new CustomPrincipal(SessionPersister.username);
+            Korisnik current_user = db.Korisniks.Where(c => c.username == cp.Identity.Name).First();
+            zaduzenja.ZaposlenikID = current_user.ID;
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != zaduzenja.ID)
+            //da li je vratio
+            if (db.Zaduzenjas.Count(z => z.KnjigaID == zaduzenja.KnjigaID && z.KorisnikID == zaduzenja.KorisnikID && z.status == "nv") > 0)
             {
-                return BadRequest();
+                zaduzenja.status = "Korisnik vec posjeduje ovu knjigu!";
+                return Ok(zaduzenja);
             }
 
-            db.Entry(zaduzenja).State = EntityState.Modified;
+            //da li je rezervisao
+            List<Rezervacija> rez = new List<Rezervacija>();
+            rez = db.Rezervacijas.Where(z => z.KnjigaID == zaduzenja.KnjigaID && z.KorisnikID == zaduzenja.KorisnikID && z.status == "co").ToList();
+
+            if (rez.Count() < 1)
+            {
+                zaduzenja.status = "Korisnik nije zaduzio knjigu!";
+                return Ok(zaduzenja);
+            }
+
+            rez[0].status = "re";
+            zaduzenja.status = "nv";
+
+            db.Entry(rez[0]).State = EntityState.Modified;
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ZaduzenjaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            catch (DbUpdateConcurrencyException) { }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST api/Zaduzenja
-        [ResponseType(typeof(Zaduzenja))]
-        public IHttpActionResult PostZaduzenja(Zaduzenja zaduzenja)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             db.Zaduzenjas.Add(zaduzenja);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = zaduzenja.ID }, zaduzenja);
         }
-        */
 
-
-        //servis za Razduzenje
-        // PUT api/Zaduzenja/5
+        // sve zaduzene knjige
+        // GET api/Zaduzenja/
         [CustomAuthorize(Roles = "b")]
-        public IHttpActionResult PutZaduzenja(long id, Zaduzenja zaduzenja)
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<Zaduzenja>))]
+        public IHttpActionResult GetZaduzenjas()
         {
-            if (!ModelState.IsValid)
+            DateTime d = System.DateTime.Now;
+            List<Zaduzenja> nisu_vratili = db.Zaduzenjas.Where(z => z.status == "nv" && (d > z.rok)).ToList();
+            foreach (Zaduzenja z in nisu_vratili)
+                z.status = "Istekao rok za razduzivanje!";
+
+            List<Zaduzenja> citaju = db.Zaduzenjas.Where(z => z.status == "nv" && (d <= z.rok)).ToList();
+            foreach (Zaduzenja z in citaju)
             {
-                return BadRequest(ModelState);
+                z.status = "Nije istekao rok za razduzivanje!";
+                nisu_vratili.Add(z);
             }
 
-            if (id != zaduzenja.ID)
+            List<Zaduzenja> vracene = db.Zaduzenjas.Where(z => z.status == "vr").ToList();
+            foreach (Zaduzenja z in vracene)
             {
-                return BadRequest();
+                z.status = "Knjiga razduzena!";
+                nisu_vratili.Add(z);
             }
 
-            //da li je zaduzio
-            if (db.Zaduzenjas.Count(z => z.KnjigaID == zaduzenja.KnjigaID && z.KorisnikID == zaduzenja.KorisnikID && z.status == "nv") < 1)
+            return Ok(nisu_vratili);
+        }
+        // Razduzenje
+        // GET api/Zaduzenja/zid
+        [CustomAuthorize(Roles = "b")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(Zaduzenja))]
+        public IHttpActionResult GetZaduzenja(long zid)
+        {
+            Zaduzenja zaduzenja = db.Zaduzenjas.Find(zid);
+            if (zaduzenja == null)
             {
-                return BadRequest("Korisnik nije ni zaduzio knjigu!");
+                return NotFound();
             }
 
             zaduzenja.status = "vr";
@@ -147,113 +149,62 @@ namespace Biblioteka.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ZaduzenjaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            catch (DbUpdateConcurrencyException) { }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+            //preracunavanje dostupno kopija za knjigu
+            long idKnjige = zaduzenja.KnjigaID;
+            Knjiga kkk = db.Knjigas.Find(idKnjige);
+            kkk.dostupno_kopija = kkk.dostupno_kopija + 1;
 
-        // servis za Zaduzenje
-        // POST api/Zaduzenja
-        [CustomAuthorize(Roles = "b")]
-        [ResponseType(typeof(Zaduzenja))]
-        public IHttpActionResult PostZaduzenja(Zaduzenja zaduzenja)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            //da li je vratio
-            if (db.Zaduzenjas.Count(z => z.KnjigaID == zaduzenja.KnjigaID && z.KorisnikID == zaduzenja.KorisnikID && z.status == "nv") > 0)
-            {
-                return BadRequest("Korisnik vec posjeduje ovu knjigu!");
-            }
-
-            //da li je rezervisao
-            List<Rezervacija> rez = new List<Rezervacija>();
-            rez = db.Rezervacijas.Where(z => z.KnjigaID == zaduzenja.KnjigaID && z.KorisnikID == zaduzenja.KorisnikID && z.status == "co").ToList();
-
-            if (rez.Count() < 1)
-            {
-                return BadRequest("Korisnik nije zaduzio knjigu!");
-            }
-
-            rez[0].status = "re";
-
-            db.Entry(rez[0]).State = EntityState.Modified;
-
+            db.Entry(kkk).State = EntityState.Modified;
             try
             {
                 db.SaveChanges();
             }
             catch (DbUpdateConcurrencyException) { }
 
-            zaduzenja.status = "nv";
-            zaduzenja.datum_vracanja = null;
-            zaduzenja.datum_zaduzenja = System.DateTime.Now;
-
-            db.Zaduzenjas.Add(zaduzenja);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = zaduzenja.ID }, zaduzenja);
+            zaduzenja.status = "Uspjesno ste razduzili knjigu!";
+            return Ok(zaduzenja);
         }
-
-        // Knjige kojma je istekao rok za vracanje
-        // GET api/Zaduzenja/
+        // GET api/Zaduzenja/username
         [CustomAuthorize(Roles = "b")]
-        [ResponseType(typeof(String))]
-        public string GetZaduzenja()
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<Zaduzenja>))]
+        public IHttpActionResult GetZaduzenja(string username)
         {
-            String response = "";
+            List<Korisnik> korisnik = db.Korisniks.Where(k => k.username == username).ToList();
 
-            DateTime d = System.DateTime.Now;
-            List<Zaduzenja> nisu_vratili = db.Zaduzenjas.Where(z => z.status == "nv" && (d > z.rok)).ToList();
+            if (korisnik.Count < 1)
+                return BadRequest("Username je pogresan!");
 
-            foreach (Zaduzenja z in nisu_vratili)
-            {
-                Knjiga k = db.Knjigas.Find(z.KnjigaID);
-                Korisnik ko = db.Korisniks.Find(z.KorisnikID);
-                response += ko.ime + " " + ko.prezime + ", " + ko.telefon + ", " + ko.email + "\n";
-                response += "Knjiga:" + " " + k.naslov + "\n";
-                response += "Zaduzena:" + " " + z.datum_zaduzenja.ToString("d") + " " + "Rok: " + z.rok.ToString("d") + " Kašnjenje: " + Convert.ToInt32((System.DateTime.Now - z.rok).TotalDays) + " dana.\n\n";
-                sendEmailTimeIsUp(new List<string>() { z.Korisnik.email }, k.naslov, "vr");
-            }
-
-            if (nisu_vratili.Count() < 1)
-            {
-                return "Sve knjige su vračene u roku!";
-            }
-
-            return response;
-        }
-
-        /*
-        // DELETE api/Zaduzenja/5
-        [ResponseType(typeof(Zaduzenja))]
-        public IHttpActionResult DeleteZaduzenja(long id)
-        {
-            Zaduzenja zaduzenja = db.Zaduzenjas.Find(id);
-            if (zaduzenja == null)
-            {
-                return NotFound();
-            }
-
-            db.Zaduzenjas.Remove(zaduzenja);
-            db.SaveChanges();
+            long idKorisnika = korisnik[0].ID;
+            List<Zaduzenja> zaduzenja = db.Zaduzenjas.Where(z => z.KorisnikID == idKorisnika && z.status == "nv").ToList();
 
             return Ok(zaduzenja);
         }
-        */
+        // GET api/Zaduzenja/
+        [CustomAuthorize(Roles = "c")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<Zaduzenja>))]
+        public IHttpActionResult GetZaduzenja(int cc)
+        {
+            CustomPrincipal cp = new CustomPrincipal(SessionPersister.username);
+            Korisnik current_user = db.Korisniks.Where(c => c.username == cp.Identity.Name).First();
+            long idKorisnika = current_user.ID;
+
+            List<Zaduzenja> zaduzenja_nv = db.Zaduzenjas.Where(z => z.KorisnikID == idKorisnika && z.status == "nv").ToList();
+            List<Zaduzenja> zaduzenja_vr = db.Zaduzenjas.Where(z => z.KorisnikID == idKorisnika && z.status == "vr").ToList();
+            foreach (Zaduzenja z in zaduzenja_nv)
+                z.status = "Knjiga nije vracena!";
+
+            foreach (Zaduzenja z in zaduzenja_vr)
+            {
+                z.status = "Knjiga je vracena!";
+                zaduzenja_nv.Add(z);
+            }
+
+            return Ok(zaduzenja_nv);
+        }
 
         protected override void Dispose(bool disposing)
         {

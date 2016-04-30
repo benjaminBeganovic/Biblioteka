@@ -1,5 +1,11 @@
 <div ng-controller="ZaduzenjeCtrl">
-    <h1>Zaduzenje</h1>
+    <h2>Zaduzenja</h2>
+    <ul>
+        <li><a href="./index.html#/Zaduzenje">Zaduzenje</a></li>
+        <li><a href="./index.html#/Razduzenje">Razduzenje</a></li>
+        <li><a href="./index.html#/Zaduzeneknjige">Zaduzene knjige</a></li>
+    </ul>
+    <h3>Zaduzenje</h3>
     <label for="usernamee">Username:</label><input type="text" id="usernamee" ng-model="zaduzenjeModel.username"><br>
     <button ng-click="getRezervacije()">Rezervacije korisnika</button>
 
@@ -10,9 +16,24 @@
             <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
             <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
             <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
-            <input type="button" ng-click="zaduzi(r)" value="Zaduzi" />
+
+            <input type="button" value="Zaduzi" ng-attr-id="{{ 'd' + r.ID }}" ng-click="dijalog($event)" />
+            <div hidden ng-attr-id="{{ 'z' + r.ID }}">
+                <h3>Da li ste sigurni da zelite zaduziti ovu knjigu?</h3>
+                <h3>Rok: <span><input type="number" min="5" max="30" ng-attr-id="{{ 'r' + r.ID }}"></span></h3>
+                <span>
+                    <input type="button" value="DA" ng-attr-id="{{ 'y' + r.ID }}" ng-click="zaduzi(r)">
+                    <input type="button" value="NE" ng-attr-id="{{ 'n' + r.ID }}" ng-click="dijalog($event)">
+                </span>
+            </div>
+            <h3 hidden ng-attr-id="{{ 'm' + r.ID }}">...</h3>
+            <input hidden type="button" value="Uredu" ng-attr-id="{{ 'b' + r.ID }}" ng-click="hideMessage($event)">
+
         </div>
     </div>
 
-    <p ng-bind-html="polje"></p>
+    <h3 ng-bind-html="polje"></h3>
+    <input hidden type="text" ng-model="zaduzenjeModel.rok" />
+    <input hidden type="text" ng-model="zaduzenjeModel.KorisnikID" />
+    <input hidden type="text" ng-model="zaduzenjeModel.KnjigaID" />
 </div>

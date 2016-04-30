@@ -1,0 +1,22 @@
+<div ng-controller="ZaduzeneknjigeCtrl">
+    <h2>Zaduzenja</h2>
+    <ul>
+        <li><a href="./index.html#/Zaduzenje">Zaduzenje</a></li>
+        <li><a href="./index.html#/Razduzenje">Razduzenje</a></li>
+        <li><a href="./index.html#/Zaduzeneknjige">Zaduzene knjige</a></li>
+    </ul>
+    <h3>Zaduzene knjige</h3>
+    <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
+        <div>
+            <p class="naslov">{{z.Knjiga.naslov}}</p>
+            <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
+            <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
+            <p class="korisnik">Zaduzio korisnik: {{z.Korisnik.ime + " " + z.Korisnik.prezime}} Telefon: {{z.Korisnik.telefon}} Email: {{z.Korisnik.email}}  Adresa: {{z.Korisnik.adresa}}</p>
+            <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
+            <p class="datum">Rok za vracanje: {{z.rok}}</p>
+            <p class="dostupno">Dostupno kopija: {{z.Knjiga.dostupno_kopija}}</p>
+            <h3 class="status">Status: {{z.status}}</h3>
+        </div>
+    </div>
+    <h3 ng-bind-html="polje"></h3>
+</div>

@@ -38,9 +38,7 @@ namespace Biblioteka.Models
         [ForeignKey("Zaposlenik"), Column(Order = 1)]
         public long ZaposlenikID { get; set; }
 
-        [JsonIgnore]
         public virtual Korisnik Korisnik { get; set; }
-        [JsonIgnore]
         public virtual Knjiga Knjiga { get; set; }
         [JsonIgnore]
         public virtual Korisnik Zaposlenik { get; set; }

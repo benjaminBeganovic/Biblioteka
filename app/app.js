@@ -1,12 +1,12 @@
 var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies'])
     .config(['$routeProvider',
-        function($routeProvider) {
+        function ($routeProvider) {
             $routeProvider
             .when('/Login', {
                 templateUrl: 'views/LoginForm.html'
             })
 			.when('/Register', {
-                templateUrl: 'views/RegisterForm.html'
+			    templateUrl: 'views/RegisterForm.html'
 			})
             .when('/Napredna', {
                 templateUrl: 'views/NaprednaPretragaForm.html'
@@ -23,8 +23,26 @@ var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies'])
             .when('/Zaduzenja', {
                 templateUrl: 'views/ZaduzenjeForm.html'
             })
+            .when('/Zaduzenje', {
+                templateUrl: 'views/ZaduzenjeForm.html'
+            })
+            .when('/Zaduzeneknjige', {
+                templateUrl: 'views/ZaduzeneknjigeForm.html'
+            })
+            .when('/Razduzenje', {
+                templateUrl: 'views/RazduzenjeForm.html'
+            })
+            .when('/KKnjige', {
+                templateUrl: 'views/KKnjigeForm.html'
+            })
+            .when('/RKnjige', {
+                templateUrl: 'views/RKnjigeForm.html'
+            })
+            .when('/ZKnjige', {
+                templateUrl: 'views/ZKnjigeForm.html'
+            })
             .otherwise({
                 templateUrl: 'views/Home.html'
             });
-		}
+        }
     ])

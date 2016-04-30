@@ -1,10 +1,9 @@
-angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function($http) {
-    
+angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function ($http) {
+
     var serviceBase = 'http://nwtbiblioteka1.azurewebsites.net/';
 
     return {
-        login: function(loginModel)
-        {
+        login: function (loginModel) {
             return $http({
                 url: serviceBase + 'api/Auth/Login',
                 method: "POST",
@@ -19,8 +18,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 withCredentials: true
             });
         },
-        register: function(korisnikModel)
-        {
+        register: function (korisnikModel) {
             return $http({
                 url: serviceBase + 'api/Korisniks',
                 method: "POST",
@@ -28,8 +26,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 withCredentials: true
             });
         },
-        clanstva: function()
-        {
+        clanstva: function () {
             return $http({
                 url: serviceBase + 'api/Clanstvoes',
                 method: "GET",
@@ -111,11 +108,34 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 withCredentials: true
             });
         },
-        izmijenizaduzenje: function (zaduzenjeModel) {
+        dajsvazaduzenja: function () {
             return $http({
-                url: serviceBase + 'api/Zaduzenja/' + zaduzenjeModel.id,
-                method: "PUT",
-                data: JSON.stringify(zaduzenjeModel),
+                url: serviceBase + 'api/Zaduzenja',
+                method: "GET",
+                withCredentials: true
+            });
+        },
+        dajsvazaduzenjakorisnikabib: function (username) {
+            return $http({
+                url: serviceBase + 'api/Zaduzenja',
+                method: "GET",
+                params: { username: username },
+                withCredentials: true
+            });
+        },
+        dajsvazaduzenjakorisnika: function (cc) {
+            return $http({
+                url: serviceBase + 'api/Zaduzenja',
+                method: "GET",
+                params: { cc: cc },
+                withCredentials: true
+            });
+        },
+        razduziknjigu: function (zid) {
+            return $http({
+                url: serviceBase + 'api/Zaduzenja',
+                method: "GET",
+                params: { zid: zid },
                 withCredentials: true
             });
         },
@@ -127,7 +147,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 withCredentials: true
             });
         },
-        dajsverezervacijekorisnika: function (username) {
+        dajsverezervacijekorisnikabib: function (username) {
             return $http({
                 url: serviceBase + 'api/Rezervacija',
                 method: "GET",
@@ -135,13 +155,28 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function(
                 withCredentials: true
             });
         },
-        rezervisi: function (rezervacijaModel) {
+        dajsverezervacijekorisnika: function () {
+            return $http({
+                url: serviceBase + 'api/Rezervacija',
+                method: "GET",
+                withCredentials: true
+            });
+        },
+        dajkriticneknjige: function (kk) {
+            return $http({
+                url: serviceBase + 'api/Knjigas',
+                method: "GET",
+                params: { kk: kk },
+                withCredentials: true
+            });
+        },
+        rezervisi: function (idKnjige) {
             return $http({
                 url: serviceBase + 'api/Rezervacija',
                 method: "POST",
-                //data: JSON.stringify(rezervacijaModel),
+                params: { idKnjige: idKnjige },
                 withCredentials: true
             });
         }
-	};
+    };
 }]);

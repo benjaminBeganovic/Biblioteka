@@ -26,14 +26,25 @@ namespace Biblioteka.Controllers
             var knjige = db.Knjigas.ToList();
             return Ok(knjige);
         }
+        //kriticne knjige - knjige koje su sve zauzete
+        // GET: api/Knjigas
+        [CustomAuthorize(Roles = "b")]
+        [ResponseType(typeof(List<Knjiga>))]
+        public IHttpActionResult GetKnjigas(string kk)
+        {
+            List<Knjiga> kriticne = db.Knjigas.Where(k => (db.Zaduzenjas.Where(z => z.status == "nv" && z.KnjigaID == k.ID).Count() +
+                db.Rezervacijas.Where(r => r.status == "co" && r.KnjigaID == k.ID).Count()) - k.ukupno_kopija == 0).ToList();
+
+            return Ok(kriticne);
+        }
         // GET: api/Knjigas/parametar
         [ActionName("Paging")]
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetKnjige(int page, int step)
         {
             List<Knjiga> knjiga = db.Knjigas.ToList();
-                return Ok(knjiga.ToPagedList(page,step));
-               
+            return Ok(knjiga.ToPagedList(page, step));
+
         }
         // GET: api/Knjigas/5
         [ResponseType(typeof(Knjiga))]

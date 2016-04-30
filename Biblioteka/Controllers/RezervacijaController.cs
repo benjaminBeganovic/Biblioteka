@@ -18,79 +18,6 @@ namespace Biblioteka.Controllers
     public class RezervacijaController : ApiController
     {
         private ProbaContext db = new ProbaContext();
-        /*
-        // GET api/Rezervacija
-        [ResponseType(typeof(List<Rezervacija>))]
-        public IHttpActionResult GetRezervacijas()
-        {
-            var rezervacije = db.Rezervacijas.ToList();
-            return Ok(rezervacije);
-        }
-
-        // GET api/Rezervacija/5
-        [ResponseType(typeof(Rezervacija))]
-        public IHttpActionResult GetRezervacija(long id)
-        {
-            Rezervacija rezervacija = db.Rezervacijas.Find(id);
-            if (rezervacija == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(rezervacija);
-        }
-
-        
-        // PUT api/Rezervacija/5
-        public IHttpActionResult PutRezervacija(long id, Rezervacija rezervacija)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != rezervacija.ID)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(rezervacija).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RezervacijaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-        */
-        /*defaultna
-        // POST api/Rezervacija
-        [ResponseType(typeof(Rezervacija))]
-        public IHttpActionResult PostRezervacija(Rezervacija rezervacija)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Rezervacijas.Add(rezervacija);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = rezervacija.ID }, rezervacija);
-        }
-        */
 
         // POST api/Rezervacija
         [CustomAuthorize(Roles = "c")]
@@ -115,7 +42,8 @@ namespace Biblioteka.Controllers
             List<Clanstvo> clanstvaa = db.Clanstvoes.Where(c => c.KorisnikID == current_user.ID && c.istek_racuna > d).ToList();
             if (clanstvaa.Count() < 1)
             {
-                return BadRequest("Trebate produziti clanstvo!");
+                rezervacija.status = "Trebate produziti clanstvo!";
+                return Ok(rezervacija);
             }
 
             rezervacija.cekanje = 2;
@@ -126,7 +54,8 @@ namespace Biblioteka.Controllers
             List<Zaduzenja> zaddd = db.Zaduzenjas.Where(z => z.KnjigaID == rezervacija.KnjigaID && z.KorisnikID == rezervacija.KorisnikID && z.status == "nv").ToList();
             if (rezzz.Count() > 0 || zaddd.Count > 0)
             {
-                return BadRequest("Vec ste rezervisali ovu knjigu!");
+                rezervacija.status = "Vec ste rezervisali ovu knjigu!";
+                return Ok(rezervacija);
             }
 
             Knjiga k = db.Knjigas.Find(rezervacija.KnjigaID);
@@ -156,6 +85,18 @@ namespace Biblioteka.Controllers
 
             db.Rezervacijas.Add(rezervacija);
             db.SaveChanges();
+
+            //preracunavanje dostupno kopija za knjigu
+            Knjiga kkk = db.Knjigas.Find(idKnjige);
+            kkk.dostupno_kopija = kkk.ukupno_kopija - (db.Zaduzenjas.Where(z => z.KnjigaID == idKnjige && z.status == "nv").Count() +
+                                db.Rezervacijas.Where(r => r.KnjigaID == idKnjige && (r.status == "co" || r.status == "wa")).Count());
+
+            db.Entry(kkk).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException) { }
 
             return CreatedAtRoute("DefaultApi", new { id = rezervacija.ID }, rezervacija);
         }
@@ -239,42 +180,11 @@ namespace Biblioteka.Controllers
             return 0;
         }
 
-        // GET api/Rezervacija
-        [CustomAuthorize(Roles = "b")]
-        [ResponseType(typeof(String))]
-        public string GetRezervacijas()
-        {
-            String response = "";
-
-            List<Knjiga> kriticne = db.Knjigas.Where(k => (db.Zaduzenjas.Where(z => z.status == "nv" && z.KnjigaID == k.ID).Count() +
-                db.Rezervacijas.Where(r => r.status == "co" && r.KnjigaID == k.ID).Count()) - k.ukupno_kopija == 0).ToList();
-
-            foreach (Knjiga k in kriticne)
-            {
-                response += "Knjiga: " + k.naslov + ", ukupno kopija: " + k.ukupno_kopija + "\n";
-                List<Autor> autori = k.Autori.ToList();
-                string autori_s = "";
-                foreach (Autor a in autori)
-                    autori_s += a.naziv + ", ";
-
-                autori_s = autori_s.Substring(0, autori_s.Length - 2);
-
-                response += autori_s + ".\n\n";
-            }
-
-            if (kriticne.Count() < 1)
-            {
-                return "Nema kriticnih knjiga!";
-            }
-
-            return response;
-        }
-
         // GET api/Rezervacija/username
         [CustomAuthorize(Roles = "b")]
         [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Rezervacija>))]
-        public IHttpActionResult GetRezervacijas(string username)
+        public IHttpActionResult GetRezervacija(string username)
         {
             List<Korisnik> korisnik = db.Korisniks.Where(k => k.username == username).ToList();
 
@@ -286,23 +196,92 @@ namespace Biblioteka.Controllers
 
             return Ok(rezervacije);
         }
-        /*
-        // DELETE api/Rezervacija/5
-        [ResponseType(typeof(Rezervacija))]
-        public IHttpActionResult DeleteRezervacija(long id)
+        // GET api/Rezervacija
+        [CustomAuthorize(Roles = "c")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<Rezervacija>))]
+        public IHttpActionResult GetRezervacijas()
         {
-            Rezervacija rezervacija = db.Rezervacijas.Find(id);
-            if (rezervacija == null)
+            CustomPrincipal cp = new CustomPrincipal(SessionPersister.username);
+            Korisnik current_user = db.Korisniks.Where(c => c.username == cp.Identity.Name).First();
+
+            long idKorisnika = current_user.ID;
+            //pravi se lista tako da idu redom isti tipovi rezervacija
+            List<Rezervacija> rezervacije_co = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "co").ToList();
+            List<Rezervacija> rezervacije_wa = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "wa").ToList();
+            List<Rezervacija> rezervacije_no = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "no").ToList();
+            List<Rezervacija> rezervacije_re = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "re").ToList();
+
+            foreach (Rezervacija r in rezervacije_co)
+                r.status = "Po knjigu trebate doci u narednim danima!";
+
+            foreach (Rezervacija r in rezervacije_wa)
             {
-                return NotFound();
+                r.status = "Obavjestit cemo vas kada knjiga bude raspoloziva!";
+                rezervacije_co.Add(r);
+            }
+            foreach (Rezervacija r in rezervacije_no)
+            {
+                r.status = "Istekao rok cekanja na zaduzenje!";
+                rezervacije_co.Add(r);
+            }
+            foreach (Rezervacija r in rezervacije_re)
+            {
+                r.status = "Knjigu ste zaduzili!";
+                rezervacije_co.Add(r);
             }
 
-            db.Rezervacijas.Remove(rezervacija);
-            db.SaveChanges();
-
-            return Ok(rezervacija);
+            return Ok(rezervacije_co);
         }
-        */
+
+        // samo tokom TESTIRANJA treba
+        // DELETE ALL
+        // GET api/Rezervacija/del
+        [CustomAuthorize(Roles = "b")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult GetRezervacija(string del, string all)
+        {
+            List<Rezervacija> rezervacije = db.Rezervacijas.Where(i => i.ID >= 1).ToList();
+            List<Zaduzenja> zaduzenja = db.Zaduzenjas.Where(i => i.ID >= 1).ToList();
+            List<Knjiga> knjige = db.Knjigas.Where(i => i.ID >= 1).ToList();
+
+            foreach (Knjiga k in knjige)
+            {
+                k.dostupno_kopija = 10;
+                k.ukupno_kopija = 10;
+                if (k.ID == 1)
+                {
+                    //"Zlocin i kazna"
+                    k.dostupno_kopija = 1;
+                    k.ukupno_kopija = 1;
+                }
+                db.Entry(k).State = EntityState.Modified;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException) { }
+            }
+
+            foreach (Rezervacija r in rezervacije)
+                if (r != null)
+                {
+                    db.Rezervacijas.Remove(r);
+                    db.SaveChanges();
+                }
+
+            foreach (Zaduzenja z in zaduzenja)
+                if (z != null)
+                {
+                    db.Zaduzenjas.Remove(z);
+                    db.SaveChanges();
+                }
+
+
+            return Ok();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

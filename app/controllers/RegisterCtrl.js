@@ -4,7 +4,8 @@ angular.module('BibliotekaApp').controller("RegisterCtrl", ["$scope", "Bibliotek
         var passRegex = new RegExp(/^(?=.*\d).{4,8}$/);
         var emailRegex = new RegExp(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/);
 
-    $scope.regMe = function () {
+        $scope.regMe = function () {
+            $scope.error = $sce.trustAsHtml("...");
         if ($scope.korisnikModel == null || $scope.korisnikModel.password == ""
              || $scope.korisnikModel.username == "" || $scope.korisnikModel.ime == ""
              || $scope.korisnikModel.prezime == "" || $scope.korisnikModel.telefon == ""

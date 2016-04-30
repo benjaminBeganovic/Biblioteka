@@ -2,7 +2,7 @@
     function ($scope, BibliotekaService, $sce, $http) {
         var defaultTipKnjige = 0;
         var defaultJezik = 2;
-        
+
         BibliotekaService.svijezici()
         .success(function (data, status) {
             $scope.jezici = data;
@@ -44,20 +44,62 @@
             })
         };
 
-        $scope.rezervisi = function (idK) {
+        //dio za rezervisanje
+        $scope.rezervisi = function (event) {
 
-            $scope.rezervacijaModel.KnjigaID = 5;
-            $scope.rezervacijaModel.KorisnikID = 6;
+            var id = 'r' + event.target.id.substring(1, event.target.id.length);
+            document.getElementById(id).style.display = 'none';
+            var id2 = 'm' + event.target.id.substring(1, event.target.id.length);
+            document.getElementById(id2).style.display = 'block';
+            var id3 = 'b' + event.target.id.substring(1, event.target.id.length);
 
-            BibliotekaService.rezervisi(rezervacijaModel)
+            var idK = event.target.id.substring(1, event.target.id.length);
+
+            BibliotekaService.rezervisi(idK)
             .success(function (data, status) {
 
+                var poruka;
                 if (data.status == "co")
-                    alert("Uspjesna rezervacija!");
+                    poruka = "Uspjesno ste rezervisali knjigu! Po knjigu bi trebali doci u naredna dva dana."
+                else if (data.status == "wa")
+                    poruka = "Uspjesno ste rezervisali knjigu! U narednim danima cete dobiti obavijest, o zaduzenju iste.";
+                else
+                    poruka = data.status;
+
+                document.getElementById(id2).innerHTML = poruka;
+                document.getElementById(id3).style.display = 'block';
+                //document.getElementById(id3).scrollIntoView();
             })
             .error(function (data, status) {
-                alert("niste rezervisali");
+
+                if (status == 401)
+                    document.getElementById(id2).innerHTML = "Da bi rezervisali knjigu trebate biti clan!";
+                else
+                    document.getElementById(id2).innerHTML = "Greska! Pokusajte ponovo!";
+
+                document.getElementById(id3).style.display = 'block';
+                //document.getElementById(id3).scrollIntoView();
             })
+        };
+
+        $scope.dijalog = function (event) {
+
+            var id = 'r' + event.target.id.substring(1, event.target.id.length);
+            if (event.target.id.substring(0, 1) == "d") {
+                document.getElementById(id).style.display = 'block';
+                //document.getElementById(id).scrollIntoView();
+            }
+            else {
+                document.getElementById(id).style.display = 'none';
+            }
+        };
+
+        $scope.hideMessage = function (event) {
+
+            var id = 'b' + event.target.id.substring(1, event.target.id.length);
+            var id2 = 'm' + event.target.id.substring(1, event.target.id.length);
+            document.getElementById(id).style.display = 'none';
+            document.getElementById(id2).style.display = 'none';
         };
 
     }]);

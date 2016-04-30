@@ -64,8 +64,8 @@
                 idbroj = "1000",
                 broj_strana = 524,
                 godina_izdavanja = new DateTime(1866, 1, 1),
-                ukupno_kopija = 1,
-                dostupno_kopija = 1,
+                ukupno_kopija = 10,
+                dostupno_kopija = 10,
                 izdanje = 1,
                 opis = "Zločin i kazna je roman ruskog pisca Fjodora Mihajloviča Dostojevskog izdan 1866." +
                 "godine u časopisu Ruski vjesnik. Smatra se jednim od najvećih djela ruske književnosti.",
@@ -83,8 +83,8 @@
                 isbn = "3-932068-56-4",
                 broj_strana = 887,
                 godina_izdavanja = new DateTime(1704, 7, 7),
-                ukupno_kopija = 1,
-                dostupno_kopija = 1,
+                ukupno_kopija = 10,
+                dostupno_kopija = 10,
                 izdanje = 1,
                 opis = "Hiljadu i jedna noć je zbirka dužih i kraćih priča koje su nastale u periodu od" +
                 "9. do 14. vijeka. Priče imaju korijene iz starih civilizacija Arabije, Perzije, Indije, Egipta i Mezopotamije." +
@@ -102,8 +102,8 @@
                 isbn = "0-486272-78-8",
                 broj_strana = 192,
                 godina_izdavanja = new DateTime(1603, 1, 1),
-                ukupno_kopija = 1,
-                dostupno_kopija = 1,
+                ukupno_kopija = 10,
+                dostupno_kopija = 10,
                 izdanje = 1,
                 opis = "Hamlet je tragedija Williama Shakespearea, jedna od njegovih najpoznatijih i " +
                 "najizvođenijih tragedija na pozornicama širom svijeta. Napisana je u periodu između 1600. i ljeta 1602. " +
@@ -122,9 +122,9 @@
                 isbn = "8-675721-54-4",
                 broj_strana = 473,
                 godina_izdavanja = new DateTime(1966, 1, 1),
-                ukupno_kopija = 1,
+                ukupno_kopija = 10,
                 idbroj = "1002",
-                dostupno_kopija = 1,
+                dostupno_kopija = 10,
                 izdanje = 1,
                 opis = "Derviš i smrt je najuspješniji roman bosanskohercegovačkog pisca Meše Selimovića." +
                 "Roman je pisan u razdoblju od četiri godine (1962-1966) u piščevom poodmaklom dobu. Objavljen je 1966. godine " +
@@ -144,8 +144,8 @@
                 isbn = "8-661070-19-8",
                 broj_strana = 383,
                 godina_izdavanja = new DateTime(1970, 1, 1),
-                ukupno_kopija = 1,
-                dostupno_kopija = 1,
+                ukupno_kopija = 10,
+                dostupno_kopija = 10,
                 izdanje = 1,
                 opis = "Tvrđava je jedan od poznatijih romana bosanskohercegovačkog pisca Meše Selimovića. " +
                 "Ovaj roman koji je prvi put objavljen 1970. godine, predstavlja svojevrsnog blizanca Selimovićevog prethodnog " +
@@ -165,8 +165,8 @@
                 isbn = "0-13-285620-4",
                 broj_strana = 889,
                 godina_izdavanja = new DateTime(2010, 1, 1),
-                ukupno_kopija = 2,
-                dostupno_kopija = 2,
+                ukupno_kopija = 10,
+                dostupno_kopija = 10,
                 izdanje = 6,
                 opis = "",
                 izbrisano = false
