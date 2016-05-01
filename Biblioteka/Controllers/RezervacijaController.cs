@@ -42,7 +42,7 @@ namespace Biblioteka.Controllers
             List<Clanstvo> clanstvaa = db.Clanstvoes.Where(c => c.KorisnikID == current_user.ID && c.istek_racuna > d).ToList();
             if (clanstvaa.Count() < 1)
             {
-                rezervacija.status = "Trebate produziti clanstvo!";
+                rezervacija.status = "clanstvo_produzi";
                 return Ok(rezervacija);
             }
 
@@ -54,7 +54,7 @@ namespace Biblioteka.Controllers
             List<Zaduzenja> zaddd = db.Zaduzenjas.Where(z => z.KnjigaID == rezervacija.KnjigaID && z.KorisnikID == rezervacija.KorisnikID && z.status == "nv").ToList();
             if (rezzz.Count() > 0 || zaddd.Count > 0)
             {
-                rezervacija.status = "Vec ste rezervisali ovu knjigu!";
+                rezervacija.status = "vec_rezervisano";
                 return Ok(rezervacija);
             }
 
@@ -189,7 +189,7 @@ namespace Biblioteka.Controllers
             List<Korisnik> korisnik = db.Korisniks.Where(k => k.username == username).ToList();
 
             if (korisnik.Count < 1)
-                return BadRequest("Username je pogresan!");
+                return BadRequest("pogr_username");
 
             long idKorisnika = korisnik[0].ID;
             List<Rezervacija> rezervacije = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "co").ToList();
@@ -213,21 +213,21 @@ namespace Biblioteka.Controllers
             List<Rezervacija> rezervacije_re = db.Rezervacijas.Where(r => r.KorisnikID == idKorisnika && r.status == "re").ToList();
 
             foreach (Rezervacija r in rezervacije_co)
-                r.status = "Po knjigu trebate doci u narednim danima!";
+                r.status = "doci_po_knjigu";
 
             foreach (Rezervacija r in rezervacije_wa)
             {
-                r.status = "Obavjestit cemo vas kada knjiga bude raspoloziva!";
+                r.status = "obavjest_raspolozivost";
                 rezervacije_co.Add(r);
             }
             foreach (Rezervacija r in rezervacije_no)
             {
-                r.status = "Istekao rok cekanja na zaduzenje!";
+                r.status = "rok_istekao";
                 rezervacije_co.Add(r);
             }
             foreach (Rezervacija r in rezervacije_re)
             {
-                r.status = "Knjigu ste zaduzili!";
+                r.status = "knjiga_zaduzena";
                 rezervacije_co.Add(r);
             }
 

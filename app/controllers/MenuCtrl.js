@@ -1,6 +1,5 @@
-
-angular.module('BibliotekaApp').controller("MenuCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce, $http) {
+angular.module('BibliotekaApp').controller("MenuCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate',
+    function ($scope, BibliotekaService, $sce, $http, $translate) {
         $(".admin").hide();
         $(".clan").hide();
         $(".bibl").hide();
@@ -14,6 +13,11 @@ angular.module('BibliotekaApp').controller("MenuCtrl", ["$scope", "BibliotekaSer
                 })
                 .error(function (data) {
                 });
-            }
+        }
+
+        if (document.getElementById("cLang").innerHTML == "BS")
+            $translate.use('bs');
+        else
+            $translate.use('en');
 
     }]);

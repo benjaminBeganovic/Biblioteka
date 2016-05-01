@@ -1,48 +1,48 @@
 <div ng-controller="RegisterCtrl" class="row">
-    <h1>Register</h1>
+    <h2 translate="registracija">Register</h2>
     <div class="col-md-6">
         <fieldset class="form-group form-inline">
-            <label for="ime">Ime:</label>
+            <label for="ime" translate="ime"></label>
             <input type="text" class="form-control" id="ime" ng-model="korisnikModel.ime"><br>
         </fieldset>
 
         <fieldset class="form-group form-inline">
-            <label for="prezime">Prezime:</label>
+            <label for="prezime" translate="prezime"></label>
             <input type="text" id="prezime" class="form-control" ng-model="korisnikModel.prezime"><br>
         </fieldset>
 
         <fieldset class="form-group form-inline">
-            <label for="telefon">Telefon:</label>
+            <label for="telefon" translate="telefon"></label>
             <input type="text" id="telefon" class="form-control" ng-model="korisnikModel.telefon"><br>
         </fieldset>
 
         <fieldset class="form-group form-inline">
-            <label for="adresa">Adresa:</label>
+            <label for="adresa" translate="adresa"></label>
             <input type="text" id="adresa" class="form-control" ng-model="korisnikModel.adresa"><br>
         </fieldset>
 
     </div>
     <div class="col-md-6">
         <fieldset class="form-group form-inline">
-            <label for="email">Email:</label>
+            <label for="email" translate="email"></label>
             <input type="text" class="form-control" id="email" ng-model="korisnikModel.email"><br>
         </fieldset>
 
         <fieldset class="form-group form-inline">
-            <label for="username">Username:</label>
+            <label for="username" translate="korisnicko_ime"></label>
             <input type="text" class="form-control" id="username" ng-model="korisnikModel.username"><br>
         </fieldset>
 
         <fieldset class="form-group form-inline">
-            <label for="password">Password:</label>
+            <label for="password" translate="sifra"></label>
             <input type="password" class="form-control" id="password" ng-model="korisnikModel.password"><br>
         </fieldset>
 
         <fieldset class="form-group form-inline">
-            <label for="password">Retype passwd:</label>
+            <label for="password" translate="potvrdi_pass"></label>
             <input type="password" class="form-control" id="password2" ng-model="retypeModel.password"><br>
         </fieldset>
-        <button ng-click="regMe()" class="form-control button">Registruj me</button>
-        <p ng-bind-html="error"></p>
+        <button ng-click="regMe()" class="form-control button" translate="registruj_me"></button>
+        <h3>{{error | translate}}</h3>
     </div>
 </div>

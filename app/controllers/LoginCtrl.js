@@ -1,5 +1,5 @@
-angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$cookies', '$window',
-    function ($scope, BibliotekaService, $sce, $http, $cookies, $window) {
+angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$cookies', '$window', '$translate',
+    function ($scope, BibliotekaService, $sce, $http, $cookies, $window, $translate) {
         $scope.loginModel = {
             username: "",
             password: ""
@@ -32,5 +32,10 @@ angular.module('BibliotekaApp').controller("LoginCtrl", ["$scope", "BibliotekaSe
             }
 
         };
+
+        if (document.getElementById("cLang").innerHTML == "BS")
+            $translate.use('bs');
+        else
+            $translate.use('en');
 
     }]);

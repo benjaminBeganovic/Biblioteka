@@ -1,5 +1,5 @@
-﻿angular.module('BibliotekaApp').controller("PretragaCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce, $http) {
+﻿angular.module('BibliotekaApp').controller("PretragaCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate', 
+function ($scope, BibliotekaService, $sce, $http, $translate) {
         var defaultTipKnjige = 0;
         var defaultJezik = 2;
 
@@ -101,5 +101,10 @@
             document.getElementById(id).style.display = 'none';
             document.getElementById(id2).style.display = 'none';
         };
+
+        if (document.getElementById("cLang").innerHTML == "BS")
+            $translate.use('bs');
+        else
+            $translate.use('en');
 
     }]);

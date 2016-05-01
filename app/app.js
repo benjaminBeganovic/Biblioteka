@@ -1,4 +1,4 @@
-var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies'])
+var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht.translate'])
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
@@ -10,6 +10,9 @@ var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies'])
 			})
             .when('/Napredna', {
                 templateUrl: 'views/NaprednaPretragaForm.html'
+            })
+            .when('/Pocetna', {
+                templateUrl: 'views/Home.html'
             })
             .when('/Jednostavna', {
                 templateUrl: 'views/JednostavnaPretragaForm.html'

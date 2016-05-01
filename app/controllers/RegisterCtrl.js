@@ -1,5 +1,5 @@
-angular.module('BibliotekaApp').controller("RegisterCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce, $http) {
+angular.module('BibliotekaApp').controller("RegisterCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate',
+function ($scope, BibliotekaService, $sce, $http, $translate) {
 
         var passRegex = new RegExp(/^(?=.*\d).{4,8}$/);
         var emailRegex = new RegExp(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/);
@@ -11,17 +11,17 @@ angular.module('BibliotekaApp').controller("RegisterCtrl", ["$scope", "Bibliotek
              || $scope.korisnikModel.prezime == "" || $scope.korisnikModel.telefon == ""
              || $scope.korisnikModel.adresa == "" || $scope.korisnikModel.email == ""
              || $scope.retypeModel.password == "")
-            $scope.error = $sce.trustAsHtml("Morate unijeti sve podatke!");
+            $scope.error = $sce.trustAsHtml("sve_podatke_unijeti");
         else if ($scope.retypeModel.password != $scope.korisnikModel.password)
         {
-            $scope.error = $sce.trustAsHtml("Passwordi nisu isti!");
+            $scope.error = $sce.trustAsHtml("sifre_nisu_iste");
         }
         else if (!passRegex.test($scope.korisnikModel.password))
         {
-            $scope.error = $sce.trustAsHtml("Password moze biti izmedju 4 i 8 karaktera, i mora imati barem jedan broj!");
+            $scope.error = $sce.trustAsHtml("sifra_treba_da_bude");
         }
         else if (!emailRegex.test($scope.korisnikModel.email)) {
-            $scope.error = $sce.trustAsHtml("Email nije validan!");
+            $scope.error = $sce.trustAsHtml("email_nije_validan");
         }
         else
         {
@@ -29,15 +29,20 @@ angular.module('BibliotekaApp').controller("RegisterCtrl", ["$scope", "Bibliotek
             .success(function (data, status) {
 
                 if (data == "Izaberite drugi username!")
-                    $scope.error = $sce.trustAsHtml("Molimo uzmite drugi username!");
+                    $scope.error = $sce.trustAsHtml("drugi_username");
                 else
-                    $scope.error = $sce.trustAsHtml("Uspjesno ste registrovani! Molimo vas da se jos verifikujete putem vaseg email-a!");
+                    $scope.error = $sce.trustAsHtml("uspjesna_registracija");
             })
             .error(function (data) {
-                $scope.error = $sce.trustAsHtml("Greska u registarciji");
+                $scope.error = $sce.trustAsHtml("greska_ponovo");
             });
         }
         
-    };
+        };
+
+        if (document.getElementById("cLang").innerHTML == "BS")
+            $translate.use('bs');
+        else
+            $translate.use('en');
         
 }]);

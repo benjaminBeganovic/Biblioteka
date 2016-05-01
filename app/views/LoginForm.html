@@ -1,15 +1,16 @@
 <div data-ng-controller="LoginCtrl">
-    <h1>Login</h1>
+    <h1 translate="prijava">Login</h1>
     <form name="myForm">
         <fieldset class="form-group form-inline">
-            <label for="username">Username:</label>
+            <label for="username" translate="korisnicko_ime"></label>
             <input type="text" class="form-control" id="username" ng-model="loginModel.username"><br>
             </fieldset>
         <fieldset class="form-group form-inline">
-            <label for="password">Password:</label>
+            <label for="password" translate="sifra"></label>
             <input type="password" class="form-control" id="password" ng-model="loginModel.password">
         </fieldset>
-            <input type="button" class="form-control button" ng-click="loginMe()" value="Login" />
+        <button class="form-control button" ng-click="loginMe()" translate="prijava"></button>
+
             <p class="warning" ng-bind-html="error"></p>
     </form>
 </div>

@@ -41,7 +41,7 @@ namespace Biblioteka.Controllers
             //da li je vratio
             if (db.Zaduzenjas.Count(z => z.KnjigaID == zaduzenja.KnjigaID && z.KorisnikID == zaduzenja.KorisnikID && z.status == "nv") > 0)
             {
-                zaduzenja.status = "Korisnik vec posjeduje ovu knjigu!";
+                zaduzenja.status = "vec_posjeduje_knjigu";
                 return Ok(zaduzenja);
             }
 
@@ -51,7 +51,7 @@ namespace Biblioteka.Controllers
 
             if (rez.Count() < 1)
             {
-                zaduzenja.status = "Korisnik nije zaduzio knjigu!";
+                zaduzenja.status = "nije_zaduzio_knjigu";
                 return Ok(zaduzenja);
             }
 
@@ -83,19 +83,19 @@ namespace Biblioteka.Controllers
             DateTime d = System.DateTime.Now;
             List<Zaduzenja> nisu_vratili = db.Zaduzenjas.Where(z => z.status == "nv" && (d > z.rok)).ToList();
             foreach (Zaduzenja z in nisu_vratili)
-                z.status = "Istekao rok za razduzivanje!";
+                z.status = "istekao_rok_razduzivanje";
 
             List<Zaduzenja> citaju = db.Zaduzenjas.Where(z => z.status == "nv" && (d <= z.rok)).ToList();
             foreach (Zaduzenja z in citaju)
             {
-                z.status = "Nije istekao rok za razduzivanje!";
+                z.status = "nije_istekao_rok_razduzivanje";
                 nisu_vratili.Add(z);
             }
 
             List<Zaduzenja> vracene = db.Zaduzenjas.Where(z => z.status == "vr").ToList();
             foreach (Zaduzenja z in vracene)
             {
-                z.status = "Knjiga razduzena!";
+                z.status = "knjiga_razduzena";
                 nisu_vratili.Add(z);
             }
 
@@ -163,7 +163,7 @@ namespace Biblioteka.Controllers
             }
             catch (DbUpdateConcurrencyException) { }
 
-            zaduzenja.status = "Uspjesno ste razduzili knjigu!";
+            zaduzenja.status = "uspjesno_ste_razduzili";
             return Ok(zaduzenja);
         }
         // GET api/Zaduzenja/username
@@ -175,7 +175,7 @@ namespace Biblioteka.Controllers
             List<Korisnik> korisnik = db.Korisniks.Where(k => k.username == username).ToList();
 
             if (korisnik.Count < 1)
-                return BadRequest("Username je pogresan!");
+                return BadRequest("pogr_username");
 
             long idKorisnika = korisnik[0].ID;
             List<Zaduzenja> zaduzenja = db.Zaduzenjas.Where(z => z.KorisnikID == idKorisnika && z.status == "nv").ToList();
@@ -195,11 +195,11 @@ namespace Biblioteka.Controllers
             List<Zaduzenja> zaduzenja_nv = db.Zaduzenjas.Where(z => z.KorisnikID == idKorisnika && z.status == "nv").ToList();
             List<Zaduzenja> zaduzenja_vr = db.Zaduzenjas.Where(z => z.KorisnikID == idKorisnika && z.status == "vr").ToList();
             foreach (Zaduzenja z in zaduzenja_nv)
-                z.status = "Knjiga nije vracena!";
+                z.status = "knjiga_nije_vracena";
 
             foreach (Zaduzenja z in zaduzenja_vr)
             {
-                z.status = "Knjiga je vracena!";
+                z.status = "knjiga_je_vracena";
                 zaduzenja_nv.Add(z);
             }
 

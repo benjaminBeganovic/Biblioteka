@@ -1,5 +1,5 @@
-angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce, $http) {
+angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate',
+    function ($scope, BibliotekaService, $sce, $http, $translate) {
 
         
         $scope.getRezervacije = function () {
@@ -85,5 +85,10 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
                 document.getElementById(id2).style.display = 'none';
                 $scope.getRezervacije();
             };
+
+            if (document.getElementById("cLang").innerHTML == "BS")
+                $translate.use('bs');
+            else
+                $translate.use('en');
         
         }]);

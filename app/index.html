@@ -2,7 +2,7 @@
 <html ng-app="BibliotekaApp">
 <head>
     <meta charset="utf-8">
-    <title>Biblioteka</title>
+    <title>Biblioteka</title>    
 
     <script src="assets/js/jquery-2.2.3.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -15,11 +15,13 @@
     <script src="assets/js/angular-route.js"></script>
     <script src="assets/js/angular-sanitize.js"></script>
     <script src="assets/js/angular-cookies.js"></script>
-
     <script src="app.js"></script>
     <script src="services/main.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.7.2/angular-translate.js"></script>
+
     <script src="controllers/LoginCtrl.js"></script>
-    <script src="controllers/MenuCtrl.js"></script>
+    <script type="text/javascript" charset="utf-8" src="controllers/MenuCtrl.js"></script>
     <script src="controllers/RegisterCtrl.js"></script>
     <script src="controllers/PretragaCtrl.js"></script>
     <script src="controllers/ZaduzenjeCtrl.js"></script>
@@ -28,46 +30,49 @@
     <script src="controllers/KKnjigeCtrl.js"></script>
     <script src="controllers/RKnjigeCtrl.js"></script>
     <script src="controllers/ZKnjigeCtrl.js"></script>
+    <script type="text/javascript" charset="utf-8" src="controllers/HomeCtrl.js"></script>
+    <script type="text/javascript" charset="utf-8" src="controllers/TranslateCtrl.js"></script>
 </head>
 <body>
     <div class="wide">
         <div class="container">
             <img src="assets/img/logo.png" id="logo" alt="Biblioteka" />
-            <!-- Static navbar -->
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
+            <button id="cLang" type="button" ng-controller="TranslateCtrl" ng-click="changeLanguage($event)" class="btn btn-info btn-xs pull-right">BS</button>
+                <!-- Static navbar -->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse" ng-controller="MenuCtrl">
+                            <ul class="nav navbar-nav">
+                                <li><a href="./index.html#/Pocetna" translate="pocetna"></a></li>
+                                <li><a href="./index.html#/Knjige" translate="knjige"></a></li>
+                                <li><a href="./index.html#/Informacije" translate="informacije"></a></li>
+                                <li><a href="./index.html#/Kontakt" translate="kontakt"></a></li>
+                                <li class="admin"><a href="./index.html#/Admin" translate="admin"></a></li>
+                                <li class="bibl"><a href="./index.html#/Zaduzenja" translate="zaduzenja"></a></li>
+                                <li class="bibl"><a href="./index.html#/KKnjige" translate="kriticne_knjige"></a></li>
+                                <li class="clan"><a href="./index.html#/RKnjige" translate="rezervacije"></a></li>
+                                <li class="clan"><a href="./index.html#/ZKnjige" translate="zaduzenja"></a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="gost"><a href="./index.html#/Login" translate="prijava"></a></li>
+                                <li class="gost"><a href="./index.html#/Register" translate="registracija">Register</a></li>
+                                <li class="clan"><a href="./index.html#/Home" ng-click="logoutMe()" translate="odjava"></a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="navbar" class="navbar-collapse collapse" ng-controller="MenuCtrl">
-                        <ul class="nav navbar-nav">
-                            <li><a href="./index.html#/Pocetna">Početna</a></li>
-                            <li><a href="./index.html#/Knjige">Knjige</a></li>
-                            <li><a href="./index.html#/Informacije">Informacije</a></li>
-                            <li><a href="./index.html#/Kontakt">Kontakt</a></li>
-                            <li class="admin"><a href="./index.html#/Admin">Admin</a></li>
-                            <li class="bibl"><a href="./index.html#/Zaduzenja">Zaduzenja</a></li>
-                            <li class="bibl"><a href="./index.html#/KKnjige">Kritične knjige</a></li>
-                            <li class="clan"><a href="./index.html#/RKnjige">Rezervacije</a></li>
-                            <li class="clan"><a href="./index.html#/ZKnjige">Zaduzenja</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="gost"><a href="./index.html#/Login">Login</a></li>
-                            <li class="gost"><a href="./index.html#/Register">Register</a></li>
-                            <li class="clan"><a href="./index.html#/Home" ng-click="logoutMe()">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                </nav>
 
-            <div data-ng-view=""></div>
+                <div data-ng-view=""></div>
 
-        </div>
+</div>
     </div>
 </body>
 </html>

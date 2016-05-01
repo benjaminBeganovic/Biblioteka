@@ -1,5 +1,5 @@
-angular.module('BibliotekaApp').controller("RKnjigeCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce, $http) {
+angular.module('BibliotekaApp').controller("RKnjigeCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate',
+    function ($scope, BibliotekaService, $sce, $http, $translate) {
 
         BibliotekaService.dajsverezervacijekorisnika()
             .success(function (data, status) {
@@ -15,5 +15,10 @@ angular.module('BibliotekaApp').controller("RKnjigeCtrl", ["$scope", "Biblioteka
                 $scope.lista_rezervacija = null;
                 $scope.polje = $sce.trustAsHtml("Greska! Pokusajte ponovo!");
             })
+
+        if (document.getElementById("cLang").innerHTML == "BS")
+            $translate.use('bs');
+        else
+            $translate.use('en');
 
     }]);

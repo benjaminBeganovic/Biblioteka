@@ -1,5 +1,5 @@
-angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "BibliotekaService", '$sce', '$http',
-    function ($scope, BibliotekaService, $sce, $http) {
+angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate', 
+    function ($scope, BibliotekaService, $sce, $http, $translate) {
 
         
         $scope.getZaduzenja = function () {
@@ -69,5 +69,10 @@ angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "Bibliot
                 document.getElementById(id2).style.display = 'none';
                 $scope.getZaduzenja();
             };
+
+            if (document.getElementById("cLang").innerHTML == "BS")
+                $translate.use('bs');
+            else
+                $translate.use('en');
         
         }]);
