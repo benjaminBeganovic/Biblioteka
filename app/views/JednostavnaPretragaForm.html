@@ -1,23 +1,23 @@
 ﻿<div data-ng-controller="PretragaCtrl">
 
     <ul class="nav nav-tabs">
-        <li><a href="./index.html#/Jednostavna">Jednostavna</a></li>
-        <li><a href="./index.html#/Napredna">Napredna</a></li>
-        <li><a href="./index.html#/PoKodu">Po kodu</a></li>
+        <li><a href="./index.html#/Jednostavna" translate="jednostavna">Jednostavna</a></li>
+        <li><a href="./index.html#/Napredna" translate="napredna">Napredna</a></li>
+        <li><a href="./index.html#/PoKodu" translate="po_kodu">Po kodu</a></li>
     </ul>
-    <h3>Jednostavna pretraga</h3>
+    <h3 translate="jednostavna_pretraga">Jednostavna pretraga</h3>
     <div id="forma" class="row">
         <form name="myForm">
             <div class="col-md-6">
                 <fieldset class="form-group form-inline">
-                    <label for="tip">Tip knjige:</label>
+                    <label for="tip" translate="tip_knjige">Tip knjige:</label>
                     <select id="tip" class="form-control" ng-model="jednostavnaModel.tipknjige">
                         <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
                     </select> <br />
                 </fieldset>
 
                 <fieldset class="form-group form-inline">
-                    <label for="jezik">Jezici:</label>
+                    <label for="jezik" translate="jezici">Jezici:</label>
                     <select id="jezik" class="form-control" ng-model="jednostavnaModel.jezik">
                         <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
                     </select><br />
@@ -25,18 +25,18 @@
             </div>
             <div class="col-md-6">
                 <fieldset class="form-group form-inline">
-                    <label for="naziv">Naziv:</label>
+                    <label for="naziv" translate="naziv">Naziv:</label>
                     <input name="naziv" class="form-control" type="text" id="naziv" ng-model="jednostavnaModel.naziv" required>
-                    <span ng-show="myForm.naziv.$invalid" class="warning">Naziv je obavezan</span><br />
+                    <span ng-show="myForm.naziv.$invalid" class="warning" translate="naziv_je_obavezan">Naziv je obavezan</span><br />
                 </fieldset>
 
                 <fieldset class="form-group form-inline">
-                    <label for="autor">Autor:</label>
+                    <label for="autor" translate="autor">Autor:</label>
                     <input name="autor" type="text" class="form-control" id="autor" ng-model="jednostavnaModel.autor" required>
-                    <span ng-show="myForm.autor.$invalid" class="warning">Autor je obavezan</span><br />
+                    <span ng-show="myForm.autor.$invalid" class="warning" translate="autor_je_obavezan">Autor je obavezan</span><br />
                 </fieldset>
 
-                <input type="button" class="button form-control" ng-click="jednostavna()" value="Pretrazi" />
+                <button class="button form-control" ng-click="jednostavna()" translate="pretrazi"> </button>
             </div>
         </form>
     </div>

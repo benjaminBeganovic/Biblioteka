@@ -1,57 +1,57 @@
 ﻿<div data-ng-controller="PretragaCtrl">
 
     <ul class="nav nav-tabs">
-        <li><a href="./index.html#/Jednostavna">Jednostavna</a></li>
-        <li><a href="./index.html#/Napredna">Napredna</a></li>
-        <li><a href="./index.html#/PoKodu">Po kodu</a></li>
+        <li><a href="./index.html#/Jednostavna" translate="jednostavna">Jednostavna</a></li>
+        <li><a href="./index.html#/Napredna" translate="napredna">Napredna</a></li>
+        <li><a href="./index.html#/PoKodu" translate="po_kodu">Po kodu</a></li>
     </ul>
-    <h3>Napredna pretraga</h3>
+    <h3 translate="napredna_pretraga">Napredna pretraga</h3>
     <div id="forma" class="row">
         <form name="myForm">
             <div class="col-md-6">
                 <fieldset class="form-group form-inline">
-                    <label for="tip">Tip knjige:</label>
+                    <label for="tip" translate="tip_knjige">Tip knjige:</label>
                     <select id="tip" class="form-control" ng-model="naprednaModel.tip">
                         <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
                     </select>
                 </fieldset>
 
                 <fieldset class="form-group form-inline">
-                    <label for="jezik">Jezici:</label>
+                    <label for="jezik" translate="jezici">Jezici:</label>
                     <select id="jezik" class="form-control" ng-model="naprednaModel.jezik">
                         <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
                     </select>
                 </fieldset>
 
                 <fieldset class="form-group form-inline">
-                    <label for="naziv">Naziv:</label>
+                    <label for="naziv" translate="naziv">Naziv:</label>
                     <input name="naziv" class="form-control" type="text" id="naziv" ng-model="naprednaModel.naziv" required>
                 </fieldset>
 
                 <fieldset class="form-group form-inline">
-                    <label for="autor">Autor:</label>
+                    <label for="autor" translate="autor">Autor:</label>
                     <input name="autor" class="form-control" type="text" id="autor" ng-model="naprednaModel.autor" required>
-                    <span class="warning" ng-show="myForm.naziv.$invalid && myForm.autor.$invalid">Naziv ili autor su obavezni</span>
+                    <span class="warning" ng-show="myForm.naziv.$invalid && myForm.autor.$invalid" translate="naziv_ili_autor_su_obavezni">Naziv ili autor su obavezni</span>
                 </fieldset>
 
             </div>
             <div class="col-md-6">
                 <fieldset class="form-group form-inline">
-                    <label for="izdavac">Izdavac:</label>
+                    <label for="izdavac" translate="izdavac">Izdavac:</label>
                     <input name="izdavac" class="form-control" type="text" id="izdavac" ng-model="naprednaModel.izdavac">
                 </fieldset>
 
 
                 <fieldset class="form-group form-inline">
-                    <label for="godina">Godina:</label>
+                    <label for="godina" translate="godina">Godina:</label>
                     <input name="godina" class="form-control" type="number" id="godina" ng-model="naprednaModel.godina">
                 </fieldset>
 
                 <fieldset class="form-group form-inline">
-                    <label for="kljucne">Ključne riječi:</label>
+                    <label for="kljucne" translate="kljucne_rijeci">Ključne riječi:</label>
                     <input name="kljucne" type="text" id="kljucne" class="form-control" ng-model="naprednaModel.kljucne">
                 </fieldset>
-                <input type="button" class="form-control button" ng-click="napredna()" value="Pretrazi" />
+                <button class="form-control button" ng-click="napredna()" translate="pretrazi"></button>
             </div>
         </form>
     </div>
