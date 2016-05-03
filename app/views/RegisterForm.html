@@ -42,7 +42,16 @@
             <label for="password" translate="potvrdi_pass"></label>
             <input type="password" class="form-control" id="password2" ng-model="retypeModel.password"><br>
         </fieldset>
+
         <button ng-click="regMe()" class="form-control button" translate="registruj_me"></button>
+        
         <h3>{{error | translate}}</h3>
     </div>
+    <div class="g-recaptcha"
+         data-sitekey="6LfW4x4TAAAAAEcDvsvO3eThghHVn3IXyD__jS6w"
+         theme="'light'"
+         key="model.key"
+         on-create="setWidgetId(widgetId)"
+         on-success="setResponse(response)"
+         on-expire="cbExpiration()"></div>
 </div>

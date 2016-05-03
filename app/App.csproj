@@ -78,6 +78,7 @@
     <Content Include="assets\js\jquery-2.2.3.js" />
     <Content Include="controllers\LoginCtrl.js" />
     <Content Include="controllers\MainCtrl.js" />
+    <Content Include="controllers\Recaptcha.js" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -100,6 +101,7 @@
   <ItemGroup>
     <Folder Include="assets\img\" />
     <Folder Include="directives\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -22,6 +22,8 @@
 
     <script src="controllers/LoginCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="controllers/MenuCtrl.js"></script>
+    <script src='//www.google.com/recaptcha/api.js'></script>
+    <script src="controllers/Recaptcha.js"></script>
     <script src="controllers/RegisterCtrl.js"></script>
     <script src="controllers/PretragaCtrl.js"></script>
     <script src="controllers/ZaduzenjeCtrl.js"></script>
@@ -32,46 +34,61 @@
     <script src="controllers/ZKnjigeCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="controllers/HomeCtrl.js"></script>
     <script type="text/javascript" charset="utf-8" src="controllers/TranslateCtrl.js"></script>
+    <script type="text/javascript" src="angular-recaptcha.js"></script>
+    <!--<script src="//www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit"
+            async defer></script>-->
+
+    
+
 </head>
 <body>
     <div class="wide">
-        <div class="container">         
+        <div class="container">
             <img src="assets/img/logo.png" id="logo" alt="Biblioteka" />
-            <button id="cLang" type="button" ng-controller="TranslateCtrl" ng-click="changeLanguage($event)" class="btn btn-info btn-xs pull-right">BS</button>       
-                <!-- Static navbar -->
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div id="navbar" class="navbar-collapse collapse" ng-controller="MenuCtrl">
-                            <ul class="nav navbar-nav">
-                                <li><a href="./index.html#/Pocetna" translate="pocetna"></a></li>
-                                <li><a href="./index.html#/Knjige" translate="knjige"></a></li>
-                                <li><a href="./index.html#/Informacije" translate="informacije"></a></li>
-                                <li><a href="./index.html#/Kontakt" translate="kontakt"></a></li>
-                                <li class="admin"><a href="./index.html#/Admin" translate="admin"></a></li>
-                                <li class="bibl"><a href="./index.html#/Zaduzenja" translate="zaduzenja"></a></li>
-                                <li class="bibl"><a href="./index.html#/KKnjige" translate="kriticne_knjige"></a></li>
-                                <li class="clan"><a href="./index.html#/RKnjige" translate="rezervacije"></a></li>
-                                <li class="clan"><a href="./index.html#/ZKnjige" translate="zaduzenja"></a></li>
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="gost"><a href="./index.html#/Login" translate="prijava"></a></li>
-                                <li class="gost"><a href="./index.html#/Register" translate="registracija">Register</a></li>
-                                <li class="clan"><a href="./index.html#/Home" ng-click="logoutMe()" translate="odjava"></a></li>
-                            </ul>
-                        </div>
+            <button id="cLang" type="button" ng-controller="TranslateCtrl" ng-click="changeLanguage($event)" class="btn btn-info btn-xs pull-right">BS</button>
+            <!-- Static navbar -->
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
                     </div>
-                </nav>
+                    <div id="navbar" class="navbar-collapse collapse" ng-controller="MenuCtrl">
+                        <ul class="nav navbar-nav">
+                            <li><a href="./index.html#/Pocetna" translate="pocetna"></a></li>
+                            <li><a href="./index.html#/Knjige" translate="knjige"></a></li>
+                            <li><a href="./index.html#/Informacije" translate="informacije"></a></li>
+                            <li><a href="./index.html#/Kontakt" translate="kontakt"></a></li>
+                            <li class="admin"><a href="./index.html#/Admin" translate="admin"></a></li>
+                            <li class="bibl"><a href="./index.html#/Zaduzenja" translate="zaduzenja"></a></li>
+                            <li class="bibl"><a href="./index.html#/KKnjige" translate="kriticne_knjige"></a></li>
+                            <li class="clan"><a href="./index.html#/RKnjige" translate="rezervacije"></a></li>
+                            <li class="clan"><a href="./index.html#/ZKnjige" translate="zaduzenja"></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="gost"><a href="./index.html#/Login" translate="prijava"></a></li>
+                            <li class="gost"><a href="./index.html#/Register" translate="registracija">Register</a></li>
+                            <li class="clan"><a href="./index.html#/Home" ng-click="logoutMe()" translate="odjava"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+           
+            <div data-ng-view=""></div>
+            <div class="g-recaptcha"
+                 data-sitekey="6LfW4x4TAAAAAEcDvsvO3eThghHVn3IXyD__jS6w"
+                 theme="'light'"
+                 key="model.key"
+                 on-create="setWidgetId(widgetId)"
+                 on-success="setResponse(response)"
+                 on-expire="cbExpiration()"
+                >
 
-                <div data-ng-view=""></div>
-</div>
-</div>
+            </div> 
+</div>        
 </body>
 </html>
