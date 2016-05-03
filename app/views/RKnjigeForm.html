@@ -1,14 +1,20 @@
 <div ng-controller="RKnjigeCtrl">
-    <h2 translate="rezervacije"></h2>
-    <div id="rezervacije" ng-repeat="r in lista_rezervacija">
-        <div>
-            <p class="naslov">{{r.Knjiga.naslov}}</p>
-            <p class="autor" ng-repeat="a in r.Knjiga.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
-            <p class="status">Status: {{r.status | translate}}</p>
+    <div class="container pull-left" style="max-width: 100%;">
+        <h2 translate="rezervacije"></h2>
+        <div class="panel-group">
+            <div id="rezervacije" ng-repeat="r in lista_rezervacija">
+                <div class="panel panel-default" style="margin-bottom: 3%;">
+                    <div class="panel-heading naslov">{{r.Knjiga.naslov}}</div>
+                    <div class="panel-body">
+                        <p class="autor" ng-repeat="a in r.Knjiga.Autori">Autori: {{a.naziv}} </p>
+                        <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
+                        <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
+                        <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
+                        <p class="bg-info"><strong>Status: </strong> {{r.status | translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <h3>{{polje | translate}}</h3>
         </div>
     </div>
-    <h3>{{polje | translate}}</h3>
 </div>

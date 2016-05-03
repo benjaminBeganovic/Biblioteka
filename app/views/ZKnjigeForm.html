@@ -1,15 +1,21 @@
 <div ng-controller="ZKnjigeCtrl">
-    <h2 translate="zaduzenja"></h2>
-    <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
-        <div>
-            <p class="naslov">{{z.Knjiga.naslov}}</p>
-            <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{z.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
-            <p class="datum">Rok: {{z.rok}}</p>
-            <h3 class="status">Status: {{z.status | translate}}</h3>
+    <div class="container pull-left" style="max-width: 100%;">
+        <h2 translate="zaduzenja"></h2>
+        <div class="panel-group">
+            <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
+                <div class="panel panel-default" style="margin-bottom: 3%;">
+                    <div class="panel-heading naslov">{{z.Knjiga.naslov}}</div>
+                    <div class="panel-body">
+                        <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
+                        <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
+                        <p class="godina">Godina izdavanja: {{z.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
+                        <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
+                        <p class="datum">Rok: {{z.rok}}</p>
+                        <p class="bg-info"><strong>Status: </strong> {{z.status | translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <h3>{{polje | translate}}</h3>
         </div>
     </div>
-    <h3>{{polje | translate}}</h3>
 </div>

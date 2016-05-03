@@ -1,19 +1,25 @@
 <div ng-controller="KKnjigeCtrl">
-    <h2 translate="kriticne_knjige"></h2>
-    <div id="knjige" ng-repeat="k in lista_knjiga">
-        <div>
-            <p class="naslov">{{k.naslov}}</p>
-            <p class="autor" ng-repeat="a in k.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{k.Izdavac.naziv}}</p>
-            <p class="jezik">Jezik: {{k.Jezik.opis}}</p>
-            <p class="tipKnjige">Tip knjige: {{k.TipKnjige.opis}}</p>
-            <p class="broj">ID: {{k.idbroj}}</p>
-            <p class="isbn">ISBN: {{k.isbn}}</p>
-            <p class="broj">Izdanje: {{k.izdanje}}</p>
-            <p class="datum">Godina izdavanja: {{k.godina_izdavanja | translate}}</p>
-            <p class="dostupno">DOSTUPNO KOPIJA: {{k.dostupno_kopija | tranlate}}</p>
-            <p class="broj">UKUPNO KOPIJA: {{k.ukupno_kopija}}</p>
+    <div class="container pull-left" style="max-width: 100%;">
+        <h2 translate="kriticne_knjige"></h2>
+        <div class="panel-group">
+            <div id="knjige" ng-repeat="k in lista_knjiga">
+                <div class="panel panel-default" style="margin-bottom: 3%;">
+                    <div class="panel-heading naslov">{{k.naslov}}</div>
+                    <div class="panel-body">
+                        <p class="autor" ng-repeat="a in k.Autori">Autori: {{a.naziv}} </p>
+                        <p class="izdavac">Izdavac: {{k.Izdavac.naziv}}</p>
+                        <p class="jezik">Jezik: {{k.Jezik.opis}}</p>
+                        <p class="tipKnjige">Tip knjige: {{k.TipKnjige.opis}}</p>
+                        <p class="broj">ID: {{k.idbroj}}</p>
+                        <p class="isbn">ISBN: {{k.isbn}}</p>
+                        <p class="broj">Izdanje: {{k.izdanje}}</p>
+                        <p class="datum">Godina izdavanja: {{k.godina_izdavanja}}</p>
+                        <p class="bg-info"><strong>DOSTUPNO KOPIJA: </strong> {{k.dostupno_kopija}}</p>
+                        <p class="bg-info"><strong>UKUPNO KOPIJA: </strong> {{k.ukupno_kopija}}</p>
+                    </div>
+                </div>
+            </div>
+            <h3>{{polje | translate}}</h3>
         </div>
     </div>
-    <h3>{{polje | translate}}</h3>
 </div>

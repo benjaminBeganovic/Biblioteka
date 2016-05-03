@@ -2,7 +2,6 @@
 function ($scope, BibliotekaService, $sce, $http, $translate) {
         var defaultTipKnjige = 0;
         var defaultJezik = 2;
-        var proslaPretraga;
 
         BibliotekaService.svijezici()
         .success(function (data, status) {
@@ -18,7 +17,6 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
             BibliotekaService.naprednapretraga($scope.naprednaModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
-                proslaPretraga = "napredna";
             })
             .error(function (data, status) {
                 $scope.rezultat = null;
@@ -30,7 +28,6 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
             BibliotekaService.jednostavnapretraga($scope.jednostavnaModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
-                proslaPretraga = "jednostavna";
             })
             .error(function (data, status) {
                 $scope.rezultat = null;
@@ -41,21 +38,10 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
             BibliotekaService.pretragakod($scope.pokoduModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
-                proslaPretraga = "pokodu";
             })
             .error(function (data, status) {
                 $scope.rezultat = null;
             })
-        };
-
-        $scope.osvjeziPretragu = function () {
-
-            if (proslaPretraga == "napredna")
-                $scope.napredna();
-            else if (proslaPretraga == "jednostavna")
-                $scope.jednostavna();
-            else
-                $scope.pokodu();
         };
 
         $scope.trans = function () {
@@ -110,7 +96,8 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
 
             $scope.polje = "da_li_ste_sig_za_rezervaciju";
             document.getElementById("da").style.display = 'inline';
-            //$scope.osvjeziPretragu();
+            document.getElementById("ne").innerHTML = "ne";
+            $scope.trans();
         };
 
         $scope.postaviID = function (event) {
