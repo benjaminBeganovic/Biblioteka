@@ -1,34 +1,42 @@
 <div ng-controller="RazduzenjeCtrl">
     <h2 translate="zaduzenja"></h2>
-    <ul>
+    <ul class="nav nav-tabs">
         <li><a href="./index.html#/Zaduzenje" translate="zaduzenje"></a></li>
         <li><a href="./index.html#/Razduzenje" translate="razduzenje"></a></li>
-        <li><a href="./index.html#/Zaduzeneknjige" translate="zaduzene_knjige"></a></li>        
+        <li><a href="./index.html#/Zaduzeneknjige" translate="zaduzene_knjige"></a></li>
     </ul>
-    <h3 translate="razduzenje"></h3>
-    <label for="username" translate="korisnicko_ime"></label><input type="text" id="username" ng-model="zaduzenjeModel.username"><br>
-    <button ng-click="getZaduzenja()" translate="zaduzenja_korisnika"></button>
+    <div class="container pull-left" style="max-width: 100%;">
+        <h3 translate="razduzenje"></h3>
+        <fieldset class="form-group form-inline">
+            <label for="username" translate="korisnicko_ime"></label>
+            <input type="text" class="form-control" id="username" ng-model="zaduzenjeModel.username"><br>
+        </fieldset>
+        <button class="button form-control" ng-click="getZaduzenja()" translate="zaduzenja_korisnika"></button>
+        <div class="panel-group">
+            <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
+                <div class="panel panel-default" style="margin-top: 3%;">
+                    <p class="panel-heading naslov">{{z.Knjiga.naslov}}</p>
+                    <div class="panel-body">
+                        <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
+                        <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
+                        <p class="godina">Godina izdavanja: {{z.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
+                        <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
+                        <p class="bg-info">Rok: {{z.rok}}</p>
 
-    <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
-        <div>
-            <p class="naslov">{{z.Knjiga.naslov}}</p>
-            <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{z.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
-            <p class="datum">Rok: {{z.rok}}</p>
-
-            <button translate="razduzi" ng-attr-id="{{ 'd' + z.ID }}" ng-click="dijalog($event)"></button>
-            <div hidden ng-attr-id="{{ 'z' + z.ID }}">
-                <h3 translate="da_li_ste_sigurni_za_razd"></h3>
-                <span>
-                    <button translate="da" ng-attr-id="{{ 'y' + z.ID }}" ng-click="razduzi(z)"></button>
-                    <button translate="ne" ng-attr-id="{{ 'n' + z.ID }}" ng-click="dijalog($event)"></button>
-                </span>
+                        <button type="button" class="btn btn-info btn-md" translate="razduzi" ng-attr-id="{{ 'd' + z.ID }}" ng-click="dijalog($event)"></button>
+                        <div hidden ng-attr-id="{{ 'z' + z.ID }}">
+                            <h4 translate="da_li_ste_sigurni_za_razd"></h4>
+                            <span>
+                                <button translate="da" ng-attr-id="{{ 'y' + z.ID }}" ng-click="razduzi(z)"></button>
+                                <button translate="ne" ng-attr-id="{{ 'n' + z.ID }}" ng-click="dijalog($event)"></button>
+                            </span>
+                        </div>
+                         <h4 hidden class="bg-info" ng-attr-id="{{ 'm' + z.ID }}" translate="{{message}}"></h4>                      
+                        <button hidden translate="ok" ng-attr-id="{{ 'b' + z.ID }}" ng-click="hideMessage($event)"></button>
+                    </div>
+                    </div>
             </div>
-            <h3 hidden ng-attr-id="{{ 'm' + z.ID }}" translate="{{message}}"></h3>
-            <button hidden translate="ok" ng-attr-id="{{ 'b' + z.ID }}" ng-click="hideMessage($event)"></button>
+            <h3>{{polje | translate}}</h3>
         </div>
-    </div>
-    <h3>{{polje | translate}}</h3>
-</div>
+        </div>
+ </div>

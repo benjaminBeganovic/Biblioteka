@@ -1,22 +1,29 @@
 <div ng-controller="ZaduzeneknjigeCtrl">
     <h2 translate="zaduzenja">Zaduzenja</h2>
-    <ul>
+    <ul class="nav nav-tabs">
         <li><a href="./index.html#/Zaduzenje" translate="zaduzenje"></a></li>
         <li><a href="./index.html#/Razduzenje" translate="razduzenje"></a></li>
         <li><a href="./index.html#/Zaduzeneknjige" translate="zaduzene_knjige"></a></li>
     </ul>
-    <h3 translate="zaduzene_knjige"></h3>
-    <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
-        <div>
-            <p class="naslov">{{z.Knjiga.naslov}}</p>
-            <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
-            <p class="korisnik">Zaduzio korisnik: {{z.Korisnik.ime + " " + z.Korisnik.prezime}} Telefon: {{z.Korisnik.telefon}} Email: {{z.Korisnik.email}}  Adresa: {{z.Korisnik.adresa}}</p>
-            <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
-            <p class="datum">Rok za vracanje: {{z.rok}}</p>
-            <p class="dostupno">Dostupno kopija: {{z.Knjiga.dostupno_kopija}}</p>
-            <h3 class="status">Status: {{z.status | translate}}</h3>
+    <div class="container pull-left" style="max-width: 100%;">
+        <h2 translate="zaduzene_knjige"></h2>
+        <div class="panel-group">
+            <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
+                <div class="panel panel-default" style="margin-bottom: 3%;">
+                    <div class="panel-heading naslov">{{z.Knjiga.naslov}}</div>
+                    <div class="panel-body">
+
+                        <p class="autor" ng-repeat="a in z.Knjiga.Autori">Autori: {{a.naziv}} </p>
+                        <p class="izdavac">Izdavac: {{z.Knjiga.Izdavac.naziv}}</p>
+                        <p class="korisnik">Zaduzio korisnik: {{z.Korisnik.ime + " " + z.Korisnik.prezime}} Telefon: {{z.Korisnik.telefon}} Email: {{z.Korisnik.email}}  Adresa: {{z.Korisnik.adresa}}</p>
+                        <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
+                        <p class="datum">Rok za vracanje: {{z.rok}}</p>
+                        <p class="dostupno">Dostupno kopija: {{z.Knjiga.dostupno_kopija}}</p>
+                        <p class="bg-info">Status: {{z.status | translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <h3>{{polje | translate}}</h3>
         </div>
     </div>
-    <h3>{{polje | translate}}</h3>
 </div>

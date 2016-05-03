@@ -1,39 +1,45 @@
 <div ng-controller="ZaduzenjeCtrl">
     <h2 translate="zaduzenja"></h2>
-    <ul>
+    <ul class="nav nav-tabs">
         <li><a href="./index.html#/Zaduzenje" translate="zaduzenje"></a></li>
         <li><a href="./index.html#/Razduzenje" translate="razduzenje"></a></li>
         <li><a href="./index.html#/Zaduzeneknjige" translate="zaduzene_knjige"></a></li>
     </ul>
-    <h3 translate="zaduzenje"></h3>
-    <label for="usernamee" translate="korisnicko_ime"></label><input type="text" id="usernamee" ng-model="zaduzenjeModel.username"><br>
-    <button ng-click="getRezervacije()" translate="rezervacije_korisnika"></button>
+    <div class="container pull-left" style="max-width: 100%;">
+        <h3 translate="zaduzenje"></h3>
+        <fieldset class="form-group form-inline">
+            <label for="username" translate="korisnicko_ime"></label>
+            <input type="text" class="form-control" id="username" ng-model="zaduzenjeModel.username"><br>
+        </fieldset>
+        <button class="button form-control" ng-click="getRezervacije()" translate="rezervacije_korisnika"></button>
+        <div class="panel-group">
+            <div id="rezervacije" ng-repeat="r in lista_rezervacija">
+                <div class="panel panel-default" style="margin-top: 3%;">
+                    <p class="panel-heading naslov">{{r.Knjiga.naslov}}</p>
+                    <div class="panel-body">
+                        <p class="autor" ng-repeat="a in r.Knjiga.Autori">Autori: {{a.naziv}} </p>
+                        <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
+                        <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
+                        <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
 
-    <div id="rezervacije" ng-repeat="r in lista_rezervacija">
-        <div>
-            <p class="naslov">{{r.Knjiga.naslov}}</p>
-            <p class="autor" ng-repeat="a in r.Knjiga.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
-
-            <button translate="zaduzi" ng-attr-id="{{ 'd' + r.ID }}" ng-click="dijalog($event)" ></button>
-            <div hidden ng-attr-id="{{ 'z' + r.ID }}">
-                <h3 translate="da_li_ste_sig_za_zaduzenje"></h3>
-                <h3 translate="rok"></h3><span><input type="number" min="5" max="30" ng-attr-id="{{ 'r' + r.ID }}"></span>
-                <span>
-                    <button translate="da" ng-attr-id="{{ 'y' + r.ID }}" ng-click="zaduzi(r)"></button>
-                    <button translate="ne" ng-attr-id="{{ 'n' + r.ID }}" ng-click="dijalog($event)"></button>
-                </span>
+                        <button type="button" class="btn btn-info btn-md" translate="zaduzi" ng-attr-id="{{ 'd' + r.ID }}" ng-click="dijalog($event)"></button>
+                        <div hidden ng-attr-id="{{ 'z' + r.ID }}">
+                            <h4 translate="da_li_ste_sig_za_zaduzenje"></h4>
+                            <label for="rr" translate="rok"></label><input type="number" id="rr" min="5" max="30" ng-attr-id="{{ 'r' + r.ID }}">
+                            <span>
+                                <button translate="da" ng-attr-id="{{ 'y' + r.ID }}" ng-click="zaduzi(r)"></button>
+                                <button translate="ne" ng-attr-id="{{ 'n' + r.ID }}" ng-click="dijalog($event)"></button>
+                            </span>
+                        </div>
+                        <h4 hidden class="bg-info" ng-attr-id="{{ 'm' + r.ID }}" translate="{{message}}"></h4>
+                        <button hidden translate="ok" ng-attr-id="{{ 'b' + r.ID }}" ng-click="hideMessage($event)"></button>
+                    </div>
+                </div>
             </div>
-            <h3 hidden ng-attr-id="{{ 'm' + r.ID }}" translate="{{message}}"></h3>
-            <button hidden translate="ok" ng-attr-id="{{ 'b' + r.ID }}" ng-click="hideMessage($event)"></button>
-
+            <h3>{{polje | translate}}</h3>
+            <input hidden type="text" ng-model="zaduzenjeModel.rok" />
+            <input hidden type="text" ng-model="zaduzenjeModel.KorisnikID" />
+            <input hidden type="text" ng-model="zaduzenjeModel.KnjigaID" />
         </div>
     </div>
-
-    <h3>{{polje | translate}}</h3>
-    <input hidden type="text" ng-model="zaduzenjeModel.rok" />
-    <input hidden type="text" ng-model="zaduzenjeModel.KorisnikID" />
-    <input hidden type="text" ng-model="zaduzenjeModel.KnjigaID" />
 </div>

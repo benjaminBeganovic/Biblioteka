@@ -30,14 +30,14 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
             var id3 = 'b' + idRez;
             var idRok = 'r' + idRez;
             document.getElementById(id2).innerHTML = "...";
-            document.getElementById(id2).style.display = 'block';
+            document.getElementById(id2).style.display = 'inline';
 
             $scope.zaduzenjeModel.KorisnikID = rezervacija.KorisnikID;
             $scope.zaduzenjeModel.KnjigaID = rezervacija.KnjigaID;
 
             var rokValue = document.getElementById(idRok).value;
             if (rokValue < 5 || rokValue > 30) {
-                document.getElementById(id3).style.display = 'block';
+                document.getElementById(id3).style.display = 'inline';
                 $scope.message = $sce.trustAsHtml("rok_treba_biti");
                 //document.getElementById(id2).innerHTML = "Rok treba biti izmedju 5 i 30 dana!";
             }
@@ -56,14 +56,14 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
 
                 $scope.message = poruka;
                 //document.getElementById(id2).innerHTML = poruka;
-                document.getElementById(id3).style.display = 'block';
+                document.getElementById(id3).style.display = 'inline';
                 //document.getElementById(id3).scrollIntoView();
             })
             .error(function (data, status) {
 
                 $scope.message = "greska_ponovo";
                 //document.getElementById(id2).innerHTML = "Greska! Pokusajte ponovo!";
-                document.getElementById(id3).style.display = 'block';
+                document.getElementById(id3).style.display = 'inline';
                 //document.getElementById(id3).scrollIntoView();
             });
             }
@@ -72,7 +72,7 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
             $scope.dijalog = function (event) {
                 var id = 'z' + event.target.id.substring(1, event.target.id.length);
                 if (event.target.id.substring(0, 1) == "d") {
-                    document.getElementById(id).style.display = 'block';
+                    document.getElementById(id).style.display = 'inline';
                     //document.getElementById(id).scrollIntoView();
                 }
                 else {

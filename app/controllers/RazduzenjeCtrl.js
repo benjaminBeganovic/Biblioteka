@@ -28,8 +28,8 @@ angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "Bibliot
             var id = 'z' + idRez;
             var id2 = 'm' + idRez;
             var id3 = 'b' + idRez;
-            document.getElementById(id2).innerHTML = "...";
-            document.getElementById(id2).style.display = 'block';
+            //document.getElementById(id2).innerHTML = "...";
+            document.getElementById(id2).style.display = 'inline';
 
             document.getElementById(id).style.display = 'none';
 
@@ -37,15 +37,13 @@ angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "Bibliot
         .success(function (data, status) {
 
             $scope.message = $sce.trustAsHtml("uspjesno_ste_razduzili");
-            //document.getElementById(id2).innerHTML = "uspjesno_ste_razduzili";
-            document.getElementById(id3).style.display = 'block';
+            document.getElementById(id3).style.display = 'inline';
             //document.getElementById(id3).scrollIntoView();
         })
         .error(function (data, status) {
 
             $scope.message = $sce.trustAsHtml("greska_ponovo");
-            //document.getElementById(id2).innerHTML = "greska_ponovo";
-            document.getElementById(id3).style.display = 'block';
+            document.getElementById(id3).style.display = 'inline';
             //document.getElementById(id3).scrollIntoView();
         });                
             
@@ -54,7 +52,7 @@ angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "Bibliot
             $scope.dijalog = function (event) {
                 var id = 'z' + event.target.id.substring(1, event.target.id.length);
                 if (event.target.id.substring(0, 1) == "d") {
-                    document.getElementById(id).style.display = 'block';
+                    document.getElementById(id).style.display = 'inline';
                     //document.getElementById(id).scrollIntoView();
                 }
                 else {
