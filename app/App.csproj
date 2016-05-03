@@ -17,7 +17,7 @@
     <AssemblyName>App</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -76,8 +76,18 @@
     <Content Include="assets\js\angular.js" />
     <Content Include="assets\js\angular.min.js" />
     <Content Include="assets\js\jquery-2.2.3.js" />
+    <Content Include="controllers\HomeCtrl.js" />
+    <Content Include="controllers\KKnjigeCtrl.js" />
+    <Content Include="controllers\PretragaCtrl.js" />
     <Content Include="controllers\LoginCtrl.js" />
-    <Content Include="controllers\MainCtrl.js" />
+    <Content Include="controllers\MenuCtrl.js" />
+    <Content Include="controllers\RazduzenjeCtrl.js" />
+    <Content Include="controllers\RegisterCtrl.js" />
+    <Content Include="controllers\RKnjigeCtrl.js" />
+    <Content Include="controllers\TranslateCtrl.js" />
+    <Content Include="controllers\ZaduzeneknjigeCtrl.js" />
+    <Content Include="controllers\ZaduzenjeCtrl.js" />
+    <Content Include="controllers\ZKnjigeCtrl.js" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -90,8 +100,17 @@
   <ItemGroup>
     <Content Include="services\main.js" />
     <Content Include="views\Home.html" />
+    <Content Include="views\KKnjigeForm.html" />
     <Content Include="views\LoginForm.html" />
+    <Content Include="views\JednostavnaPretragaForm.html" />
+    <Content Include="views\PoKoduPretragaForm.html" />
+    <Content Include="views\NaprednaPretragaForm.html" />
+    <Content Include="views\RazduzenjeForm.html" />
     <Content Include="views\RegisterForm.html" />
+    <Content Include="views\RKnjigeForm.html" />
+    <Content Include="views\ZaduzeneknjigeForm.html" />
+    <Content Include="views\ZaduzenjeForm.html" />
+    <Content Include="views\ZKnjigeForm.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
