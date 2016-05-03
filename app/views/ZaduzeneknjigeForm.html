@@ -1,11 +1,11 @@
 <div ng-controller="ZaduzeneknjigeCtrl">
-    <h2>Zaduzenja</h2>
+    <h2 translate="zaduzenja">Zaduzenja</h2>
     <ul>
-        <li><a href="./index.html#/Zaduzenje">Zaduzenje</a></li>
-        <li><a href="./index.html#/Razduzenje">Razduzenje</a></li>
-        <li><a href="./index.html#/Zaduzeneknjige">Zaduzene knjige</a></li>
+        <li><a href="./index.html#/Zaduzenje" translate="zaduzenje"></a></li>
+        <li><a href="./index.html#/Razduzenje" translate="razduzenje"></a></li>
+        <li><a href="./index.html#/Zaduzeneknjige" translate="zaduzene_knjige"></a></li>
     </ul>
-    <h3>Zaduzene knjige</h3>
+    <h3 translate="zaduzene_knjige"></h3>
     <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
         <div>
             <p class="naslov">{{z.Knjiga.naslov}}</p>
@@ -15,8 +15,8 @@
             <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
             <p class="datum">Rok za vracanje: {{z.rok}}</p>
             <p class="dostupno">Dostupno kopija: {{z.Knjiga.dostupno_kopija}}</p>
-            <h3 class="status">Status: {{z.status}}</h3>
+            <h3 class="status">Status: {{z.status | translate}}</h3>
         </div>
     </div>
-    <h3 ng-bind-html="polje"></h3>
+    <h3>{{polje | translate}}</h3>
 </div>

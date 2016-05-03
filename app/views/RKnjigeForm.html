@@ -1,5 +1,5 @@
 <div ng-controller="RKnjigeCtrl">
-    <h2>Rezervacije</h2>
+    <h2 translate="rezervacije"></h2>
     <div id="rezervacije" ng-repeat="r in lista_rezervacija">
         <div>
             <p class="naslov">{{r.Knjiga.naslov}}</p>
@@ -7,8 +7,8 @@
             <p class="izdavac">Izdavac: {{r.Knjiga.Izdavac.naziv}}</p>
             <p class="godina">Godina izdavanja: {{r.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
             <p class="datum">Datum rezervacije: {{r.datum_rezervacije}}</p>
-            <p class="status">Status: {{r.status}}</p>
+            <p class="status">Status: {{r.status | translate}}</p>
         </div>
     </div>
-    <h3 ng-bind-html="polje"></h3>
+    <h3>{{polje | translate}}</h3>
 </div>

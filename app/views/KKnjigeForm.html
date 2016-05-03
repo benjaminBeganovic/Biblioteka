@@ -1,5 +1,5 @@
 <div ng-controller="KKnjigeCtrl">
-    <h2>Kriticne knjige</h2>
+    <h2 translate="kriticne_knjige"></h2>
     <div id="knjige" ng-repeat="k in lista_knjiga">
         <div>
             <p class="naslov">{{k.naslov}}</p>
@@ -10,10 +10,10 @@
             <p class="broj">ID: {{k.idbroj}}</p>
             <p class="isbn">ISBN: {{k.isbn}}</p>
             <p class="broj">Izdanje: {{k.izdanje}}</p>
-            <p class="datum">Godina izdavanja: {{k.godina_izdavanja}}</p>
-            <p class="dostupno">DOSTUPNO KOPIJA: {{k.dostupno_kopija}}</p>
+            <p class="datum">Godina izdavanja: {{k.godina_izdavanja | translate}}</p>
+            <p class="dostupno">DOSTUPNO KOPIJA: {{k.dostupno_kopija | tranlate}}</p>
             <p class="broj">UKUPNO KOPIJA: {{k.ukupno_kopija}}</p>
         </div>
     </div>
-    <h3 ng-bind-html="polje"></h3>
+    <h3>{{polje | translate}}</h3>
 </div>

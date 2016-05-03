@@ -6,17 +6,17 @@ angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "Bibliot
 
             $scope.polje = $sce.trustAsHtml("");
             if ($scope.zaduzenjeModel == null || $scope.zaduzenjeModel.username == "")
-                $scope.polje = $sce.trustAsHtml("Trebate unijeti username!");
+                $scope.polje = $sce.trustAsHtml("treba_usename");
             else {
                 BibliotekaService.dajsvazaduzenjakorisnikabib($scope.zaduzenjeModel.username)
             .success(function (data, status) {
                 if (data == null || data == "")
-                    $scope.polje = $sce.trustAsHtml("Korisnik nema zaduzenja!");
+                    $scope.polje = $sce.trustAsHtml("korisnik_nema_zaduzenja");
                 $scope.lista_zaduzenja = data;
             })
             .error(function (data, status) {
                 $scope.lista_zaduzenja = null;
-                $scope.polje = $sce.trustAsHtml("Pogresan username!");
+                $scope.polje = $sce.trustAsHtml("pogr_username");
             })
             }
 
@@ -36,14 +36,15 @@ angular.module('BibliotekaApp').controller("RazduzenjeCtrl", ["$scope", "Bibliot
             BibliotekaService.razduziknjigu(zaduzenje.ID)
         .success(function (data, status) {
 
-            poruka = "Uspjesno ste razduzili knjigu!";
-            document.getElementById(id2).innerHTML = poruka;
+            $scope.message = $sce.trustAsHtml("uspjesno_ste_razduzili");
+            //document.getElementById(id2).innerHTML = "uspjesno_ste_razduzili";
             document.getElementById(id3).style.display = 'block';
             //document.getElementById(id3).scrollIntoView();
         })
         .error(function (data, status) {
 
-            document.getElementById(id2).innerHTML = "Greska! Pokusajte ponovo!" + status;
+            $scope.message = $sce.trustAsHtml("greska_ponovo");
+            //document.getElementById(id2).innerHTML = "greska_ponovo";
             document.getElementById(id3).style.display = 'block';
             //document.getElementById(id3).scrollIntoView();
         });                

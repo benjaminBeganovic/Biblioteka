@@ -6,17 +6,17 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
 
             $scope.polje = $sce.trustAsHtml("");
             if ($scope.zaduzenjeModel == null || $scope.zaduzenjeModel.username == "")
-                $scope.polje = $sce.trustAsHtml("Trebate unijeti username!");
+                $scope.polje = $sce.trustAsHtml("treba_usename");
             else {
                 BibliotekaService.dajsverezervacijekorisnikabib($scope.zaduzenjeModel.username)
             .success(function (data, status) {
                 if (data == null || data == "")
-                    $scope.polje = $sce.trustAsHtml("Korisnik nema rezervacija!");
+                    $scope.polje = $sce.trustAsHtml("korisnik_nema_rez");
                 $scope.lista_rezervacija = data;
             })
             .error(function (data, status) {
                 $scope.lista_rezervacija = null;
-                $scope.polje = $sce.trustAsHtml("Pogresan username!");
+                $scope.polje = $sce.trustAsHtml("pogr_username");
             })
             }
 
@@ -38,7 +38,8 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
             var rokValue = document.getElementById(idRok).value;
             if (rokValue < 5 || rokValue > 30) {
                 document.getElementById(id3).style.display = 'block';
-                document.getElementById(id2).innerHTML = "Rok treba biti izmedju 5 i 30 dana!";
+                $scope.message = $sce.trustAsHtml("rok_treba_biti");
+                //document.getElementById(id2).innerHTML = "Rok treba biti izmedju 5 i 30 dana!";
             }
             else {
                 document.getElementById(id).style.display = 'none';
@@ -49,17 +50,19 @@ angular.module('BibliotekaApp').controller("ZaduzenjeCtrl", ["$scope", "Bibliote
             .success(function (data, status) {
                 var poruka;
                 if (data.status == "nv")
-                    poruka = "Uspjesno ste zaduzili knjigu!";
+                    poruka = "uspjesno_zaduzenje";
                 else
                     poruka = data.status;
 
-                document.getElementById(id2).innerHTML = poruka;
+                $scope.message = poruka;
+                //document.getElementById(id2).innerHTML = poruka;
                 document.getElementById(id3).style.display = 'block';
                 //document.getElementById(id3).scrollIntoView();
             })
             .error(function (data, status) {
 
-                document.getElementById(id2).innerHTML = "Greska! Pokusajte ponovo!";
+                $scope.message = "greska_ponovo";
+                //document.getElementById(id2).innerHTML = "Greska! Pokusajte ponovo!";
                 document.getElementById(id3).style.display = 'block';
                 //document.getElementById(id3).scrollIntoView();
             });

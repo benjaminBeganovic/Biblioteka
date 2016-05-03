@@ -6,14 +6,14 @@ angular.module('BibliotekaApp').controller("RKnjigeCtrl", ["$scope", "Biblioteka
                 if (data == null || data == "")
                 {
                     $scope.lista_rezervacija = null;
-                    $scope.polje = $sce.trustAsHtml("Nemate rezervacija!");
+                    $scope.polje = $sce.trustAsHtml("nema_rez");
                 }
                 else
                     $scope.lista_rezervacija = data;
             })
             .error(function (data, status) {
                 $scope.lista_rezervacija = null;
-                $scope.polje = $sce.trustAsHtml("Greska! Pokusajte ponovo!");
+                $scope.polje = $sce.trustAsHtml("greska_ponovo");
             })
 
         if (document.getElementById("cLang").innerHTML == "BS")

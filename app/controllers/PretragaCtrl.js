@@ -2,6 +2,7 @@
 function ($scope, BibliotekaService, $sce, $http, $translate) {
         var defaultTipKnjige = 0;
         var defaultJezik = 2;
+        var proslaPretraga;
 
         BibliotekaService.svijezici()
         .success(function (data, status) {
@@ -17,6 +18,7 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
             BibliotekaService.naprednapretraga($scope.naprednaModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
+                proslaPretraga = "napredna";
             })
             .error(function (data, status) {
                 $scope.rezultat = null;
@@ -28,6 +30,7 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
             BibliotekaService.jednostavnapretraga($scope.jednostavnaModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
+                proslaPretraga = "jednostavna";
             })
             .error(function (data, status) {
                 $scope.rezultat = null;
@@ -38,73 +41,83 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
             BibliotekaService.pretragakod($scope.pokoduModel)
             .success(function (data, status) {
                 $scope.rezultat = data;
+                proslaPretraga = "pokodu";
             })
             .error(function (data, status) {
                 $scope.rezultat = null;
             })
         };
 
-        //dio za rezervisanje
-        $scope.rezervisi = function (event) {
+        $scope.osvjeziPretragu = function () {
 
-            var id = 'r' + event.target.id.substring(1, event.target.id.length);
-            document.getElementById(id).style.display = 'none';
-            var id2 = 'm' + event.target.id.substring(1, event.target.id.length);
-            document.getElementById(id2).style.display = 'block';
-            var id3 = 'b' + event.target.id.substring(1, event.target.id.length);
+            if (proslaPretraga == "napredna")
+                $scope.napredna();
+            else if (proslaPretraga == "jednostavna")
+                $scope.jednostavna();
+            else
+                $scope.pokodu();
+        };
 
-            var idK = event.target.id.substring(1, event.target.id.length);
+        $scope.trans = function () {
+            if (document.getElementById("cLang").innerHTML == "BS")
+                $translate.use('bs');
+            else
+                $translate.use('en');
+        };
+
+    //dio za rezervisanje
+        $scope.polje = "da_li_ste_sig_za_rezervaciju";
+        var idK = "";
+
+        $scope.rezervisi = function () {
+
+            $scope.polje = "...";
+            //treba blokirati UI i poslije deblokirati !!!
+            document.getElementById("da").style.display = 'none';
+            document.getElementById("ne").style.display = 'none';
 
             BibliotekaService.rezervisi(idK)
             .success(function (data, status) {
 
                 var poruka;
                 if (data.status == "co")
-                    poruka = "Uspjesno ste rezervisali knjigu! Po knjigu bi trebali doci u naredna dva dana."
+                    poruka = "uspjesna_rezervaicija";
                 else if (data.status == "wa")
-                    poruka = "Uspjesno ste rezervisali knjigu! U narednim danima cete dobiti obavijest, o zaduzenju iste.";
+                    poruka = "uspjesna_rezervaicija_wa";
                 else
                     poruka = data.status;
 
-                document.getElementById(id2).innerHTML = poruka;
-                document.getElementById(id3).style.display = 'block';
-                //document.getElementById(id3).scrollIntoView();
+                $scope.polje = poruka;
             })
             .error(function (data, status) {
 
                 if (status == 401)
-                    document.getElementById(id2).innerHTML = "Da bi rezervisali knjigu trebate biti clan!";
+                    $scope.polje = "trebate_biti_clan";
                 else
-                    document.getElementById(id2).innerHTML = "Greska! Pokusajte ponovo!";
-
-                document.getElementById(id3).style.display = 'block';
-                //document.getElementById(id3).scrollIntoView();
+                    $scope.polje = "greska_ponovo";
             })
+
+            var ok = "Uredu";
+            if (document.getElementById("cLang").innerHTML == "EN")
+                ok = "Ok";
+
+            document.getElementById("ne").innerHTML = ok;
+            document.getElementById("ne").style.display = 'inline';
+
         };
 
-        $scope.dijalog = function (event) {
+        $scope.dijalog = function () {
 
-            var id = 'r' + event.target.id.substring(1, event.target.id.length);
-            if (event.target.id.substring(0, 1) == "d") {
-                document.getElementById(id).style.display = 'block';
-                //document.getElementById(id).scrollIntoView();
-            }
-            else {
-                document.getElementById(id).style.display = 'none';
-            }
+            $scope.polje = "da_li_ste_sig_za_rezervaciju";
+            document.getElementById("da").style.display = 'inline';
+            //$scope.osvjeziPretragu();
         };
 
-        $scope.hideMessage = function (event) {
+        $scope.postaviID = function (event) {
 
-            var id = 'b' + event.target.id.substring(1, event.target.id.length);
-            var id2 = 'm' + event.target.id.substring(1, event.target.id.length);
-            document.getElementById(id).style.display = 'none';
-            document.getElementById(id2).style.display = 'none';
+            idK = event.target.id;
         };
 
-        if (document.getElementById("cLang").innerHTML == "BS")
-            $translate.use('bs');
-        else
-            $translate.use('en');
+        $scope.trans();
 
     }]);

@@ -1,5 +1,5 @@
 <div ng-controller="ZKnjigeCtrl">
-    <h2>Zaduzenja</h2>
+    <h2 translate="zaduzenja"></h2>
     <div id="zaduzenja" ng-repeat="z in lista_zaduzenja">
         <div>
             <p class="naslov">{{z.Knjiga.naslov}}</p>
@@ -8,8 +8,8 @@
             <p class="godina">Godina izdavanja: {{z.Knjiga.godina_izdavanja | date:'yyyy'}}</p>
             <p class="datum">Datum zaduzenja: {{z.datum_zaduzenja}}</p>
             <p class="datum">Rok: {{z.rok}}</p>
-            <h3 class="status">Rok: {{z.status}}</h3>
+            <h3 class="status">Status: {{z.status | translate}}</h3>
         </div>
     </div>
-    <h3 ng-bind-html="polje"></h3>
+    <h3>{{polje | translate}}</h3>
 </div>

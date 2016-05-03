@@ -7,14 +7,14 @@ angular.module('BibliotekaApp').controller("ZaduzeneknjigeCtrl", ["$scope", "Bib
                 if (data == null || data == "")
                 {
                     $scope.lista_zaduzenja = null;
-                    $scope.polje = $sce.trustAsHtml("Nema zaduzenih knjiga!");
+                    $scope.polje = $sce.trustAsHtml("nema_zadu_knjiga");
                 }
 
                 $scope.lista_zaduzenja = data;
             })
             .error(function (data, status) {
                 $scope.lista_zaduzenja = null;
-                $scope.polje = $sce.trustAsHtml("Greska! Pokusajte ponovo!");
+                $scope.polje = $sce.trustAsHtml("greska_ponovo");
             })
 
         if (document.getElementById("cLang").innerHTML == "BS")

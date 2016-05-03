@@ -71,9 +71,28 @@ app.config(function ($translateProvider) {
         email_nije_validan: 'Email is not valid!',
         drugi_username: 'Please take another username!',
         uspjesna_registracija: 'You have successfully registered! Please verify account with your e-mail!',
-        greska_ponovo: 'Error! Try again!'
-
-        //Mirhat
+        greska_ponovo: 'Error! Try again!',
+        nema_kriticnih: 'No critical books!',
+        da_li_ste_sig_za_zaduzenje: 'Are you sure you want to charge this book?',
+        da_li_ste_sig_za_rezervaciju: 'Are you sure you want to reserve this book?',
+        rok: 'Period:',
+        da: 'Yes',
+        ne: 'No',
+        ok: 'Ok',
+        uspjesna_rezervaicija: 'You have successfully reserved a book! You should come in the next two days!',
+        uspjesna_rezervaicija_wa: 'You have successfully reserved a book! In the coming days you will be notified about charge!',
+        trebate_biti_clan: 'To reserve a book you need to be a member!',
+        da_li_ste_sigurni_za_razd: 'Are you sure you want to discarge this book?',
+        korisnik_nema_zaduzenja: 'User has no charges!',
+        treba_usename: 'Username is required!',
+        nema_rez: 'No reservations!',
+        nema_zadu_knjiga: 'There is no charged books!',
+        korisnik_nema_rez: 'User has no reservations!',
+        rok_treba_biti: 'The period should be between 5 and 30 days!',
+        uspjesno_zaduzenje: 'You have successfully charged book!',
+        nemate_zaduzenja: 'You have no charges!',
+        zaduzenja_korisnika: 'User assignments',
+        rezervacija: 'Reservation'
 
     });
     $translateProvider.translations('bs', {
@@ -146,7 +165,28 @@ app.config(function ($translateProvider) {
         email_nije_validan: 'Email nije validan!',
         drugi_username: 'Molimo uzmite drugi username!',
         uspjesna_registracija: 'Uspjesno ste registrovani! Molimo vas da se jos verifikujete putem vaseg email-a!',
-        greska_ponovo: 'Greska! Pokusajte ponovo!'
+        greska_ponovo: 'Greska! Pokusajte ponovo!',
+        nema_kriticnih: 'Nema kriticnih knjiga!',
+        da_li_ste_sig_za_zaduzenje: 'Da li ste sigurni da zelite zaduziti ovu knjigu?',
+        da_li_ste_sig_za_rezervaciju: 'Da li ste sigurni da zelite rezervisati ovu knjigu?',
+        rok: 'Rok:',
+        da: 'Da',
+        ne: 'Ne',
+        ok: 'Uredu',
+        uspjesna_rezervaicija: 'Uspjesno ste rezervisali knjigu! Po knjigu bi trebali doci u naredna dva dana.',
+        uspjesna_rezervaicija_wa: 'Uspjesno ste rezervisali knjigu! U narednim danima cemo vas obavjestiti o zaduzenju iste!',
+        trebate_biti_clan: 'Da bi rezervisali knjigu trebate biti clan!',
+        da_li_ste_sigurni_za_razd: 'Da li ste sigurni da zelite razaduziti ovu knjigu?',
+        korisnik_nema_zaduzenja: 'Korisnik nema zaduzenja!',
+        treba_usename: 'Trebate unijeti username!',
+        nema_rez: 'Nemate rezervacija!',
+        nema_zadu_knjiga: 'Nema zaduzenih knjiga!',
+        korisnik_nema_rez: 'Korisnik nema rezervacija!',
+        rok_treba_biti: 'Rok treba biti izmedju 5 i 30 dana!',
+        uspjesno_zaduzenje: 'Uspjesno ste zaduzili knjigu!',
+        nemate_zaduzenja: 'Nemate zaduzenja!',
+        zaduzenja_korisnika: 'Zaduzenja korisika',
+        rezervacija: 'Rezervacija'//88
 
         /*
         //ima neki problem sa utf-8 i angular translate-om:

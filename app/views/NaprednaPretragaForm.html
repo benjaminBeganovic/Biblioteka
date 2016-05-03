@@ -66,16 +66,16 @@
                 <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
 
                 <!--dio za rezervaciju-->
-                <input type="button" value="Rezervisi" ng-attr-id="{{ 'd' + x.ID }}" ng-click="dijalog($event)" />
+                <button value="Rezervisi" translate="rezervisi" ng-attr-id="{{ 'd' + x.ID }}" ng-click="dijalog($event)"></button>
                 <div hidden ng-attr-id="{{ 'r' + x.ID }}">
-                    <h3>Da li ste sigurni da zelite rezervisati ovu knjigu?</h3>
+                    <h3 translate="da_li_ste_sig_za_rezervaciju"></h3>
                     <span>
-                        <input type="button" value="DA" ng-attr-id="{{ 'y' + x.ID }}" ng-click="rezervisi($event)">
-                        <input type="button" value="NE" ng-attr-id="{{ 'n' + x.ID }}" ng-click="dijalog($event)">
+                        <button translate="da" ng-attr-id="{{ 'y' + x.ID }}" ng-click="rezervisi($event)"></button>
+                        <button translate="ne" ng-attr-id="{{ 'n' + x.ID }}" ng-click="dijalog($event)"></button>
                     </span>
                 </div>
-                <h3 hidden ng-attr-id="{{ 'm' + x.ID }}">...</h3>
-                <input hidden type="button" value="Uredu" ng-attr-id="{{ 'b' + x.ID }}" ng-click="hideMessage($event)">
+                <h3 hidden ng-attr-id="{{ 'm' + x.ID }}" translate="{{polje}}"></h3>
+                <button hidden translate="ok" ng-attr-id="{{ 'b' + x.ID }}" ng-click="hideMessage($event)"></button>
             </div>
         </div>
     </div>

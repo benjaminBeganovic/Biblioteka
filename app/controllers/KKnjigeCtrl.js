@@ -6,14 +6,14 @@ angular.module('BibliotekaApp').controller("KKnjigeCtrl", ["$scope", "Biblioteka
                 if (data == null || data == "")
                 {
                     $scope.lista_knjiga = null;
-                    $scope.polje = $sce.trustAsHtml("Nema kriticnih knjiga");
+                    $scope.polje = $sce.trustAsHtml("nema_kriticnih");
                 }
                 else
                     $scope.lista_knjiga = data;
             })
             .error(function (data, status) {
                 $scope.lista_knjiga = null;
-                $scope.polje = $sce.trustAsHtml("Greska! Pokusajte ponovo!");
+                $scope.polje = $sce.trustAsHtml("greska_ponovo");
             })
 
         if (document.getElementById("cLang").innerHTML == "BS")
