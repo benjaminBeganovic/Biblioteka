@@ -5,6 +5,10 @@ label {
     padding-top:10px;
 } 
 
+#angularcontainer {
+    padding: 10px 40px;
+}
+
 .container {
     background-color: white;
     min-height: 800px;
