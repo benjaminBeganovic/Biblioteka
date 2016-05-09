@@ -44,6 +44,9 @@ var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht
             .when('/ZKnjige', {
                 templateUrl: 'views/ZKnjigeForm.html'
             })
+            .when('/ResetPass', {
+                templateUrl: 'views/ResetPass.html'
+            })
             .otherwise({
                 templateUrl: 'views/Home.html'
             });

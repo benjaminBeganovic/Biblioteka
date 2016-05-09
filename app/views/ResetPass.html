@@ -1,7 +1,8 @@
 <div data-ng-controller="ResetPassCtrl">
     <fieldset class="form-group form-inline">
-        <label>Zaboravili ste sifru?</label>
-        <input type="text" class="form-control" id="email-reset" ng-model="korisnikModel.email">
+        <label>Email</label>
+        <input type="text" class="form-control" id="email-reset" ng-model="email">
         <button ng-click="getPass()">resetuj ovdje</button>
+        <p class="warning" ng-bind-html="error"></p>
     </fieldset>
 </div>
