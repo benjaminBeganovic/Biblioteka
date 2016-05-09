@@ -73,6 +73,56 @@ namespace Biblioteka.Controllers
             return response;
         }
 
+		[ActionName("ResetPass")]
+        [HttpPost]
+        public IHttpActionResult ResetPass(string email)
+        {
+            Korisnik korisnik = db.Korisniks.Where(a => a.email == email).First();
+            if (korisnik == null)
+            {
+                return NotFound();
+            }
+
+            string from = "bibliotekanwt@gmail.com";
+            string pass = "bibliotekanwtpass1";
+
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress(from);
+            mail.To.Add(email);
+
+            mail.Subject = "Reset passworda";
+            mail.IsBodyHtml = true;
+
+            string noviPass = RandomString(6);
+            korisnik.password = noviPass;
+            db.Entry(korisnik).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
+            mail.Body = "<table border='1' cellpadding='0' cellspacing='0' width='100%'><tr><td style='padding: 10px 10px 10px 10px;'>" +
+                "Poštovanje, <br><br>vaš password je \"" + noviPass +
+                "<p>Lijep pozdrav.</p></td></tr><tr><td style='padding: 10px 10px 10px 10px;'>Vaša NWT Biblioteka!</td></tr></table>";
+
+
+            SmtpClient SMTPServer = new SmtpClient("smtp.gmail.com", 587);
+            SMTPServer.Credentials = new System.Net.NetworkCredential(from, pass);
+            SMTPServer.EnableSsl = true;
+
+            try
+            {
+                SMTPServer.Send(mail);
+            }
+            catch (Exception ex)
+            {
+                String error = ex.Message;
+            }
+            return Ok();
+        }
+		
         // PUT: api/Korisniks/5
         [CustomAuthorize(Roles = "c")]
         [ResponseType(typeof(void))]
