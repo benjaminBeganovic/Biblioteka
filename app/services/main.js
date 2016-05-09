@@ -177,6 +177,21 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 params: { idKnjige: idKnjige },
                 withCredentials: true
             });
+        },
+        resetujpass: function (email) {
+            return $http({
+                url: serviceBase + 'api/Korisniks/ResetPass',
+                method: "POST",
+                params: { email: email }
+            });
+        },
+        dodajknjigu: function (knjigaModel) {
+            return $http({
+                url: serviceBase + 'api/Knjigas',
+                method: "POST",
+                withCredentials: true,
+                params: JSON.stringify(knjigaModel)
+            });
         }
     };
 }]);
