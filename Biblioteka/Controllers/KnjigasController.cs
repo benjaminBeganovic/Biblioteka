@@ -96,12 +96,14 @@ namespace Biblioteka.Controllers
 
         // POST: api/Knjigas
         [ResponseType(typeof(Knjiga))]
-        public IHttpActionResult PostKnjiga(Knjiga knjiga)
+        public IHttpActionResult PostKnjiga([FromBody] Knjiga knjiga)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            return Ok(knjiga);
 
             db.Knjigas.Add(knjiga);
             db.SaveChanges();
