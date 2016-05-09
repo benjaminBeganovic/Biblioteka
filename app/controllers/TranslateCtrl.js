@@ -4,6 +4,7 @@ app.config(function ($translateProvider) {
     $translateProvider.translations('en', {
 
         clanstvo_produzi: 'You should extend membership!',
+        katalog: 'Catalog',
         vec_rezervisano: 'You already booked this book!',
         pogr_username: 'Username is incorrect!',
         doci_po_knjigu: 'You need to come in the coming days to get book!',
@@ -96,7 +97,7 @@ app.config(function ($translateProvider) {
 
     });
     $translateProvider.translations('bs', {
-
+        katalog: 'Katalog',
         clanstvo_produzi : 'Trebate produziti clanstvo!',
         vec_rezervisano : 'Vec ste rezervisali ovu knjigu!',
         pogr_username : 'Username je pogresan!',

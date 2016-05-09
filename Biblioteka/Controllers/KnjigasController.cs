@@ -102,6 +102,7 @@ namespace Biblioteka.Controllers
             {
                 return BadRequest(ModelState);
             }
+            
 
             db.Knjigas.Add(knjiga);
             db.SaveChanges();

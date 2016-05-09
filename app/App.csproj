@@ -77,6 +77,7 @@
     <Content Include="assets\js\angular.min.js" />
     <Content Include="assets\js\jquery-2.2.3.js" />
     <Content Include="controllers\HomeCtrl.js" />
+    <Content Include="controllers\KatalogCtrl.js" />
     <Content Include="controllers\KKnjigeCtrl.js" />
     <Content Include="controllers\PretragaCtrl.js" />
     <Content Include="controllers\LoginCtrl.js" />
@@ -100,6 +101,7 @@
   <ItemGroup>
     <Content Include="services\main.js" />
     <Content Include="views\Home.html" />
+    <Content Include="views\Katalog.html" />
     <Content Include="views\KKnjigeForm.html" />
     <Content Include="views\LoginForm.html" />
     <Content Include="views\JednostavnaPretragaForm.html" />

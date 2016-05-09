@@ -1,0 +1,43 @@
+﻿<div ng-controller="KatalogCtrl" class="row">
+    <div class="col-md-6">
+        <form name="myForm">
+            <fieldset class="form-group form-inline">
+                <label for="tip" translate="tip_knjige">Tip knjige:</label>
+                <select id="tip" class="form-control" ng-model="naprednaModel.tip">
+                    <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
+                </select>
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="jezik" translate="jezici">Jezici:</label>
+                <select id="jezik" class="form-control" ng-model="naprednaModel.jezik">
+                    <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
+                </select>
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="naziv" translate="naziv">Naziv:</label>
+                <input name="naziv" class="form-control" type="text" id="naziv" ng-model="naprednaModel.naziv" required>
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="autor" translate="autor">Autor:</label>
+                <input name="autor" class="form-control" type="text" id="autor" ng-model="naprednaModel.autor" required>
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="izdavac" translate="izdavac">Izdavac:</label>
+                <input name="izdavac" class="form-control" type="text" id="izdavac" ng-model="naprednaModel.izdavac">
+            </fieldset>
+
+
+            <fieldset class="form-group form-inline">
+                <label for="godina" translate="godina">Godina:</label>
+                <input name="godina" class="form-control" type="number" id="godina" ng-model="naprednaModel.godina">
+            </fieldset>
+
+            <button class="form-control button" ng-click="dodaj()" >Dodaj</button>
+            <p class="warning" ng-bind-html="error"></p>
+        </form>
+    </div>
+</div>
