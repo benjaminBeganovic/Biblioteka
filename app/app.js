@@ -1,4 +1,4 @@
-var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht.translate'])
+var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht.translate','noCAPTCHA'])
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider

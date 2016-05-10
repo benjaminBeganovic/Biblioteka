@@ -93,7 +93,8 @@ app.config(function ($translateProvider) {
         uspjesno_zaduzenje: 'You have successfully charged book!',
         nemate_zaduzenja: 'You have no charges!',
         zaduzenja_korisnika: 'User assignments',
-        rezervacija: 'Reservation'
+        rezervacija: 'Reservation',
+        captcha_validacija: 'Confirm captcha!'
 
     });
     $translateProvider.translations('bs', {
@@ -187,7 +188,9 @@ app.config(function ($translateProvider) {
         uspjesno_zaduzenje: 'Uspjesno ste zaduzili knjigu!',
         nemate_zaduzenja: 'Nemate zaduzenja!',
         zaduzenja_korisnika: 'Zaduzenja korisika',
-        rezervacija: 'Rezervacija'//88
+        rezervacija: 'Rezervacija',
+        captcha_validacija: 'Potvrdite captchu!'
+        //88
 
         /*
         //ima neki problem sa utf-8 i angular translate-om:

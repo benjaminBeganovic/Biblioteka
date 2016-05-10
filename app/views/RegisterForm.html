@@ -42,6 +42,14 @@
             <label for="password" translate="potvrdi_pass"></label>
             <input type="password" class="form-control" id="password2" ng-model="retypeModel.password"><br>
         </fieldset>
+        <fieldset class="form-group form-inline">
+            <no-captcha g-recaptcha-response="gRecaptchaResponse"
+                        theme='light'
+                        expired-callback="expiredCallback"
+                        control="noCaptchaControl"
+                        site-key="6LfyeR8TAAAAADFw3-jTDUaMrOKbdON7uobRGwni">
+            </no-captcha>
+        </fieldset>
         <button ng-click="regMe()" class="form-control button" translate="registruj_me"></button>
         <h3>{{error | translate}}</h3>
     </div>
