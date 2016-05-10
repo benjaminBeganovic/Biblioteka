@@ -1,0 +1,506 @@
+{
+  "_type": "export",
+  "__export_format": 1,
+  "__export_date": "2016-03-22T20:43:10.816Z",
+  "__export_source": "insomnia.chrome.app:v2.6.10",
+  "items": [
+    {
+      "_type": "request_group",
+      "_id": "grp_1458328027028",
+      "name": "Zaduzenje",
+      "environments": {},
+      "requests": []
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1458238523341",
+      "name": "TipRacuna",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1458238523341",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/1",
+          "method": "PUT",
+          "body": "{\n    \"referenca\": \"bibliotekar\",\n    \"opis\": \"Onaj sto uzima knjige\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Izmijeni tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238559157",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/2",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238568628",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/",
+          "method": "POST",
+          "body": "{\n    \"referenca\": \"korisnik\",\n    \"opis\": \"Onaj sto trazi knjige\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Napravi tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238577870",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/1",
+          "method": "DELETE",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Izbrisi tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458238946411",
+          "url": "http://nwtbiblioteka.azurewebsites.net/api/TipRacunas/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve tipove racuna"
+        }
+      ]
+    },
+    {
+      "_type": "request_group",
+      "_id": "grp_1458662694081",
+      "name": "Getovi i Postovi",
+      "environments": {},
+      "requests": [
+        {
+          "_type": "request",
+          "_id": "req_1458662694081",
+          "url": "localhost:57320/api/Autors/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve autore"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458662748768",
+          "url": "localhost:57320/api/Autors/",
+          "method": "POST",
+          "body": "{\n    \"naziv\": \"Mesa Selimovic\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj autora"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458662910967",
+          "url": "localhost:57320/api/Izdavacs/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve izdavace"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458662988334",
+          "url": "localhost:57320/api/Izdavacs",
+          "method": "POST",
+          "body": "{\n    \"naziv\": \"Svjetlost\",\n    \"adresa\": \"Zmaja od Bosne bb Sarajevo\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj izdavaca"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458663268429",
+          "url": "localhost:57320/api/Jeziks/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve jezike"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458663333607",
+          "url": "localhost:57320/api/Jeziks/",
+          "method": "POST",
+          "body": "{\n    \"referenca\": \"BOS\",\n    \"opis\": \"Bosanski jezik\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj jezik"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458663468283",
+          "url": "localhost:57320/api/TipKnjiges/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve tipove knjige"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458663502763",
+          "url": "localhost:57320/api/TipKnjiges/",
+          "method": "POST",
+          "body": "{\n    \"referenca\": \"EDU\",\n    \"opis\": \"Edukacijska knjiga\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj tip knjige"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458667261037",
+          "url": "localhost:57320/api/Knjigas/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve knjige"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458667279905",
+          "url": "localhost:57320/api/Knjigas/",
+          "method": "POST",
+          "body": "{\n    \"naslov\": \"Dervis i smrt\",\n    \"isbn\": \"123456789\",\n    \"broj_strana\": 700,\n    \"godina_izdavanja\": \"1990-04-12T00:00:00\",\n    \"ukupno_kopija\": 100,\n    \"dostupno_kopija\": 50,\n    \"izdanje\": 3,\n    \"opis\": \"Ovo je psiholoski roman! ...\",\n    \"izbrisano\": false,\n    \"IzdavacID\": 1,\n    \"TipKnjigeID\": 1,\n    \"JezikID\": 1\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj knjigu"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458669944626",
+          "url": "localhost:57320/api/TipRacunas/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve tipove racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458669983654",
+          "url": "localhost:57320/api/TipRacunas/",
+          "method": "POST",
+          "body": "{\n    \"referenca\": \"korisnik\",\n    \"opis\": \"Onaj sto trazi knjige\"\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj tip racuna"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458670102098",
+          "url": "localhost:57320/api/Korisniks/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve korisnike"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458670136064",
+          "url": "localhost:57320/api/Korisniks/",
+          "method": "POST",
+          "body": "{\n    \"ime\": \"Kenan\",\n    \"prezime\": \"Spahic\",\n    \"telefon\": \"062784356\",\n    \"adresa\": \"Zmaja od Bosne bb, Sarajevo\",\n    \"email\": \"kspahic1@hotmail.com\",\n    \"izbrisan\": false,\n    \"username\": \"kspahic1\",\n    \"password\": \"nekassifra123\",\n    \"odobren\": false,\n    \"TipRacunaID\": 1\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj korisnika"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458670878319",
+          "url": "localhost:57320/api/Clanstvoes/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sva clanstva"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458670886077",
+          "url": "localhost:57320/api/Clanstvoes/",
+          "method": "POST",
+          "body": "{\n    \"KorisnikID\": 2,\n    \"datum_racuna\": \"2010-12-12T00:00:00\",\n    \"istek_racuna\": \"2017-12-12T00:00:00\",\n    \"clanski_broj\": 10\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj clanstvo"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458671469487",
+          "url": "localhost:57320/api/Zaduzenja/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sva zaduzenja"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458671487213",
+          "url": "localhost:57320/api/Rezervacija/",
+          "method": "GET",
+          "body": "{}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Daj sve rezervacije"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458671609299",
+          "url": "localhost:57320/api/Rezervacija/",
+          "method": "POST",
+          "body": "{\n    \"status\": \"rezervisano\",\n    \"datum_rezervacije\": \"2016-03-03T12:00:00\",\n    \"cekanje\": 2,\n    \"KorisnikID\": 2,\n    \"KnjigaID\": 1\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj rezervaciju"
+        },
+        {
+          "_type": "request",
+          "_id": "req_1458671632718",
+          "url": "localhost:57320/api/Zaduzenja/",
+          "method": "POST",
+          "body": "{\n    \"status\": \"zaduzeno\",\n    \"datum_zaduzenja\": \"2016-03-03T12:00:00\",\n    \"datum_vracanja\": \"2016-04-03T12:00:00\",\n    \"rok\": \"2016-04-03T12:00:00\",\n    \"KorisnikID\": 2,\n    \"KnjigaID\": 1,\n    \"ZaposlenikID\": 2\n}",
+          "headers": [],
+          "params": [],
+          "authentication": {
+            "_type": "basic",
+            "username": "",
+            "password": ""
+          },
+          "__insomnia": {
+            "format": "json",
+            "panel_width": 0.5
+          },
+          "name": "Kreiraj zaduzenje"
+        }
+      ]
+    }
+  ]
+}
