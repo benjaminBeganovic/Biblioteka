@@ -26,6 +26,8 @@ namespace Biblioteka.Models
         [StringLength(45, ErrorMessage = "ISBN moze imati do 45 karaktera.")]
         public string isbn { get; set; }
 
+        public string autor { get; set; }
+
         [StringLength(45, ErrorMessage = "Idbroj moze imati do 45 karaktera.")]
         public string idbroj { get; set; }
 

@@ -23,7 +23,7 @@ namespace Biblioteka.Controllers
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetKnjigas()
         {
-            var knjige = db.Knjigas.ToList();
+            var knjige = db.Knjigas.Where(a => a.izbrisano == false).ToList();
             return Ok(knjige);
         }
         //kriticne knjige - knjige koje su sve zauzete
@@ -105,6 +105,16 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
 
+            var autori = new List<Autor>();
+            foreach(string a in knjiga.autor.Split(','))
+            {
+                var aut = new Autor();
+                aut.naziv = a;
+                db.Autors.Add(aut);
+                autori.Add(aut);
+            }
+            knjiga.Autori = autori;
+            knjiga.izbrisano = false;
             db.Knjigas.Add(knjiga);
             db.SaveChanges();
 
@@ -122,7 +132,9 @@ namespace Biblioteka.Controllers
                 return Ok("Nema");
             }
 
-            db.Knjigas.Remove(knjiga);
+            knjiga.izbrisano = true;
+            db.Entry(knjiga).State = EntityState.Modified;
+
             db.SaveChanges();
 
             return Ok(knjiga);
