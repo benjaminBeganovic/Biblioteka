@@ -1,8 +1,5 @@
 ﻿angular.module('BibliotekaApp').controller("KatalogCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate',
 function ($scope, BibliotekaService, $sce, $http, $translate) {
-    var defaultTipKnjige = 0;
-    var defaultJezik = 2;
-
     BibliotekaService.svijezici()
     .success(function (data, status) {
         $scope.jezici = data;
@@ -13,7 +10,15 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
         $scope.tipoviknjiga = data;
     })
 
+    BibliotekaService.sviizdavaci()
+    .success(function (data, status) {
+        $scope.izdavaci = data;
+    })
+
     $scope.dodaj = function () {
+        $scope.naprednaModel.TipKnjigeID = parseInt($scope.tip);
+        $scope.naprednaModel.IzdavacID = parseInt($scope.izdavac);
+        $scope.naprednaModel.JezikID = parseInt($scope.jezik);
         BibliotekaService.dodajknjigu($scope.naprednaModel)
         .success(function (data, status) {
             $scope.error = $sce.trustAsHtml(""+status);

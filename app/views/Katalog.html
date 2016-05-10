@@ -3,15 +3,15 @@
         <form name="myForm">
             <fieldset class="form-group form-inline">
                 <label for="tip" translate="tip_knjige">Tip knjige:</label>
-                <select id="tip" class="form-control" ng-model="naprednaModel.tip">
-                    <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.referenca}}">{{t.opis}}</option>
+                <select id="tip" class="form-control" ng-model="tip">
+                    <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in tipoviknjiga" value="{{t.ID}}">{{t.opis}}</option>
                 </select>
             </fieldset>
 
             <fieldset class="form-group form-inline">
                 <label for="jezik" translate="jezici">Jezici:</label>
-                <select id="jezik" class="form-control" ng-model="naprednaModel.jezik">
-                    <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.referenca}}">{{t.opis}}</option>
+                <select id="jezik" class="form-control" ng-model="jezik">
+                    <option ng-selected="{{defaultJezik == value.id}}" data-ng-repeat="t in jezici" value="{{t.ID}}">{{t.opis}}</option>
                 </select>
             </fieldset>
 
@@ -21,19 +21,45 @@
             </fieldset>
 
             <fieldset class="form-group form-inline">
+                <label for="isbn" translate="naziv">Isbn:</label>
+                <input name="isbn" class="form-control" type="text" id="isbn" ng-model="naprednaModel.isbn" required>
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
                 <label for="autor" translate="autor">Autor:</label>
                 <input name="autor" class="form-control" type="text" id="autor" ng-model="naprednaModel.autor" required>
             </fieldset>
 
             <fieldset class="form-group form-inline">
                 <label for="izdavac" translate="izdavac">Izdavac:</label>
-                <input name="izdavac" class="form-control" type="text" id="izdavac" ng-model="naprednaModel.izdavac">
+                <select id="izdavac" class="form-control" ng-model="izdavac">
+                    <option ng-selected="{{defaultTipKnjige == value.id}}" data-ng-repeat="t in izdavaci" value="{{t.ID}}">{{t.naziv}}</option>
+                </select>
             </fieldset>
-
 
             <fieldset class="form-group form-inline">
                 <label for="godina" translate="godina">Godina:</label>
                 <input name="godina" class="form-control" type="number" id="godina" ng-model="naprednaModel.godina">
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="ukupno_kopija" translate="ukupno_kopija">Ukupno kopija:</label>
+                <input name="ukupno_kopija" class="form-control" type="number" id="ukupno_kopija" ng-model="naprednaModel.ukupno_kopija">
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="dostupno_kopija" translate="dostupno_kopija">Dostupno kopija:</label>
+                <input name="dostupno_kopija" class="form-control" type="number" id="dostupno_kopija" ng-model="naprednaModel.dostupno_kopija">
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="izdanje" translate="dostupno_kopija">Izdanje:</label>
+                <input name="izdanje" class="form-control" type="number" id="izdanje" ng-model="naprednaModel.izdanje">
+            </fieldset>
+
+            <fieldset class="form-group form-inline">
+                <label for="broj_strana" translate="broj_strana">Izdanje:</label>
+                <input name="broj_strana" class="form-control" type="number" id="broj_strana" ng-model="naprednaModel.broj_strana">
             </fieldset>
 
             <button class="form-control button" ng-click="dodaj()" >Dodaj</button>

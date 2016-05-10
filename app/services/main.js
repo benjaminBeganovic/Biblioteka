@@ -85,6 +85,13 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 withCredentials: true
             });
         },
+        sviizdavaci: function () {
+            return $http({
+                url: serviceBase + 'api/Izdavacs',
+                method: "GET",
+                withCredentials: true
+            });
+        },
         obrisikorisnika: function (id) {
             return $http({
                 url: serviceBase + 'api/Korisniks/' + id,
@@ -190,7 +197,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 url: serviceBase + 'api/Knjigas',
                 method: "POST",
                 withCredentials: true,
-                params: JSON.stringify(knjigaModel)
+                data: knjigaModel
             });
         }
     };
