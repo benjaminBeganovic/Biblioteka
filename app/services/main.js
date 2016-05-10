@@ -199,6 +199,20 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 withCredentials: true,
                 data: knjigaModel
             });
+        },
+        obrisiknjigu: function (id) {
+            return $http({
+                url: serviceBase + 'api/Knjigas/DeleteKnjiga/' + id,
+                method: "POST",
+                withCredentials: true
+            });
+        },
+        dajsveknjige: function () {
+            return $http({
+                url: serviceBase + 'api/Knjigas',
+                method: "GET",
+                withCredentials: true
+            });
         }
     };
 }]);

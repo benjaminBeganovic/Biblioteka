@@ -11,15 +11,12 @@ namespace Biblioteka.Models
         [ScaffoldColumn(false)]
         public long ID { get; set; }
 
-        [JsonIgnore]
         [ForeignKey("Izdavac")]
         public long IzdavacID { get; set; }
 
-        [JsonIgnore]
         [ForeignKey("TipKnjige")]
         public long TipKnjigeID { get; set; }
 
-        [JsonIgnore]
         [ForeignKey("Jezik")]
         public long JezikID { get; set; }
 
@@ -35,9 +32,8 @@ namespace Biblioteka.Models
         [Range(0, 10000, ErrorMessage = "Knjiga ne moze imati vise od 10000 strana!")]
         public int broj_strana { get; set; }
 
-        [Column(TypeName = "DateTime2")]
-        [DisplayFormat(DataFormatString = "{dd-MM-yyyy}", ApplyFormatInEditMode = true)]
-        public DateTime? godina_izdavanja { get; set; }
+        [Range(0, 1000000, ErrorMessage = "Godina ne moze biti negativan ili veci od 1000000!")]
+        public int godina_izdavanja { get; set; }
 
         [Range(0, 1000000, ErrorMessage = "Broj kopija ne moze biti negativan ili veci od 1000000!")]
         public int ukupno_kopija { get; set; }

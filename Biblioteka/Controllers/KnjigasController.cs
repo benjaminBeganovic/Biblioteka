@@ -14,12 +14,12 @@ using PagedList;
 
 namespace Biblioteka.Controllers
 {
-    [CustomAuthorize(Roles = "a,b")]
     public class KnjigasController : ApiController
     {
         private ProbaContext db = new ProbaContext();
 
         // GET: api/Knjigas
+        [CustomAuthorize(Roles = "b")]
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetKnjigas()
         {
@@ -38,7 +38,7 @@ namespace Biblioteka.Controllers
             return Ok(kriticne);
         }
         // GET: api/Knjigas/parametar
-        [ActionName("Paging")]
+        
         [ResponseType(typeof(List<Knjiga>))]
         public IHttpActionResult GetKnjige(int page, int step)
         {
@@ -95,16 +95,15 @@ namespace Biblioteka.Controllers
         }
 
         // POST: api/Knjigas
+        [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(Knjiga))]
-        public IHttpActionResult PostKnjiga([FromBody] Knjiga knjiga)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult PostKnjiga(Knjiga knjiga)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            
-
-            return Ok(knjiga);
 
             db.Knjigas.Add(knjiga);
             db.SaveChanges();
@@ -112,14 +111,15 @@ namespace Biblioteka.Controllers
             return CreatedAtRoute("DefaultApi", new { id = knjiga.ID }, knjiga);
         }
 
-        // DELETE: api/Knjigas/5
         [ResponseType(typeof(Knjiga))]
+        [System.Web.Http.HttpPost]
+        [ActionName("DeleteKnjiga")]
         public IHttpActionResult DeleteKnjiga(long id)
         {
             Knjiga knjiga = db.Knjigas.Find(id);
             if (knjiga == null)
             {
-                return NotFound();
+                return Ok("Nema");
             }
 
             db.Knjigas.Remove(knjiga);
