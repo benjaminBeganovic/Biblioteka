@@ -170,7 +170,54 @@ namespace Biblioteka.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [CustomAuthorize(Roles = "a")]
+        [ActionName("BanKorisnik")]
+        [HttpPost]
+        public IHttpActionResult BanKorisnik(long id)
+        {
+            Korisnik k = db.Korisniks.Where(a => a.ID == id).First();
+            if (k == null)
+            {
+                return NotFound();
+            }
+            k.izbrisan = true;
+            db.Entry(k).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return BadRequest();
+            }
+            return Ok(k);
+        }
+
+        [CustomAuthorize(Roles = "a")]
+        [ActionName("ChangeRole")]
+        [HttpPost]
+        public IHttpActionResult ChangeRole(long id, long role)
+        {
+            Korisnik k = db.Korisniks.Where(a => a.ID == id).First();
+            if (k == null)
+            {
+                return NotFound();
+            }
+            k.TipRacunaID = role;
+            db.Entry(k).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return BadRequest();
+            }
+            return Ok(k);
+        }
+
         // POST: api/Korisniks
+        [CustomAuthorize(Roles = "a")]
         [ResponseType(typeof(Korisnik))]
         public IHttpActionResult PostKorisnik(Korisnik korisnik)
         {

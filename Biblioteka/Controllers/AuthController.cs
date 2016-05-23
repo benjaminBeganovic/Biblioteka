@@ -27,7 +27,7 @@ namespace Biblioteka.Controllers
                 return BadRequest(ModelState);
             }
             Korisnik k;
-            if (db.Korisniks.Any(a => a.username == username && a.password == password && a.odobren == true))
+            if (db.Korisniks.Any(a => a.username == username && a.password == password && a.odobren == true && a.izbrisan == false))
             {
                 k = db.Korisniks.Where(a => a.username == username && a.password == password).First();
             }
