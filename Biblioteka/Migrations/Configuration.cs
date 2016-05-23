@@ -63,7 +63,7 @@
                 isbn = "86-7674-029-1",
                 idbroj = "1000",
                 broj_strana = 524,
-                godina_izdavanja = new DateTime(1866, 1, 1),
+                godina_izdavanja = 1866,
                 ukupno_kopija = 10,
                 dostupno_kopija = 10,
                 izdanje = 1,
@@ -82,7 +82,7 @@
                 naslov = "Hiljadu i jedna noć",
                 isbn = "3-932068-56-4",
                 broj_strana = 887,
-                godina_izdavanja = new DateTime(1704, 7, 7),
+                godina_izdavanja = 1704,
                 ukupno_kopija = 10,
                 dostupno_kopija = 10,
                 izdanje = 1,
@@ -101,7 +101,7 @@
                 naslov = "Hamlet",
                 isbn = "0-486272-78-8",
                 broj_strana = 192,
-                godina_izdavanja = new DateTime(1603, 1, 1),
+                godina_izdavanja = 1603,
                 ukupno_kopija = 10,
                 dostupno_kopija = 10,
                 izdanje = 1,
@@ -121,7 +121,7 @@
                 naslov = "Derviš i smrt",
                 isbn = "8-675721-54-4",
                 broj_strana = 473,
-                godina_izdavanja = new DateTime(1966, 1, 1),
+                godina_izdavanja = 1966,
                 ukupno_kopija = 10,
                 idbroj = "1002",
                 dostupno_kopija = 10,
@@ -143,7 +143,7 @@
                 naslov = "Tvrđava",
                 isbn = "8-661070-19-8",
                 broj_strana = 383,
-                godina_izdavanja = new DateTime(1970, 1, 1),
+                godina_izdavanja = 1970,
                 ukupno_kopija = 10,
                 dostupno_kopija = 10,
                 izdanje = 1,
@@ -164,7 +164,7 @@
                 naslov = "Computer networking",
                 isbn = "0-13-285620-4",
                 broj_strana = 889,
-                godina_izdavanja = new DateTime(2010, 1, 1),
+                godina_izdavanja = 2010,
                 ukupno_kopija = 10,
                 dostupno_kopija = 10,
                 izdanje = 6,
@@ -353,15 +353,6 @@
                 cekanje = 2,
                 KorisnikID = 5,
                 KnjigaID = 6
-            });
-            context.Rezervacijas.AddOrUpdate(new Rezervacija
-            {
-                ID = 2,
-                status = "co",
-                datum_rezervacije = new DateTime(2016, 4, 25),
-                cekanje = 2,
-                KorisnikID = 5,
-                KnjigaID = 5
             });
             context.Rezervacijas.AddOrUpdate(new Rezervacija
             {

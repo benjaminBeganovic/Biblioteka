@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
+using PagedList;
 
 namespace Biblioteka.Controllers
 {
@@ -24,15 +25,15 @@ namespace Biblioteka.Controllers
         [ActionName("Kod")]
         [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
-        public IHttpActionResult GetPretragaKod(string kod)
+        public IHttpActionResult GetPretragaKod(int page, int step, string kod)
         {
             prepareValue(ref kod);
             if (kod != null)
             {
-                var knjige = db.Knjigas.Where(a => a.idbroj.ToLower().Contains(kod)).ToList();
+                var knjige = db.Knjigas.Where(a => a.idbroj.ToLower().Contains(kod) && a.izbrisano == false).ToList();
                 if (knjige.Count() > 0)
                 {
-                    return Ok(knjige);
+                    return Ok(knjige.ToPagedList(page, step));
                 }
                 return NotFound();
             }
@@ -54,7 +55,7 @@ namespace Biblioteka.Controllers
         [ActionName("Napredna")]
         [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
-        public IHttpActionResult GetPretragaNapredna(string kljucne="", string naziv = "", string tip = "", string jezik ="", string autor = "", string izdavac = "", int? godina = 0)
+        public IHttpActionResult GetPretragaNapredna(int page, int step, string kljucne="", string naziv = "", string tip = "", string jezik ="", string autor = "", string izdavac = "", int? godina = 0)
         {
             prepareValue(ref naziv);
             prepareValue(ref autor);
@@ -105,7 +106,7 @@ namespace Biblioteka.Controllers
             }
             if (godina != 0)
             {
-                knjiga = knjiga.Where(a => a.godina_izdavanja.Value.Year == godina);
+                knjiga = knjiga.Where(a => a.godina_izdavanja == godina);
             }
             if (puna(kljucne))
             {
@@ -120,14 +121,14 @@ namespace Biblioteka.Controllers
             }
             else
             {
-                return Ok(knjiga.ToList());
+                return Ok(knjiga.Where(a => a.izbrisano == false).ToPagedList(page, step));
             }
         }
         
         [ActionName("Jednostavna")]
         [System.Web.Http.HttpGet]
         [ResponseType(typeof(List<Knjiga>))]
-        public IHttpActionResult GetPretragaJednostavna(string tipknjige, string jezik, string naziv, string autor)
+        public IHttpActionResult GetPretragaJednostavna(int page, int step, string tipknjige, string jezik, string naziv, string autor)
         {
             List<Knjiga> knjiga = null;
             if (naziv != null)
@@ -179,7 +180,7 @@ namespace Biblioteka.Controllers
                 return NotFound();
             }
 
-            return Ok(knjiga);
+            return Ok(knjiga.Where(a => a.izbrisano == false).ToPagedList(page, step));
         }
     }
 }
