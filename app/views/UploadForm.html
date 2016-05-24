@@ -1,0 +1,35 @@
+﻿<div ng-controller="UploadCtrl">
+    <h2>Upload</h2><hr>
+    <form>
+        <div class="fileUpload btn btn-info">
+            <span>&nbspUčitaj &nbsp</span>
+            <input id="slikeZaUpload" type="file" accept="image/*" class="upload" multiple ng-click="refresh()" ng-model="image" onchange="angular.element(this).scope().uploadImage()" />
+        </div>
+        <input id="uploadFile" placeholder="Odabrani fajlovi" disabled="disabled" style="width:80%;" /><br>
+
+
+        <div class="input-group">
+
+            <span class="input-group-btn">
+                <button class="btn btn-info" ng-click="uploadFiles()" style="margin-left: 10px;">Upload</button>
+            </span>
+            <h4 id="procenat" style="margin-left: 15px;"></h4>
+        </div>
+    </form>
+
+    <div class="container pull-left" style="max-width: 100%;">
+        <h3>Lista slika</h3><hr><br>
+        <div class="panel-group">
+            <div id="titlovi" ng-repeat="t in lista_titleova track by $index">
+                <div class="panel panel-default" ng-attr-id="{{t}}" style="margin-bottom: 3%;">
+                    <div class="panel-heading naslov">
+                        <button class="btn btn-info" style="margin-right: 2%;" ng-click="deleteFun(t)">Izbaci iz galerije</button>
+                        {{t}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>{{polje}}</p>
+</div>

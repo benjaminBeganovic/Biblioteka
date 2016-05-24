@@ -94,7 +94,8 @@ app.config(function ($translateProvider) {
         nemate_zaduzenja: 'You have no charges!',
         zaduzenja_korisnika: 'User assignments',
         rezervacija: 'Reservation',
-        captcha_validacija: 'Confirm captcha!'
+        captcha_validacija: 'Confirm captcha!',
+        galerija: 'Gallery'
 
     });
     $translateProvider.translations('bs', {
@@ -189,7 +190,8 @@ app.config(function ($translateProvider) {
         nemate_zaduzenja: 'Nemate zaduzenja!',
         zaduzenja_korisnika: 'Zaduzenja korisika',
         rezervacija: 'Rezervacija',
-        captcha_validacija: 'Potvrdite captchu!'
+        captcha_validacija: 'Potvrdite captchu!',
+        galerija: 'Galerija'
         //88
 
         /*
