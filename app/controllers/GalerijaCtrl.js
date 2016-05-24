@@ -2,8 +2,6 @@ app = angular.module('BibliotekaApp');
 app.controller("GalerijaCtrl", ["$scope", "BibliotekaService", '$sce', '$http', '$translate',
     function ($scope, BibliotekaService, $sce, $http, $translate) {
 
-        var dropboxToken = "9xDxW8zeW8AAAAAAAAAAB6_TB11kJcC6yyruPljBt2x8kvvxnvNc8PKrbPLneLsA";
-
         var paths = [];
         var tmpPic = 0;
         var numOfPic = 0;
@@ -28,7 +26,7 @@ app.controller("GalerijaCtrl", ["$scope", "BibliotekaService", '$sce', '$http', 
                 }
             };
             xhr.open('POST', 'https://api.dropboxapi.com/2/files/list_folder');
-            xhr.setRequestHeader('Authorization', 'Bearer ' + dropboxToken);
+            xhr.setRequestHeader('Authorization', 'Bearer ' + '9xDxW8zeW8AAAAAAAAAAuUDfRaODVvcFgOS8A2S6FbpEiDcT412hPSm4yzsHzD6S');
             xhr.setRequestHeader("Content-type", 'application/json');
             var data = '{ "path": "/nwtslike", "recursive": false, "include_media_info": false, "include_deleted": false, "include_has_explicit_shared_members": false }';
             xhr.send(data);
@@ -58,7 +56,7 @@ app.controller("GalerijaCtrl", ["$scope", "BibliotekaService", '$sce', '$http', 
             };
 
             xhr.open('POST', 'https://content.dropboxapi.com/2/files/download');
-            xhr.setRequestHeader('Authorization', 'Bearer ' + dropboxToken);
+            xhr.setRequestHeader('Authorization', 'Bearer ' + '9xDxW8zeW8AAAAAAAAAAuUDfRaODVvcFgOS8A2S6FbpEiDcT412hPSm4yzsHzD6S');
             xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
                 path: paths[tmpPic]
             }));
