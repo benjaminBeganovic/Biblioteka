@@ -62,6 +62,12 @@ var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht
             .when('/Upload', {
                 templateUrl: 'views/UploadForm.html'
             })
+            .when('/Banovanje', {
+                templateUrl: 'views/KorisniciForm.html'
+            })
+            .when('/Rola', {
+                templateUrl: 'views/RoleForm.html'
+            })
             .otherwise({
                 templateUrl: 'views/Home.html'
             });

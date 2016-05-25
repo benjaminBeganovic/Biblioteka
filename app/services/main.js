@@ -115,6 +115,14 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 withCredentials: true
             });
         },
+        banuj: function (id) {
+            return $http({
+                url: serviceBase + 'api/Korisniks/BanKorisnik',
+                method: "POST",
+                params: { id: id },
+                withCredentials: true
+            });
+        },
         dajsvazaduzenja: function () {
             return $http({
                 url: serviceBase + 'api/Zaduzenja',

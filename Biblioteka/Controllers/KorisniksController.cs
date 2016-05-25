@@ -172,7 +172,7 @@ namespace Biblioteka.Controllers
 
         [CustomAuthorize(Roles = "a")]
         [ActionName("BanKorisnik")]
-        [HttpPost]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult BanKorisnik(long id)
         {
             Korisnik k = db.Korisniks.Where(a => a.ID == id).First();

@@ -3,13 +3,14 @@ angular.module('BibliotekaApp').controller("MenuCtrl", ["$scope", "BibliotekaSer
         $(".admin").hide();
         $(".clan").hide();
         $(".bibl").hide();
+        $(".gost").show();
         $scope.logoutMe = function () {
                 BibliotekaService.logout()
                 .success(function (data, status, headers, config) {
                     $(".clan").hide();
-                    $(".gost").show();
                     $(".admin").hide();
                     $(".bibl").hide();
+                    $(".gost").show();
                 })
                 .error(function (data) {
                 });
