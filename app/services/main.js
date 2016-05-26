@@ -40,6 +40,13 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 withCredentials: true
             });
         },
+        svitipoviracuna: function () {
+            return $http({
+                url: serviceBase + 'api/TipRacunas',
+                method: "GET",
+                withCredentials: true
+            });
+        },
         svijezici: function () {
             return $http({
                 url: serviceBase + 'api/Jeziks',
@@ -112,6 +119,14 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 url: serviceBase + 'api/Zaduzenja',
                 method: "POST",
                 data: JSON.stringify(zaduzenjeModel),
+                withCredentials: true
+            });
+        },
+        promjenirolu: function (id, role) {
+            return $http({
+                url: serviceBase + 'api/Korisniks/ChangeRole',
+                method: "POST",
+                params: {id: id, role: role},
                 withCredentials: true
             });
         },

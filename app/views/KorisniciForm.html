@@ -13,11 +13,31 @@
                     <p class="ime"><span class="label" translate="ime">Ime</span>{{x.ime}}</p>
                     <p class="prezime"><span class="label" translate="prezime">Prezime</span>{{x.prezime}}</p>
                     <p class="email"><span class="label" translate="email">Email</span>{{x.email}}</p>
+                    <select id="tip" class="form-control banselect" ng-model="tip" ng-options="t.referenca as t.opis for t in tipovi" ng-init="tip=x.TipRacuna.referenca">
+                    </select>
                     <div>
-                        <!-- Dio za rezervisanje -->
                         <div class="caption">
+                            <button ng-if="x.izbrisan == false" type="button" class="btn btn-info btn-lg banbutton" data-toggle="modal" data-target="#myModal" ng-attr-id="{{x.ID + '-' + tip}}" ng-click="postaviIDRef($event)">Promjeni rolu</button>
                             <button ng-if="x.izbrisan == false" type="button" class="btn btn-info btn-lg banbutton" data-toggle="modal" data-target="#myModalZab" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="zabrani">Zabrani</button>
                             <button ng-if="x.izbrisan == true" type="button" class="btn btn-info btn-lg banbutton" data-toggle="modal" data-target="#myModalDop" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="dopusti">Dopusti</button>
+                        </div>
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title" translate="">Promjeni rolu</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p translate="">Promjeni rolu</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" translate="da" class="btn btn-default" id="da" data-dismiss="modal" ng-click="promjenirolu()"></button>
+                                        <button type="button" translate="ne" class="btn btn-default" id="ne" data-dismiss="modal" ng-click="dijalog()"></button>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                         <div class="modal fade" id="myModalZab" role="dialog">
                             <div class="modal-dialog modal-sm">

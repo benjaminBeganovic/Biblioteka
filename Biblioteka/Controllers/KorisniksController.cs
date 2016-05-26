@@ -195,15 +195,15 @@ namespace Biblioteka.Controllers
 
         [CustomAuthorize(Roles = "a")]
         [ActionName("ChangeRole")]
-        [HttpPost]
-        public IHttpActionResult ChangeRole(long id, long role)
+        [System.Web.Http.HttpPost]
+        public IHttpActionResult ChangeRole(long id, string role)
         {
             Korisnik k = db.Korisniks.Where(a => a.ID == id).First();
-            if (k == null)
+            if (k == null || db.TipRacunas.Where(a => a.referenca == role).Count() == 0)
             {
                 return NotFound();
             }
-            k.TipRacunaID = role;
+            k.TipRacuna.referenca = role;
             db.Entry(k).State = EntityState.Modified;
             try
             {

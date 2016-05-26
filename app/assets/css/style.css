@@ -77,6 +77,15 @@ form {
     display: inline-block;
 }
 
+.banselect   {
+    margin: 0 auto;
+    max-width: 150px;
+}
+
+option {
+    color: black;
+}
+
 .thumbnail {
     margin: 20px;
     padding: 20px;
