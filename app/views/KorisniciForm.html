@@ -1,9 +1,4 @@
 ﻿<div data-ng-controller="KorisniciCtrl">
-
-    <ul class="nav nav-tabs">
-        <li><a href="./index.html#/Banovanje" translate="banovanje">Banovanje</a></li>
-        <li><a href="./index.html#/Role" translate="role">Role</a></li>
-    </ul>
     <h3 translate="korisnici">Korisnici</h3>
     <div class="row">
         <div ng-repeat="x in korisnici">
@@ -17,9 +12,9 @@
                     </select>
                     <div>
                         <div class="caption">
-                            <button ng-if="x.izbrisan == false" type="button" class="btn btn-info btn-lg banbutton" data-toggle="modal" data-target="#myModal" ng-attr-id="{{x.ID + '-' + tip}}" ng-click="postaviIDRef($event)">Promjeni rolu</button>
-                            <button ng-if="x.izbrisan == false" type="button" class="btn btn-info btn-lg banbutton" data-toggle="modal" data-target="#myModalZab" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="zabrani">Zabrani</button>
-                            <button ng-if="x.izbrisan == true" type="button" class="btn btn-info btn-lg banbutton" data-toggle="modal" data-target="#myModalDop" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="dopusti">Dopusti</button>
+                            <button ng-if="x.izbrisan == false" type="button" class="btn btn-info banbutton" data-toggle="modal" data-target="#myModal" ng-attr-id="{{x.ID + '-' + tip}}" ng-click="postaviIDRef($event)" translate="promjeni_rolu">Promjeni rolu</button>
+                            <button ng-if="x.izbrisan == false" type="button" class="btn btn-info banbutton" data-toggle="modal" data-target="#myModalZab" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="zabrani">Zabrani</button>
+                            <button ng-if="x.izbrisan == true" type="button" class="btn btn-info banbutton" data-toggle="modal" data-target="#myModalDop" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="dopusti">Dopusti</button>
                         </div>
                         <div class="modal fade" id="myModal" role="dialog">
                             <div class="modal-dialog modal-sm">

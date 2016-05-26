@@ -100,7 +100,8 @@ app.config(function ($translateProvider) {
         zabrani: 'Deny access',
         banovanje: 'Access',
         role: 'Role',
-        korisnici: 'Users'
+        korisnici: 'Users',
+        promjeni_rolu: 'Change role'
     });
     $translateProvider.translations('bs', {
         katalog: 'Katalog',
@@ -200,64 +201,8 @@ app.config(function ($translateProvider) {
         zabrani: 'Zabrani',
         banovanje: 'Banovanje',
         role: 'Role',
-        korisnici: 'Korisnici'
-        //88
-
-        /*
-        //ima neki problem sa utf-8 i angular translate-om:
-        //http://angular-translate.github.io/docs/#/guide/19_security
-
-        clanstvo_produzi : 'Trebate produžiti èlanstvo!',
-        vec_rezervisano : 'Veæ ste rezervisali ovu knjigu!',
-        pogr_username : 'Username je pogrešan!',
-        doci_po_knjigu : 'Po knjigu trebate doæi u narednim danima!',
-        obavjest_raspolozivost : 'Obavjestit æemo vas kada knjiga bude raspoloživa!',
-        rok_istekao : 'Istekao rok èekanja na zaduženje!',
-        knjiga_zaduzena : 'Knjigu ste zadužili!',
-        nije_zaduzio_knjigu : 'Korisnik nije zadužio knjigu!',
-        istekao_rok_razduzivanje : 'Istekao rok za razduživanje!',
-        nije_istekao_rok_razduzivanje : 'Nije istekao rok za razduživanje!',
-        knjiga_razduzena : 'Knjiga razdužena!',
-        vec_posjeduje_knjigu : 'Korisnik veæ posjeduje ovu knjigu!',
-        uspjesno_ste_razduzili : 'Uspješno ste razdužili knjigu!',
-        knjiga_nije_vracena : 'Knjiga nije vraæena!',
-        knjiga_je_vracena: 'Knjiga je vraæena!',
-        pocetna : 'Poèetna',
-        knjige : 'Knjige',
-        informacije : 'Informacije',
-        kontakt : 'Kontakt',
-        prijava : 'Prijava',
-        odjava: 'Odjava',
-        registracija : 'Registracija',
-        korisnicko_ime : 'Korisnièko ime',
-        sifra : 'Šifra',
-        jednostavna : 'Jednostavna',
-        napredna : 'Napredna',
-        po_kodu : 'Po kodu',
-        tip_knjige : 'Tip knjige',
-        jezici : 'Jezici',
-        zaduzenja : 'Zaduženja',
-        kriticne_knjige : 'Kritiène knjige',
-        zaduzenje : 'Zaduženje',
-        razduzenje : 'Razduženje',
-        zaduzene_knjige : 'Zadužene knjige',
-        rezervacije_korisnika : 'Rezervacije korisnika',
-        naziv : 'Naziv',
-        autor : 'Autor',
-        naziv_ili_autor_su_obavezni : 'Naziv ili autor su obavezni',
-        izdavac : 'Izdavaæ',
-        godina : 'Godina',
-        kljucne_rijeci : 'Kljuène rijeèi',
-        pretrazi : 'Pretraži',
-        kod : 'Kod',
-        pretraga_po_kodu : 'Pretraga po kodu',
-        kod_je_obavezan : 'Kod je obavezan',
-        uredu : 'Uredu',
-        rezervisi : 'Rezerviši',
-        zaduzi : 'Zaduži',
-        razduzi : 'Razduži',
-        admin : 'Administrator'
-        */
+        korisnici: 'Korisnici',
+        promjeni_rolu: 'Promjeni rolu'
     });
 
     $translateProvider.preferredLanguage('bs');
