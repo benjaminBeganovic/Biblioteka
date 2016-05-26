@@ -26,6 +26,9 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
     };
 
     $scope.banuj = function () {
+        document.getElementById("da").style.display = 'none';
+        document.getElementById("ne").style.display = 'none';
+
         BibliotekaService.banuj(parseInt(idK))
         .success(function (data, status) {
             BibliotekaService.dajsvekorisnike()
@@ -35,7 +38,8 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
         })
         .error(function (data, status) {
         })
-        dijalog();
+        document.getElementById("ne").innerHTML = ok;
+        document.getElementById("ne").style.display = 'inline';
     };
 
     $scope.trans();

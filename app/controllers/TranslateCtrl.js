@@ -95,8 +95,12 @@ app.config(function ($translateProvider) {
         zaduzenja_korisnika: 'User assignments',
         rezervacija: 'Reservation',
         captcha_validacija: 'Confirm captcha!',
-        galerija: 'Gallery'
-
+        galerija: 'Gallery',
+        dopusti: 'Allow access',
+        zabrani: 'Deny access',
+        banovanje: 'Access',
+        role: 'Role',
+        korisnici: 'Users'
     });
     $translateProvider.translations('bs', {
         katalog: 'Katalog',
@@ -191,7 +195,12 @@ app.config(function ($translateProvider) {
         zaduzenja_korisnika: 'Zaduzenja korisika',
         rezervacija: 'Rezervacija',
         captcha_validacija: 'Potvrdite captchu!',
-        galerija: 'Galerija'
+        galerija: 'Galerija',
+        dopusti: 'Dopusti',
+        zabrani: 'Zabrani',
+        banovanje: 'Banovanje',
+        role: 'Role',
+        korisnici: 'Korisnici'
         //88
 
         /*

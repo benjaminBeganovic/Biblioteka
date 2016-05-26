@@ -180,7 +180,7 @@ namespace Biblioteka.Controllers
             {
                 return NotFound();
             }
-            k.izbrisan = true;
+            k.izbrisan = !k.izbrisan;
             db.Entry(k).State = EntityState.Modified;
             try
             {
