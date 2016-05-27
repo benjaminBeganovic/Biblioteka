@@ -46,6 +46,21 @@ namespace Biblioteka.Controllers
             return Ok(knjiga.ToPagedList(page, step));
 
         }
+
+        [CustomAuthorize(Roles = "a,b")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<int>))]
+        public IHttpActionResult GetKnjige(string numofcat)
+        {
+            List<int> cat_num = new List<int>();
+            List<TipKnjige> tipovi_knjiga = db.TipKnjiges.ToList();
+            foreach (TipKnjige t in tipovi_knjiga)
+            {
+                cat_num.Add(db.Knjigas.Where(k => k.TipKnjigeID == t.ID).Count());
+            }
+            return Ok(cat_num);
+        }
+
         // GET: api/Knjigas/5
         [ResponseType(typeof(Knjiga))]
         public IHttpActionResult GetKnjiga(long id)

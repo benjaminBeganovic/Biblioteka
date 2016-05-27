@@ -363,13 +363,51 @@
                 KorisnikID = 6,
                 KnjigaID = 6
             });
+
+            //Testiranje za grafove
+            int idRez = 4;
+            for (int m = 1; m <= 12; m++)
+            {
+                Random rnd = new Random();
+                int numOfRezl = rnd.Next(0, 20);
+                int numOfRezc = rnd.Next(15, 40);
+
+                for (int i = 0; i < numOfRezl; i++)
+                {
+                    context.Rezervacijas.AddOrUpdate(new Rezervacija
+                    {
+                        ID = idRez,
+                        status = "co",
+                        datum_rezervacije = new DateTime(2015, m, 15),
+                        cekanje = 2,
+                        KorisnikID = 5,
+                        KnjigaID = 6
+                    });
+                    idRez++;
+                }
+                if (m < 6)
+                {
+                    for (int i = 0; i < numOfRezc; i++)
+                    {
+                        context.Rezervacijas.AddOrUpdate(new Rezervacija
+                        {
+                            ID = idRez,
+                            status = "co",
+                            datum_rezervacije = new DateTime(2016, m, 15),
+                            cekanje = 2,
+                            KorisnikID = 5,
+                            KnjigaID = 6
+                        });
+                        idRez++;
+                    }
+                }
+
+            }
             context.SaveChanges();
 
             //zaduzenja
             // vraceno - vr
             // nije vraceno - nv
-
-            context.SaveChanges();
 
             context.Zaduzenjas.AddOrUpdate(new Zaduzenja
             {

@@ -1,4 +1,4 @@
-var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht.translate','noCAPTCHA'])
+var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht.translate', 'noCAPTCHA', 'chart.js'])
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider
@@ -67,6 +67,9 @@ var app = angular.module('BibliotekaApp', ['ngRoute', 'ngCookies', 'pascalprecht
             })
             .when('/Rola', {
                 templateUrl: 'views/RoleForm.html'
+            })
+            .when('/Statistika', {
+                templateUrl: 'views/StatistikaForm.html'
             })
             .otherwise({
                 templateUrl: 'views/Home.html'

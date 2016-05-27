@@ -234,6 +234,32 @@ namespace Biblioteka.Controllers
             return Ok(rezervacije_co);
         }
 
+        [CustomAuthorize(Roles = "a,b")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<int>))]
+        public IHttpActionResult GetRezervacija(string ly, string cy, string comp)
+        {
+            List<int> rez_per_mon_l = new List<int>();
+            List<int> rez_per_mon_c = new List<int>();
+            int tmp_l = 0;
+            int tmp_c = 0;
+
+            for (int m = 1; m <= 12; m++)
+            {
+
+                tmp_l = (m > 1) ? rez_per_mon_l[m - 2] : 0;
+                rez_per_mon_l.Add(tmp_l + db.Rezervacijas.Where(r => r.datum_rezervacije.Month == m && r.datum_rezervacije.Year == DateTime.Now.Year - 1).Count());
+                if (m <= DateTime.Now.Month)
+                {
+                    tmp_c = (m > 1) ? rez_per_mon_c[m - 2] : 0;
+                    rez_per_mon_c.Add(tmp_c + db.Rezervacijas.Where(r => r.datum_rezervacije.Month == m && r.datum_rezervacije.Year == DateTime.Now.Year).Count());
+                }
+            }
+
+            rez_per_mon_l.AddRange(rez_per_mon_c);
+            return Ok(rez_per_mon_l);
+        }
+
         // samo tokom TESTIRANJA treba
         // DELETE ALL
         // GET api/Rezervacija/del
