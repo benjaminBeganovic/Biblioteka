@@ -236,6 +236,23 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 method: "GET",
                 withCredentials: true
             });
+        },
+        brojknjigapokategorijama: function () {
+            return $http({
+                url: serviceBase + 'api/Knjigas',
+                method: "GET",
+                withCredentials: true,
+                params: { numofcat: "" }
+            });
+        },
+        rezervacijeugodini: function () {
+            return $http({
+                url: serviceBase + 'api/Rezervacija',
+                method: "GET",
+                withCredentials: true,
+                params: { ly: "", cy: "", comp: "" }
+            });
         }
+
     };
 }]);

@@ -101,7 +101,10 @@ app.config(function ($translateProvider) {
         banovanje: 'Access',
         role: 'Role',
         korisnici: 'Users',
-        promjeni_rolu: 'Change role'
+        promjeni_rolu: 'Change role',
+        statistika: 'Statistics',
+        dom_tipovi_knjiga: 'Dominance of book types',
+        rezervacije_u_godini: 'Reservations during the year'
     });
     $translateProvider.translations('bs', {
         katalog: 'Katalog',
@@ -202,7 +205,10 @@ app.config(function ($translateProvider) {
         banovanje: 'Banovanje',
         role: 'Role',
         korisnici: 'Korisnici',
-        promjeni_rolu: 'Promjeni rolu'
+        promjeni_rolu: 'Promjeni rolu',
+        statistika: 'Statistika',
+        dom_tipovi_knjiga: 'Dominantnost tipova knjiga',
+        rezervacije_u_godini: 'Rezervacije tokom godine'
     });
 
     $translateProvider.preferredLanguage('bs');
