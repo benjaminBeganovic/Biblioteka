@@ -115,6 +115,7 @@
     <Content Include="views\RazduzenjeForm.html" />
     <Content Include="views\RegisterForm.html" />
     <Content Include="views\RKnjigeForm.html" />
+    <Content Include="views\StatistikaForm.html" />
     <Content Include="views\ZaduzeneknjigeForm.html" />
     <Content Include="views\ZaduzenjeForm.html" />
     <Content Include="views\ZKnjigeForm.html" />
