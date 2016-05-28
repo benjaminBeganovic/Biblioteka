@@ -1,4 +1,4 @@
-var app = angular.module('BibliotekaApp');
+Ôªøvar app = angular.module('BibliotekaApp');
 
 app.config(['ChartJsProvider', function (ChartJsProvider) {
     // Configure all charts
@@ -26,7 +26,7 @@ app.config(['ChartJsProvider', function (ChartJsProvider) {
             console.log(points, evt);
         };
 
-        $scope.labels2 = ["Knjiûevnost", "StruËna literatura", "Filozofija", "Nauka", "Zakon", "Relegija", "Pismo", "Esej", "Dnevnici i »asopisi", "Autobiografija", "Biografija"];
+        $scope.labels2 = ["Knji≈æevnost", "Struƒçna literatura", "Filozofija", "Nauka", "Zakon", "Relegija", "Pismo", "Esej", "Dnevnici i ƒåasopisi", "Autobiografija", "Biografija"];
         $scope.data2 = [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100];
 
 

@@ -66,6 +66,11 @@ h4 {
     font-weight: bold;
 }
 
+.well {
+    margin: 10px;
+    min-height: 460px;
+}
+
 form {
     padding-top: 20px;
 }
