@@ -53,16 +53,37 @@ app.controller("StatistikaCtrl", ["$scope", "BibliotekaService", '$sce', '$http'
                 //nema podataka
             })
 
+        var aktivnost = new Array(2);
+        var labels4;
+        BibliotekaService.aktivnost(5)
+            .success(function (data, status) {
+                if (data != null || data != "")
+                {
+                    aktivnost[0] = new Array(data.length);
+                    aktivnost[1] = new Array(data.length);
+                    labels4 = new Array(data.length);
+                }
+                for (var i = 0; i < data.length; i++) {
+                    aktivnost[0][i] = data[i].brojRezervacija;
+                    aktivnost[1][i] = data[i].brojZaduzenja;
+                    labels4[i] = data[i].username;
+                }
+                $scope.data4 = aktivnost;
+                $scope.labels4 = labels4;
+            })
+            .error(function (data, status) {
+                //nema podataka
+            })
 
         $scope.labels1 = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Octobar", "Novembar", "Decembar"];
         $scope.series1 = ['Rezervacije u prethodnoj godini', 'Rezervacije u ovoj godini'];
-        $scope.colours1 = ['#7a7a52', '#005ce6'];
+        $scope.colours1 = ['#7A527A', '#005ce6'];
         $scope.onClick1 = function (points, evt) {
             console.log(points, evt);
         };
 
         $scope.labels2 = ["Književnost", "Stručna literatura", "Filozofija", "Nauka", "Zakon", "Relegija", "Pismo", "Esej", "Dnevnici i Časopisi", "Autobiografija", "Biografija"];
         $scope.labels3 = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"];
-
+        $scope.series4 = ["Rezervacije", "Zaduzenja"];
 
     }]);
