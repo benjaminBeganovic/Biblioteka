@@ -13,7 +13,7 @@ namespace Biblioteka.Models
         [ScaffoldColumn(false)]
         public long ID { get; set; }
 
-        [StringLength(20)]
+        [StringLength(30)]
         public string status { get; set; }
 
         [Column(TypeName = "DateTime2")]

@@ -17,6 +17,8 @@
 
         protected override void Seed(Biblioteka.Models.ProbaContext context)
         {
+            context.LoginLogs.AddOrUpdate(new LoginLog { username = "admin1", vrijeme = DateTime.Now });
+            context.SaveChanges();
 
             //tipovi knjiga
             context.TipKnjiges.AddOrUpdate(new TipKnjige { ID = 1, referenca = "lit", opis = "Književnost" });

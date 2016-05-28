@@ -40,6 +40,21 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 withCredentials: true
             });
         },
+        loginlogs: function () {
+            return $http({
+                url: serviceBase + 'api/Korisniks/LoginLogs',
+                method: "GET",
+                withCredentials: true
+            });
+        },
+        aktivnost: function (count) {
+            return $http({
+                url: serviceBase + 'api/Korisniks/Aktivnost',
+                method: "GET",
+                withCredentials: true,
+                params: {count: count}
+            });
+        },
         svitipoviracuna: function () {
             return $http({
                 url: serviceBase + 'api/TipRacunas',

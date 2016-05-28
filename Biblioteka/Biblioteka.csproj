@@ -251,6 +251,7 @@
     <Compile Include="Models\Jezik.cs" />
     <Compile Include="Models\Knjiga.cs" />
     <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\LoginLog.cs" />
     <Compile Include="Models\Proba.cs" />
     <Compile Include="Models\ProbaContext.cs" />
     <Compile Include="Models\ProbaDatabaseInitialiser.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Security\CustomPrincipal.cs" />
     <Compile Include="Security\SessionPersister.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\KorisnikAktivnost.cs" />
     <Compile Include="ViewModels\Login.cs" />
   </ItemGroup>
   <ItemGroup>

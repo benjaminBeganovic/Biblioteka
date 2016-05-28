@@ -36,6 +36,8 @@ namespace Biblioteka.Controllers
                 return NotFound();
             }
             SessionPersister.username = k.username;
+            db.LoginLogs.Add(new LoginLog { username = k.username, vrijeme = DateTime.Now, dan = (int) DateTime.Now.DayOfWeek });
+            db.SaveChanges();
             return Ok(k.TipRacuna.referenca);
         }
         

@@ -44,6 +44,15 @@ app.controller("StatistikaCtrl", ["$scope", "BibliotekaService", '$sce', '$http'
                 //nema podataka
             })
 
+        BibliotekaService.loginlogs()
+            .success(function (data, status) {
+                if (data != null || data != "")
+                    $scope.data3 = data;
+            })
+            .error(function (data, status) {
+                //nema podataka
+            })
+
 
         $scope.labels1 = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Octobar", "Novembar", "Decembar"];
         $scope.series1 = ['Rezervacije u prethodnoj godini', 'Rezervacije u ovoj godini'];
@@ -53,4 +62,7 @@ app.controller("StatistikaCtrl", ["$scope", "BibliotekaService", '$sce', '$http'
         };
 
         $scope.labels2 = ["Književnost", "Stručna literatura", "Filozofija", "Nauka", "Zakon", "Relegija", "Pismo", "Esej", "Dnevnici i Časopisi", "Autobiografija", "Biografija"];
-}]);
+        $scope.labels3 = ["Nedjelja", "Ponedjeljak", "Utorak", "Srijeda", "Četvrtak", "Petak", "Subota"];
+
+
+    }]);

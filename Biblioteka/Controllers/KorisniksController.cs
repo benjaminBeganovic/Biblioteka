@@ -13,6 +13,8 @@ using Biblioteka.Security;
 using System.Web.SessionState;
 using System.Net.Mail;
 using System.Net.Http.Headers;
+using Biblioteka.ViewModels;
+using System.Data.Entity.SqlServer;
 
 namespace Biblioteka.Controllers
 {
@@ -216,6 +218,43 @@ namespace Biblioteka.Controllers
             return Ok(k);
         }
 
+        [CustomAuthorize(Roles = "a")]
+        [ActionName("Aktivnost")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<KorisnikAktivnost>))]
+        public IHttpActionResult GetAktivnost(int count)
+        {
+            List<KorisnikAktivnost> akt = new List<KorisnikAktivnost>();
+            var korisnici = db.Korisniks.Where(a => a.Zaduzenja.Count() > 0 || a.Rezervacije.Count() > 0).ToList();
+            foreach (var k in korisnici)
+            {
+                akt.Add(new KorisnikAktivnost() { username = k.username, brojRezervacija = k.Rezervacije.Count(), brojZaduzenja = k.Zaduzenja.Count() });
+            }
+            akt.OrderByDescending(a => a.brojRezervacija + a.brojZaduzenja);
+            if (akt.Count() > count)
+            {
+                return Ok(akt.GetRange(0, count));
+            }
+            else
+            {
+                return Ok(akt);
+            }
+            
+        }
+
+        [CustomAuthorize(Roles = "a")]
+        [ActionName("LoginLogs")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<int>))]
+        public IHttpActionResult GetLoginLogs()
+        {
+            var numofday = new List<int>();
+            for (int i = 0; i < 7; i++)
+            {
+                numofday.Add(db.LoginLogs.Where(a => a.dan == i).Count());
+            }
+            return Ok(numofday);
+        }
         // POST: api/Korisniks
         [CustomAuthorize(Roles = "a")]
         [ResponseType(typeof(Korisnik))]
