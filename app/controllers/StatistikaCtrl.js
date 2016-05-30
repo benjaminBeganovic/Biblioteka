@@ -115,6 +115,44 @@ app.controller("StatistikaCtrl", ["$scope", "BibliotekaService", '$sce', '$http'
                 //nema podataka
             })
 
+        var labels7;
+        var aktivnost3;
+        BibliotekaService.glavnijezici(5)
+            .success(function (data, status) {
+                if (data != null || data != "") {
+                    aktivnost3 = new Array(data.length);
+                    labels7 = new Array(data.length);
+                }
+                for (var i = 0; i < data.length; i++) {
+                    aktivnost3[i] = data[i].Value;
+                    labels7[i] = data[i].Key;
+                }
+                $scope.data7 = aktivnost3;
+                $scope.labels7 = labels7;
+            })
+            .error(function (data, status) {
+                //nema podataka
+            })
+
+        var labels8;
+        var aktivnost4;
+        BibliotekaService.glavnitipovi(5)
+            .success(function (data, status) {
+                if (data != null || data != "") {
+                    aktivnost4 = new Array(data.length);
+                    labels8 = new Array(data.length);
+                }
+                for (var i = 0; i < data.length; i++) {
+                    aktivnost4[i] = data[i].Value;
+                    labels8[i] = data[i].Key;
+                }
+                $scope.data8 = aktivnost4;
+                $scope.labels8 = labels8;
+            })
+            .error(function (data, status) {
+                //nema podataka
+            })
+
         $scope.labels1 = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Octobar", "Novembar", "Decembar"];
         $scope.series1 = ['Rezervacije u prethodnoj godini', 'Rezervacije u ovoj godini'];
         $scope.colours1 = ['#7A527A', '#005ce6'];

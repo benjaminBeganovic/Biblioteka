@@ -38,6 +38,38 @@ namespace Biblioteka.Controllers
             return Ok(tipKnjige);
         }
 
+        [CustomAuthorize(Roles = "a")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<KeyValuePair<string, int>>))]
+        [ActionName("NajpopularnijiTipovi")]
+        public IHttpActionResult Jezici(int size)
+        {
+            var tipovi = new Dictionary<string, int>();
+            var a = db.TipKnjiges.ToList();
+            foreach (var x in a)
+            {
+                try
+                {
+                    int broj = db.Knjigas.Where(i => i.TipKnjige.referenca == x.referenca).Count();
+                    tipovi.Add(x.opis, broj);
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+            var rez = tipovi.OrderByDescending(z => z.Value).ToList();
+            if (rez.Count < size)
+            {
+                return Ok(rez);
+            }
+            else
+            {
+                return Ok(rez.GetRange(0, size));
+            }
+        }
+
         // PUT: api/TipKnjiges/5
         [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(void))]

@@ -52,7 +52,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 url: serviceBase + 'api/Korisniks/Aktivnost',
                 method: "GET",
                 withCredentials: true,
-                params: {count: count}
+                params: { count: count }
             });
         },
 
@@ -68,6 +68,22 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
         glavniautori: function (count) {
             return $http({
                 url: serviceBase + 'api/Autors/GlavniAutori',
+                method: "GET",
+                withCredentials: true,
+                params: { size: count }
+            });
+        },
+        glavnijezici: function (count) {
+            return $http({
+                url: serviceBase + 'api/Jeziks/NajpopularnijiJezici',
+                method: "GET",
+                withCredentials: true,
+                params: { size: count }
+            });
+        },
+        glavnitipovi: function (count) {
+            return $http({
+                url: serviceBase + 'api/TipKnjiges/NajpopularnijiTipovi',
                 method: "GET",
                 withCredentials: true,
                 params: { size: count }
@@ -159,7 +175,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
             return $http({
                 url: serviceBase + 'api/Korisniks/ChangeRole',
                 method: "POST",
-                params: {id: id, role: role},
+                params: { id: id, role: role },
                 withCredentials: true
             });
         },
