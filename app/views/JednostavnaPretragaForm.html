@@ -41,7 +41,7 @@
         </form>
     </div>
     <div class="row">
-        <div ng-repeat="x in rezultat">
+        <div dir-paginate="x in rezultat | itemsPerPage: 4" current-page="currentPage">
             <div class="col-md-6 knjige">
                 <h4 class="naslov">{{x.naslov}}</h4>
                 <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
@@ -72,4 +72,7 @@
             </div>
         </div>
     </div> 
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="views/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
 </div>

@@ -104,6 +104,7 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
             return $http({
                 url: serviceBase + 'api/Korisniks',
                 method: "GET",
+                params: {count: 1000},
                 withCredentials: true
             });
         },

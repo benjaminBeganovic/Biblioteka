@@ -17,14 +17,17 @@
         </form>
     </div>
     <div class="row">
-    <div ng-repeat="x in rezultat">
+    <div dir-paginate="x in rezultat | itemsPerPage: 4" current-page="currentPage">
         <div class="col-md-6 knjige">
-            <h4 class="naslov">{{x.naslov}}</h4>
-            <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
-            <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
-            <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
-            <p class="opis">Opis: {{x.opis}}</p>
-            <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
+            <div>
+                <h4 class="naslov">{{x.naslov}}</h4>
+                <p class="autor" ng-repeat="a in x.Autori">Autori: {{a.naziv}} </p>
+                <p class="izdavac">Izdavac: {{x.Izdavac.naziv}}</p>
+                <p class="godina">Godina izdavanja: {{x.godina_izdavanja | date:'yyyy'}}</p>
+                <p class="opis">Opis: {{x.opis}}</p>
+                <p class="kopije">Dostupno kopija: {{x.dostupno_kopija}}</p>
+            </div>
+            
 
             <!-- Dio za rezervisanje -->
             <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" ng-attr-id="{{x.ID}}" ng-click="postaviID($event)" translate="rezervisi"></button>
@@ -48,4 +51,7 @@
         </div>
     </div>
         </div>
+    <div class="text-center">
+        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="views/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
 </div>
