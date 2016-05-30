@@ -2,6 +2,11 @@
 function ($scope, BibliotekaService, $sce, $http, $translate) {
         var defaultTipKnjige = 0;
         var defaultJezik = 2;
+        $scope.currentPage = 1;
+
+        $scope.pageChangeHandler = function (num) {
+            console.log('meals page changed to ' + num);
+        };
 
         BibliotekaService.svijezici()
         .success(function (data, status) {

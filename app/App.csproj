@@ -76,6 +76,7 @@
     <Content Include="assets\js\angular-sanitize.min.js" />
     <Content Include="assets\js\angular.js" />
     <Content Include="assets\js\angular.min.js" />
+    <Content Include="assets\js\dirPagination.js" />
     <Content Include="assets\js\jquery-2.2.3.js" />
     <Content Include="controllers\HomeCtrl.js" />
     <Content Include="controllers\InformacijeCtrl.js" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="services\main.js" />
+    <Content Include="views\dirPagination.tpl.html" />
     <Content Include="views\Home.html" />
     <Content Include="views\InformacijeForm.html" />
     <Content Include="views\Katalog.html" />
