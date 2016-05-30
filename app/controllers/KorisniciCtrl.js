@@ -35,7 +35,7 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
     $scope.postaviIDRef = function (event) {
         idK = event.target.id.split("-")[0];
         refK = event.target.id.split("-")[1];
-        console.log(event.target);
+        console.log(event.target.id);
     };
     
 
@@ -52,7 +52,6 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
         })
         .error(function (data, status) {
         })
-        document.getElementById("ne").innerHTML = ok;
         document.getElementById("ne").style.display = 'inline';
     };
 
@@ -69,7 +68,6 @@ function ($scope, BibliotekaService, $sce, $http, $translate) {
         })
         .error(function (data, status) {
         })
-        document.getElementById("ne").innerHTML = ok;
         document.getElementById("ne").style.display = 'inline';
     };
 

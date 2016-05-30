@@ -31,6 +31,14 @@ namespace Biblioteka.Controllers
             return Ok(korisnici);
         }
 
+        [ActionName("SviKorisnici")]
+        [CustomAuthorize(Roles = "a")]
+        [ResponseType(typeof(List<Korisnik>))]
+        public IHttpActionResult GetKorisnici1()
+        {
+            var korisnici = db.Korisniks.ToList();
+            return Ok(korisnici);
+        }
         // GET: api/Korisniks/5
         [CustomAuthorize(Roles = "a")]
         [ResponseType(typeof(Korisnik))]
@@ -205,7 +213,7 @@ namespace Biblioteka.Controllers
             {
                 return NotFound();
             }
-            k.TipRacuna.referenca = role;
+            k.TipRacuna = db.TipRacunas.Where(a => a.referenca == role).First();
             db.Entry(k).State = EntityState.Modified;
             try
             {

@@ -75,6 +75,46 @@ app.controller("StatistikaCtrl", ["$scope", "BibliotekaService", '$sce', '$http'
                 //nema podataka
             })
 
+        var labels5;
+        var aktivnost1;
+        BibliotekaService.aktivnostautori(5)
+            .success(function (data, status) {
+                if (data != null || data != "") {
+                    aktivnost1 = new Array(data.length);
+                    labels5 = new Array(data.length);
+                }
+                for (var i = 0; i < data.length; i++) {
+                    aktivnost1[i] = data[i].Value;
+                    labels5[i] = data[i].Key;
+                }
+                console.log(aktivnost1);
+                console.log(labels5);
+                $scope.data5 = aktivnost1;
+                $scope.labels5 = labels5;
+            })
+            .error(function (data, status) {
+                //nema podataka
+            })
+
+        var labels6;
+        var aktivnost2;
+        BibliotekaService.glavniautori(5)
+            .success(function (data, status) {
+                if (data != null || data != "") {
+                    aktivnost2 = new Array(data.length);
+                    labels6 = new Array(data.length);
+                }
+                for (var i = 0; i < data.length; i++) {
+                    aktivnost2[i] = data[i].Value;
+                    labels6[i] = data[i].Key;
+                }
+                $scope.data6 = aktivnost2;
+                $scope.labels6 = labels6;
+            })
+            .error(function (data, status) {
+                //nema podataka
+            })
+
         $scope.labels1 = ["", "Januar", "Februar", "Mart", "April", "Maj", "Juni", "Juli", "August", "Septembar", "Octobar", "Novembar", "Decembar"];
         $scope.series1 = ['Rezervacije u prethodnoj godini', 'Rezervacije u ovoj godini'];
         $scope.colours1 = ['#7A527A', '#005ce6'];

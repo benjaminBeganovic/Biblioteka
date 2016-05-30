@@ -55,6 +55,24 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
                 params: {count: count}
             });
         },
+
+        aktivnostautori: function (count) {
+            return $http({
+                url: serviceBase + 'api/Autors/PopularniAutori',
+                method: "GET",
+                withCredentials: true,
+                params: { size: count }
+            });
+        },
+
+        glavniautori: function (count) {
+            return $http({
+                url: serviceBase + 'api/Autors/GlavniAutori',
+                method: "GET",
+                withCredentials: true,
+                params: { size: count }
+            });
+        },
         svitipoviracuna: function () {
             return $http({
                 url: serviceBase + 'api/TipRacunas',
@@ -102,9 +120,8 @@ angular.module('BibliotekaApp').factory("BibliotekaService", ['$http', function 
         },
         dajsvekorisnike: function () {
             return $http({
-                url: serviceBase + 'api/Korisniks',
+                url: serviceBase + 'api/Korisniks/SviKorisnici',
                 method: "GET",
-                params: {count: 1000},
                 withCredentials: true
             });
         },

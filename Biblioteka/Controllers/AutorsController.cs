@@ -25,6 +25,70 @@ namespace Biblioteka.Controllers
             return Ok(db.Autors.ToList());
         }
 
+        [CustomAuthorize(Roles = "a")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<KeyValuePair<string,int>>))]
+        [ActionName("PopularniAutori")]
+        public IHttpActionResult GetKnjige(int size)
+        {
+            var autori = new Dictionary<string, int>();
+            var a = db.Autors.ToList();
+            foreach (var x in a)
+            {
+                try
+                {
+                    int knjiga = db.Knjigas.Where(i => i.Autori.Select(v => v.naziv).Contains(x.naziv)).Count();
+                    autori.Add(x.naziv, knjiga);
+                }
+                catch (Exception)
+                {
+                    
+                }
+                
+            }
+            var rez = autori.OrderByDescending(z => z.Value).ToList();
+            if (rez.Count < size)
+            {
+                return Ok(rez);
+            }
+            else
+            {
+                return Ok(rez.GetRange(0, size));
+            }
+        }
+
+        [CustomAuthorize(Roles = "a")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<KeyValuePair<string, int>>))]
+        [ActionName("GlavniAutori")]
+        public IHttpActionResult GetKnjige1(int size)
+        {
+            var autori = new Dictionary<string, int>();
+            var a = db.Autors.ToList();
+            foreach (var x in a)
+            {
+                try
+                {
+                    int knjiga = db.Zaduzenjas.Where(i => i.Knjiga.Autori.Select(v => v.naziv).Contains(x.naziv)).Count();
+                    autori.Add(x.naziv, knjiga);
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+            var rez = autori.OrderByDescending(z => z.Value).ToList();
+            if (rez.Count < size)
+            {
+                return Ok(rez);
+            }
+            else
+            {
+                return Ok(rez.GetRange(0, size));
+            }
+        }
+
         // GET: api/Autors/5
         [ResponseType(typeof(Autor))]
         public IHttpActionResult GetAutor(long id)
