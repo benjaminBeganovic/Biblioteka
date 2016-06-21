@@ -38,6 +38,38 @@ namespace Biblioteka.Controllers
             return Ok(jezik);
         }
 
+        [CustomAuthorize(Roles = "a")]
+        [System.Web.Http.HttpGet]
+        [ResponseType(typeof(List<KeyValuePair<string, int>>))]
+        [ActionName("NajpopularnijiJezici")]
+        public IHttpActionResult Jezici(int size)
+        {
+            var jezici = new Dictionary<string, int>();
+            var a = db.Jeziks.ToList();
+            foreach (var x in a)
+            {
+                try
+                {
+                    int broj = db.Knjigas.Where(i => i.Jezik.referenca == x.referenca).Count();
+                    jezici.Add(x.opis, broj);
+                }
+                catch (Exception)
+                {
+
+                }
+
+            }
+            var rez = jezici.OrderByDescending(z => z.Value).ToList();
+            if (rez.Count < size)
+            {
+                return Ok(rez);
+            }
+            else
+            {
+                return Ok(rez.GetRange(0, size));
+            }
+        }
+
         // PUT: api/Jeziks/5
         [CustomAuthorize(Roles = "a,b")]
         [ResponseType(typeof(void))]
