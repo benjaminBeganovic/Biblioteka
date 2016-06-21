@@ -76,6 +76,7 @@
     <Content Include="assets\js\angular-sanitize.min.js" />
     <Content Include="assets\js\angular.js" />
     <Content Include="assets\js\angular.min.js" />
+    <Content Include="assets\js\Chart.min.js" />
     <Content Include="assets\js\dirPagination.js" />
     <Content Include="assets\js\jquery-2.2.3.js" />
     <Content Include="controllers\GalerijaCtrl.js" />
@@ -100,7 +101,7 @@
     <Content Include="controllers\ZKnjigeCtrl.js" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\nwtbibliotekapp - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\nwtbibliotekapp.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
