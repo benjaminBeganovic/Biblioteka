@@ -1,21 +1,21 @@
 # Biblioteka
 
-Deploy: http://nwtbibliotekapp.azurewebsites.net/
+Projekat iz kursa Praktikum Napredne Web tehnologije
 
-Admin(username:pass)
-admin1:admin1pass
+Projekat je rađen u timu od 4 osobe. Za front end je korišten AngularJS, a za back end ASP.NET Web API. Radi se o web aplikaciji za Biblioteku.
+Link za projekat možete naći na sljedećem linku: http://nwtbibliotekapp.azurewebsites.net/
 
-Bibliotekar(username:pass)
-bib1:bib1pass
+Pristupni podaci za aplikaciju su slijedeći:
+    
+    Admin(username:pass)
+    admin1:admin1pass
 
-Clan(username:pass)
-clan1:clan1pass
+    Bibliotekar(username:pass)
+    bib1:bib1pass
 
-## Članovi tima
-Amina Kadrispahić
+    Clan(username:pass)
+    clan1:clan1pass
+ 
+Članovi tima koji su radili na ovom projektu su Benjamin Beganović, Mirhat Babić, Amina Kadrispahić i Ilma Kurtović.
 
-Ilma Kurtović
 
-Benjamin Beganović
-
-Mirhat Babić
