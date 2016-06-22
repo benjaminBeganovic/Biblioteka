@@ -7,12 +7,19 @@ Radi se o web aplikaciji za Biblioteku.
 Link za projekat možete naći na sljedećem linku: http://nwtbibliotekapp.azurewebsites.net/
 
 Sljedeći su moduli urađeni:
+
     - registracija i prijavljivanje
+	
     - osnovne informacije o biblioteci i kontakt
+	
     - pretraga (jednostavna, napredna, pretraga po kodu)
+	
     - rezervacija i obavještenja
+	
     - adminstratorski modul
+	
     - upravljanje katalogom
+	
     - izvještaji
     
 Pristupni podaci za aplikaciju su slijedeći:
